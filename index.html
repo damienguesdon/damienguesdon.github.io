@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- SERIAL: v20240518-31 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Damien GUESDON - CV</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #f7f9fb;
+      --bg-dark: #181a1b;
+      --text-light: #222;
+      --text-dark: #f1f1f1;
+      --container-light: #fff;
+      --container-dark: #23272a;
+      --primary-light: #1a237e;
+      --primary-dark: #90caf9;
+      --secondary-light: #3949ab;
+      --secondary-dark: #90caf9;
+      --aside-light: linear-gradient(135deg, #e3e6f0 0%, #c5cae9 100%);
+      --aside-dark: linear-gradient(135deg, #23272a 0%, #283593 100%);
+    }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+    }
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: var(--container-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-radius: 10px;
+      padding: 40px 50px;
+      position: relative;
+    }
+    body.dark-mode .container {
+      background: var(--container-dark);
+    }
+    .top-bar {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      z-index: 10;
+    }
+    .top-buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .theme-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-size: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      position: relative;
+    }
+    .theme-toggle-btn svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      color: #3949ab;
+      background: transparent;
+    }
+    .theme-toggle-btn:focus { outline: 2px solid #3949ab; }
+    #icon-sun, #icon-moon { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+    #icon-sun { display: inline-block; }
+    #icon-moon { display: none; }
+    body.dark-mode #icon-sun { display: none; }
+    body.dark-mode #icon-moon { display: inline-block; }
+    .language-switcher {
+      display: flex;
+      gap: 10px;
+    }
+    .language-flag {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s, border 0.3s;
+      border: 2px solid transparent;
+    }
+    .language-flag.active {
+      opacity: 1;
+      border: 2px solid #1a237e;
+    }
+    .lang-section { 
+      display: none;
+      font-size: 10pt;
+    }
+    h1 {
+      color: var(--primary-light);
+      font-size: 2em;
+      margin-bottom: 0.2em;
+    }
+    body.dark-mode h1 {
+      color: var(--primary-dark);
+    }
+    h2 {
+      color: var(--secondary-light);
+      border-bottom: 2px solid #e3e6f0;
+      padding-bottom: 5px;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      font-size: 1.4em;
+    }
+    body.dark-mode h2 {
+      color: var(--secondary-dark);
+      border-bottom-color: #374151;
+    }
+    aside h2 {
+      border-bottom: 2px solid #c5cae9;
+    }
+    h3 {
+      color: #222;
+      margin-bottom: 0.2em;
+      font-size: 1.1em;
+    }
+    body.dark-mode h3 {
+      color: #f1f1f1;
+    }
+    .info { 
+      color: #555; 
+      margin-bottom: 1em;
+      font-size: 0.9em;
+    }
+    body.dark-mode .info { color: #b0b0b0; }
+    .section { margin-bottom: 1em; }
+    .item-title {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--secondary-light);
+      font-weight: bold;
+      font-size: 1em;
+    }
+    body.dark-mode .item-title { color: var(--secondary-dark); }
+    .dates {
+      margin-left: auto;
+      vertical-align: baseline;
+      font-size: 0.85em !important;
+      color: #78909c;
+      font-style: italic;
+    }
+    .info span[id^="age"], .info span[id^="xp"] {
+      display: inline;
+      vertical-align: baseline;
+      font-weight: 500;
+      margin-right: 3px;
+    }
+    span[id^="xp"], span[id^="xp-en"] {
+      display: inline;
+      vertical-align: baseline;
+      font-weight: 500;
+      margin-right: 3px;
+    }
+    .cv-flex { 
+      display: flex; 
+      margin-top: 1em;
+      gap: 30px;
+    }
+    aside {
+      flex-basis: 30%;
+      max-width: 30%;
+      min-width: 160px;
+      background: var(--aside-light);
+      border-radius: 16px;
+      padding: 20px 15px;
+      color: var(--primary-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      flex-shrink: 0;
+    }
+    body.dark-mode aside {
+      background: var(--aside-dark);
+      color: var(--primary-dark);
+    }
+    .main-content { 
+      flex-basis: 70%; 
+      max-width: 70%; 
+      flex-grow: 1;
+    }
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .header-flex img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-left: 20px;
+    }
+    a { color: var(--secondary-light); }
+    body.dark-mode a { color: var(--secondary-dark); }
+    @media (max-width: 800px) {
+      .top-bar { position: static; align-items: center; }
+      .top-buttons { justify-content: center; }
+      .header-flex { flex-direction: column; align-items: center; text-align: center; }
+      .header-flex img { margin: 20px 0 0 0; }
+      .cv-flex { flex-direction: column; }
+      aside, .main-content { max-width: 100% !important; flex-basis: 100% !important; }
+      aside { order: 2; margin-top: 30px; }
+      .language-switcher { justify-content: center; margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-buttons">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
+        <span id="icon-sun">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </span>
+        <span id="icon-moon" style="display: none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+      </button>
+      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_GUESDON.pdf" download title="Télécharger le PDF">
+        <span>
+          <!-- SVG PDF -->
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/>
+            <polyline points="16 3 21 8" fill="none"/>
+            <text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text>
+          </svg>
+        </span>
+      </a>
+    </div>
+    <div class="language-switcher">
+      <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
+      <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
+    </div>
+  </div>
+  <div class="container">
+    <main>
+      <!-- ======== FRANÇAIS ======== -->
+      <div id="fr" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+            <div class="info">
+              <span id="age"></span> ans&nbsp;|&nbsp;Né le 20/10/1977<br>
+              31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80 &nbsp;|&nbsp; Permis B
+            </div>
+          </div>
+          <img src="photo.jpg" alt="Damien GUESDON" crossorigin="anonymous">
+        </div>
+        <h2>Résumé professionnel</h2>
+        <div>
+          <span id="xp"></span> ans d’expérience, reconnu pour le pilotage d’équipes, la direction de projets stratégiques et l’architecture d’infrastructures complexes et sécurisées. Forte expertise dans la transformation numérique, l’optimisation des coûts et la sécurisation des systèmes d’information. Sens aigu de la qualité de service et capacité à fédérer et faire évoluer les équipes vers l’excellence opérationnelle. Ouvert aux opportunités de Directeur Technique, DSI ou CTO pour accompagner la croissance et l’innovation d’une organisation.
+        </div>
+        <div class="cv-flex">
+          <aside>
+            <h2>Compétences clés</h2>
+            <ul>
+              <li>Direction technique & stratégie IT</li>
+              <li>Management & leadership</li>
+              <li>Gestion de projet</li>
+              <li>Architecture systèmes & réseaux</li>
+              <li>Cybersécurité</li>
+              <li>Innovation & veille technologique</li>
+              <li>Relation client & communication</li>
+            </ul>
+            <h2>Langues</h2>
+            <ul>
+              <li>Français : Maternelle</li>
+              <li>Anglais : Courant + Technique</li>
+              <li>Catalan : En cours d’apprentissage</li>
+              <li>Allemand : Notions</li>
+              <li>Japonais : Initiation</li>
+            </ul>
+            <h2>Formation</h2>
+            <div class="section">
+              <strong>BTS TSGRI</strong> (Niveau III), Créteil (94), 2005-2006<br>
+              Technicien Supérieur Gestionnaire de Ressources Informatiques
+            </div>
+            <div class="section">
+              <strong>BTS Analyste-programmeur</strong> (CNFDI, à distance), 2002-2003<br>
+              Visual Basic, C++, PHP, HTML
+            </div>
+            <div class="section">
+              <strong>DEUG Sciences de la Vie</strong>, Nantes (44), 1997<br>
+              Programmation Pascal et Turbo-Pascal
+            </div>
+            <div class="section">
+              <strong>Bac S, spécialité mathématiques</strong>, Lamballe (22), 1996
+            </div>
+            <h2>Centres d’intérêt</h2>
+            <ul>
+              <li>Innovation technologique, veille IT, transformation digitale</li>
+              <li>Intelligence Artificielle</li>
+              <li>Ludothèque, escape games, géocaching</li>
+              <li>Voyages, gastronomie, ski, randonnée, nautisme</li>
+            </ul>
+          </aside>
+          <div class="main-content">
+            <h2>Expérience professionnelle</h2>
+            <div class="section">
+              <h3 class="item-title">Directeur Technique Infrastructure <span class="dates">Alphalink, Pornic – depuis Janvier 2024</span></h3>
+              <ul>
+                <li>Direction de la stratégie infrastructure et sécurité pour un opérateur télécom national.</li>
+                <li>Management d’équipes techniques pluridisciplinaires (systèmes, réseaux, datacenter, VoIP, sécurité).</li>
+                <li>Pilotage de projets de transformation et de modernisation des infrastructures : évolution du cœur de réseau MPLS, déploiement et conception de l’infrastructure de cybersécurité, virtualisation, automatisation.</li>
+                <li>Mise en place d’un process de gestion des changements structuré, avec animation d’un Change Advisory Board (CAB).</li>
+                <li>Optimisation des process, gestion des budgets et des fournisseurs.</li>
+                <li>Mise en place de politiques de sécurité et de conformité (ISO, RGPD).</li>
+                <li>Représentation technique auprès de la direction générale.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Dirigeant / CTO – Conseil & Direction Technique <span class="dates">KISAI DG, SLU – Andorre – 2018 – Déc. 2023</span></h3>
+              <ul>
+                <li>Conseil stratégique et opérationnel auprès de clients (opérateurs, intégrateurs, PME/ETI).</li>
+                <li>Direction technique en prestation pour des clients grands comptes et opérateurs.</li>
+                <li>Définition et mise en œuvre de feuilles de route IT, transformation digitale, cybersécurité.</li>
+                <li>Supervision de projets d’envergure : refonte réseaux, automatisation, supervision.</li>
+                <li>Encadrement et montée en compétence des équipes techniques.</li>
+                <li>Accompagnement du changement et gestion de la relation client au niveau direction.</li>
+                <li>Gestion de projets d’intégration d’infrastructures critiques, déploiement de datacenters, backbone opérateur, services FAI.</li>
+                <li>DSI externalisé pour plusieurs clients.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Directeur Technique / Consultant Système Réseau <span class="dates">Auto-entrepreneur, La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
+              <ul>
+                <li>Déploiement et administration de backbone opérateur, datacenters, réseaux MPLS.</li>
+                <li>Ingénierie réseau, intégration de services FAI, DSI externalisé.</li>
+                <li>Management de projets et accompagnement des clients dans la transformation de leur SI.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Architecte Réseau <span class="dates">ALPHALINK, Pornic (44) – 2008 – 2011</span></h3>
+              <ul>
+                <li>Design d’architectures réseaux, gestion de projets, formation client.</li>
+                <li>Encadrement et formation d’équipe de production.</li>
+                <li>Administration système, VOIP, réseau sur plateformes Linux.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Expériences antérieures <span class="dates">2005 – 2008</span></h3>
+              <ul>
+                <li><strong>PYGRAM</strong>, Nantes (44) – 2007-2008 : Gestionnaire Système et Réseau – Déploiement de solutions TSE en cluster, virtualisation embarquée (VmWare).</li>
+                <li><strong>Renault</strong>, Le Mans (72) – 2007 : Administrateur Système – Gestion de parc informatique (1900 postes), maintenance, assistance, formation, sauvegardes.</li>
+                <li><strong>BI-SAM</strong>, Paris 8 (75) – 2006-2007 : Administrateur Système UNIX – Installation et administration serveurs UNIX (AIX), monitoring (Nagios), sauvegardes (Backup Exec).</li>
+                <li><strong>BNP Paribas</strong>, Paris 8 (75) – 2006 : TSGRI – Administration serveurs Linux Debian, Windows NT et 2003, mise en place de filtrage open source (IPCop).</li>
+                <li><strong>ACRELEC</strong>, France – 2008 : Technicien Informatique Itinérant (6 mois) – Déploiement et installation de réseaux informatiques (restauration).</li>
+                <li><strong>CLUB INTERNET</strong>, Paris 19 (75) – 2005 : Technicien Hotline (1 an) – Support utilisateur, dépannage et installation ADSL.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ======== ENGLISH ======== -->
+      <div id="en" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+            <div class="info">
+              <span id="age-en"></span> years old&nbsp;|&nbsp;Born 10/20/1977<br>
+              31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> | +33 6 63 71 17 80 | Driving License
+            </div>
+          </div>
+          <img src="photo.jpg" alt="Damien GUESDON" crossorigin="anonymous">
+        </div>
+        <h2>Professional Summary</h2>
+        <div>
+          <span id="xp-en"></span> years of experience, recognized for leading teams, managing strategic projects, and architecting complex and secure infrastructures. Strong expertise in digital transformation, cost optimization, and information systems security. Highly committed to service quality, with a proven ability to unite and develop teams towards operational excellence. Open to CTO, CIO, or Technical Director opportunities to support organizational growth and innovation.
+        </div>
+        <div class="cv-flex">
+          <aside>
+            <h2>Key Skills</h2>
+            <ul>
+              <li>Technical leadership & IT strategy</li>
+              <li>Team management & leadership</li>
+              <li>Project management</li>
+              <li>Systems & network architecture</li>
+              <li>Cybersecurity</li>
+              <li>Innovation & technology watch</li>
+              <li>Client relations & communication</li>
+            </ul>
+            <h2>Languages</h2>
+            <ul>
+              <li>French: Native</li>
+              <li>English: Fluent (including technical)</li>
+              <li>Catalan: In progress</li>
+              <li>German: Basic</li>
+              <li>Japanese: Beginner</li>
+            </ul>
+            <h2>Education</h2>
+            <div class="section">
+              <strong>Higher Technical Diploma (BTS) in IT Resource Management</strong>, Créteil, France, 2005-2006<br>
+              (BTS TSGRI – “Technicien Supérieur Gestionnaire de Ressources Informatiques”)
+            </div>
+            <div class="section">
+              <strong>Higher Technical Diploma (BTS) in Computer Programming</strong>, CNFDI (remote), 2002-2003<br>
+              Visual Basic, C++, PHP, HTML
+            </div>
+            <div class="section">
+              <strong>DEUG in Life Sciences</strong>, Nantes, France, 1997<br>
+              Pascal and Turbo-Pascal programming
+            </div>
+            <div class="section">
+              <strong>Scientific Baccalaureate, Mathematics Major</strong>, Lamballe, France, 1996
+            </div>
+            <h2>Interests</h2>
+            <ul>
+              <li>Technology innovation, IT watch, digital transformation</li>
+              <li>Artificial Intelligence</li>
+              <li>Board games, escape rooms, geocaching</li>
+              <li>Travel, gastronomy, skiing, hiking, boating</li>
+            </ul>
+          </aside>
+          <div class="main-content">
+            <h2>Professional Experience</h2>
+            <div class="section">
+              <h3 class="item-title">Technical Director Infrastructure <span class="dates">Alphalink, Pornic – since January 2024</span></h3>
+              <ul>
+                <li>Directed infrastructure and security strategy for a national telecom operator.</li>
+                <li>Managed multidisciplinary technical teams (systems, networks, datacenter, VoIP, security).</li>
+                <li>Led transformation and modernization projects: MPLS core network evolution, deployment and design of cybersecurity infrastructure, virtualization, automation.</li>
+                <li>Established a structured change management process, including leading a Change Advisory Board (CAB).</li>
+                <li>Optimized processes, managed budgets and suppliers.</li>
+                <li>Implemented security and compliance policies (ISO, GDPR).</li>
+                <li>Technical representation with executive management.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Founder / CTO – Consulting & Technical Leadership <span class="dates">KISAI DG, SLU – Andorra – 2018 – Dec. 2023</span></h3>
+              <ul>
+                <li>Provided strategic and operational consulting to clients (telecom operators, integrators, SMEs/ETIs).</li>
+                <li>Served as technical director on assignment for major clients and operators.</li>
+                <li>Defined and implemented IT roadmaps, digital transformation, cybersecurity.</li>
+                <li>Supervised large-scale projects: network redesign, automation, monitoring.</li>
+                <li>Managed and developed technical teams.</li>
+                <li>Facilitated change management and client relations at executive level.</li>
+                <li>Oversaw critical infrastructure integration projects, datacenter deployment, operator backbone, ISP services.</li>
+                <li>Acted as outsourced CIO for several clients.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Technical Director / Systems & Network Consultant <span class="dates">Freelance, La Plaine-sur-Mer – 2011 – 2018</span></h3>
+              <ul>
+                <li>Deployed and managed operator backbone, datacenters, MPLS networks.</li>
+                <li>Network engineering, ISP service integration, outsourced CIO.</li>
+                <li>Project management and client support for IT transformation.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Network Architect <span class="dates">ALPHALINK, Pornic – 2008 – 2011</span></h3>
+              <ul>
+                <li>Designed network architectures, managed projects, provided client training.</li>
+                <li>Led and trained production teams.</li>
+                <li>Systems administration, VoIP, Linux-based networks.</li>
+              </ul>
+            </div>
+            <div class="section">
+              <h3 class="item-title">Previous Experience <span class="dates">2005 – 2008</span></h3>
+              <ul>
+                <li><strong>PYGRAM</strong>, Nantes – 2007-2008: Systems & Network Manager – Deployed clustered TSE solutions, embedded virtualization (VmWare).</li>
+                <li><strong>Renault</strong>, Le Mans – 2007: Systems Administrator – Managed IT assets (1,900 workstations), maintenance, support, training, backups.</li>
+                <li><strong>BI-SAM</strong>, Paris – 2006-2007: UNIX Systems Administrator – Installed and managed UNIX (AIX) servers, monitoring (Nagios), backups (Backup Exec).</li>
+                <li><strong>BNP Paribas</strong>, Paris – 2006: IT Specialist – Administered Debian Linux, Windows NT and 2003 servers, implemented open-source filtering (IPCop).</li>
+                <li><strong>ACRELEC</strong>, France – 2008: IT Field Technician (6 months) – Deployed and installed IT networks (restaurant sector).</li>
+                <li><strong>CLUB INTERNET</strong>, Paris – 2005: Support Technician (1 year) – User support, troubleshooting and ADSL installation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    function calculateAge(birthDateStr) {
+      const today = new Date();
+      const birthDate = new Date(birthDateStr);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+    function calculateExperience(startDateStr) {
+      const today = new Date();
+      const startDate = new Date(startDateStr);
+      let years = today.getFullYear() - startDate.getFullYear();
+      if (
+        today.getMonth() < startDate.getMonth() ||
+        (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())
+      ) {
+        years--;
+      }
+      return years;
+    }
+
+    function switchLanguage(lang) {
+      document.getElementById('fr').style.display = lang === 'fr' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.querySelectorAll('.language-flag').forEach(flag => {
+        flag.classList.toggle('active', flag.dataset.lang === lang);
+      });
+      localStorage.setItem('preferredLang', lang);
+
+      // MAJ du lien PDF selon la langue
+      var pdfLink = document.getElementById('pdf-link');
+      if (pdfLink) {
+        if (lang === 'fr') {
+          pdfLink.href = 'CV_Damien_GUESDON.pdf';
+          pdfLink.download = 'CV_Damien_GUESDON.pdf';
+          pdfLink.title = 'Télécharger le PDF';
+        } else {
+          pdfLink.href = 'Damien_GUESDON_Resume.pdf';
+          pdfLink.download = 'Damien_GUESDON_Resume.pdf';
+          pdfLink.title = 'Download PDF';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Âge dynamique
+      const age = calculateAge('1977-10-20');
+      const ageFrElem = document.getElementById('age');
+      if (ageFrElem) ageFrElem.textContent = age;
+      const ageEnElem = document.getElementById('age-en');
+      if (ageEnElem) ageEnElem.textContent = age;
+
+      // Expérience dynamique (depuis 2005)
+      const xpYears = calculateExperience('2005-01-01');
+      const xpElem = document.getElementById('xp');
+      if (xpElem) xpElem.textContent = xpYears;
+      const xpEnElem = document.getElementById('xp-en');
+      if (xpEnElem) xpEnElem.textContent = xpYears;
+
+      // Langue
+      const savedLang = localStorage.getItem('preferredLang');
+      let lang = 'fr';
+      if (savedLang) {
+        lang = savedLang;
+      } else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
+        lang = 'en';
+      }
+      switchLanguage(lang);
+      document.querySelectorAll('.language-flag').forEach((flag) => {
+        flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
+      });
+
+      // THEME SWITCH
+      const themeToggle = document.getElementById('theme-toggle');
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+
+      function setTheme(mode) {
+        if (mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          iconSun.style.display = 'none';
+          iconMoon.style.display = 'inline-block';
+        } else {
+          document.body.classList.remove('dark-mode');
+          iconSun.style.display = 'inline-block';
+          iconMoon.style.display = 'none';
+        }
+        localStorage.setItem('theme', mode);
+      }
+
+      themeToggle.addEventListener('click', function () {
+        const isDark = document.body.classList.contains('dark-mode');
+        setTheme(isDark ? 'light' : 'dark');
+      });
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    });
+  </script>
+</body>
+</html>
