@@ -1,18 +1,29 @@
-name: CI
+name: CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - "main"
+      - "feat/**" # Déclenche sur les branches feat/
+      - "fix/**"  # Et potentiellement les branches fix/
+      - "docs/**" # Et les branches docs/
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+  # Permet de lancer le workflow manuellement depuis l'onglet Actions de GitHub
+  workflow_dispatch:
+
+# Permet une seule exécution simultanée du workflow
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4 # Utiliser la v4 pour être à jour
       - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5 # Utiliser la v5 pour être à jour
         with:
           python-version: "3.11"
       - name: Install dependencies
@@ -23,3 +34,27 @@ jobs:
         run: ruff check .
       - name: Format with Black
         run: black --check .
+
+  # Job pour le déploiement sur GitHub Pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: validate # Dépend du succès du job de validation
+    permissions:
+      pages: write # Nécessaire pour déployer sur GitHub Pages
+      id-token: write # Nécessaire pour authentifier la demande de déploiement
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Déploie le contenu du dossier racine du dépôt
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
