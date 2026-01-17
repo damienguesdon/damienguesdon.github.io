@@ -33,4 +33,4 @@ Pour toute question ou prise de contact, veuillez me joindre via [mon profil Git
 
 *Merci de visiter mon CV en ligne !*
 
-## Mise à jour du design (Jan 2026) : Version responsive & aérée (Trigger CI).
+## Mise à jour du design (Jan 2026) : Version responsive & aérée (Final Cycle).
