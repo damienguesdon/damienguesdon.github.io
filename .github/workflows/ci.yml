@@ -12,6 +12,12 @@ on:
   # Permet de lancer le workflow manuellement depuis l'onglet Actions de GitHub
   workflow_dispatch:
 
+# Permissions par défaut pour le GITHUB_TOKEN du workflow
+permissions:
+  contents: read # Permet de cloner le dépôt (nécessaire pour validate et deploy)
+  pages: write # Nécessaire pour déployer sur GitHub Pages
+  id-token: write # Nécessaire pour authentifier la demande de déploiement (OIDC)
+
 # Permet une seule exécution simultanée du workflow
 concurrency:
   group: "pages"
