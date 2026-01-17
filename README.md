@@ -29,10 +29,8 @@ Le site est déployé automatiquement via GitHub Pages à partir de la branche `
 
 Pour toute question ou prise de contact, veuillez me joindre via [mon profil GitHub](https://github.com/damienguesdon) ou par email.
 
-## Mise à jour du design (Jan 2026) : Version responsive & aérée.
-
-## 🛠️ STANDARDS APPLICABLES (BRAIN)
-
 ---
 
 *Merci de visiter mon CV en ligne !*
+
+## Mise à jour du design (Jan 2026) : Version responsive & aérée (Trigger CI).
