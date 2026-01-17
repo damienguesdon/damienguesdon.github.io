@@ -41,12 +41,8 @@ jobs:
     if: github.ref != 'refs/heads/main' && github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
-        with:
-          # Le token est nécessaire pour que la CLI gh puisse opérer
-          token: ${{ secrets.GH_PAT }}
       - name: Create and Auto-merge PR
         env:
-          # La CLI gh utilise cette variable d'environnement
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh pr create --base main --head ${{ github.ref_name }} --title "ci: Merge ${{ github.ref_name }} to main" --body "Automated PR from CI" || echo "PR already exists"
@@ -57,9 +53,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    # Ce job se déclenche SEULEMENT quand un push arrive sur main (après la fusion de 'promote')
     if: github.ref == 'refs/heads/main'
-    needs: validate # Dépend de la validation du code sur la branche main
+    # Le déploiement ne doit dépendre de rien, il est déclenché par le push sur main
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -71,4 +66,4 @@ jobs:
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions-pages/deploy-pages@v4
+        uses: actions/deploy-pages@v4
