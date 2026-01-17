@@ -34,3 +34,4 @@ Pour toute question ou prise de contact, veuillez me joindre via [mon profil Git
 *Merci de visiter mon CV en ligne !*
 
 ## Mise à jour du design (Jan 2026) : Version responsive & aérée (Final Cycle).
+\n- Sam 17 jan 2026 18:56:13 CET: E2E test of the final CI workflow.
