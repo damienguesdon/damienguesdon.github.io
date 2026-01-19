@@ -1,36 +1,65 @@
-# CV en ligne de Damien Guesdon
+# 🚀 Damien Guesdon - CV Factory
 
-Bienvenue sur le dépôt GitHub hébergeant la page web de mon CV en ligne accessible à l’adresse : [https://damienguesdon.github.io/](https://damienguesdon.github.io/).
+Ce dépôt contient le moteur de génération de mon CV professionnel. Il s'agit d'une solution personnalisée permettant de générer un profil dynamique, bilingue (FR/EN) et responsive à partir de sources de données structurées.
 
-## Description
+## 🛠️ Stack Technique
 
-Ce site présente mon parcours professionnel, mes compétences, mes réalisations ainsi que mes projets clés. Il sert de vitrine numérique pour faciliter la découverte de mon profil par des recruteurs, collaborateurs ou partenaires.
+- **Moteur de Rendu** : Python 3.11
+- **Templating** : [Jinja2](https://palletsprojects.com/p/jinja/)
+- **Source de Données** : YAML (Séparation stricte contenu/forme)
+- **Front-end** : HTML5 & CSS3 (Variables CSS pour le support Dark/Light mode)
+- **Automation CI/CD** : GitHub Actions
+- **Qualité Code** : Ruff (Linting) & Black (Formatage)
+- **Hébergement** : GitHub Pages
 
-La page est conçue dans un format clair, moderne et responsive pour une navigation optimale sur tous types d’appareils (desktop, mobile, tablette).
+## ✨ Fonctionnalités
 
-## Technologies utilisées
+- **Bilingue (FR/EN)** : Bascule dynamique de la langue via l'interface.
+- **Support Dark/Light Mode** : Détection automatique du thème système et bascule manuelle.
+- **Génération Ciblée** : Support de fichiers d'overrides pour adapter le CV à des opportunités spécifiques (adaptation dynamique du résumé ou des compétences mises en avant).
+- **Calcul Automatique** : Les années d'expérience globale sont recalculées dynamiquement à chaque génération.
+- **Design Print-Ready** : Styles CSS optimisés pour l'impression et l'export PDF.
 
-- HTML5
-- CSS3 (possiblement avec framework ou préprocesseur si applicable)
-- JavaScript (optionnel : pour interactivité)
-- Hébergement via GitHub Pages
+## 📂 Structure du Projet
 
-## Structure du projet
+```text
+├── data/
+│   ├── cv.yaml           # Données sources (Expériences, Compétences, etc.)
+│   └── cv_custom.yaml    # Overrides pour une version spécifique (optionnel)
+├── scripts/
+│   └── generate_cv.py    # Script Python de génération du fichier HTML
+├── src/
+│   └── templates/
+│       └── cv_template.html # Template Jinja2 maître
+├── index.html            # CV généré (déployé automatiquement)
+└── .github/workflows/    # Workflows d'automatisation (CI/CD)
+```
 
-- `index.html` : page principale affichant le CV
-- `assets/` : dossiers contenant images, icônes, styles CSS et scripts JS
-- Autres fichiers nécessaires à la mise en forme et au fonctionnement
+## 🚀 Utilisation
 
-## Déploiement
+### Installation
+Le projet nécessite Python 3.11 et les dépendances Jinja2 et PyYAML.
+```bash
+pip install jinja2 pyyaml
+```
 
-Le site est déployé automatiquement via GitHub Pages à partir de la branche `main` du dépôt.
+### Génération locale
+Pour générer la version standard :
+```bash
+python scripts/generate_cv.py
+```
 
-## Contact
+Pour générer une version spécifique (utilisant un fichier d'override correspondant dans `data/`) :
+```bash
+python scripts/generate_cv.py --target custom
+```
 
-Pour toute question ou prise de contact, veuillez me joindre via [mon profil GitHub](https://github.com/damienguesdon) ou par email.
+## ⚙️ Automatisation
+
+Le déploiement est entièrement automatisé via GitHub Actions :
+1. Chaque modification de code ou de données est validée par **Ruff** (linting) et **Black** (formatage).
+2. Après validation, le CV est régénéré et déployé sur **GitHub Pages**.
+3. La gestion des versions est assurée par un tag de versioning injecté dynamiquement dans le code source du CV.
 
 ---
-
-*Merci de visiter mon CV en ligne !*
-
-## Mise à jour du design (Jan 2026) : Version responsive & aérée.\n## Automatisation (Jan 2026) : Structure dynamique via YAML et Jinja2.
+*Damien Guesdon*
