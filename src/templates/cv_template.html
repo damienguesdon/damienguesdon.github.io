@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- SERIAL: {{ serial_version }} -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ identity.name }} - CV</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #f3f4f6;
+      --bg-dark: #0f172a;
+      --text-light: #1f2937;
+      --text-dark: #f8fafc;
+      --container-light: #ffffff;
+      --container-dark: #1e293b;
+      --primary-light: #1e40af;
+      --primary-dark: #60a5fa;
+      --secondary-light: #3730a3;
+      --secondary-dark: #818cf8;
+      --accent-light: #4f46e5;
+      --accent-dark: #a5b4fc;
+      --aside-light: #eef0f4;
+      --aside-dark: #334155;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .container {
+      max-width: 1300px;
+      margin: 40px auto;
+      background: var(--container-light);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 50px; 
+      position: relative;
+    }
+    body.dark-mode .container {
+      background: var(--container-dark);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .top-bar {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 10;
+    }
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .theme-toggle-btn {
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark-mode .theme-toggle-btn {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border-dark);
+    }
+    .theme-toggle-btn svg { width: 20px; height: 20px; color: var(--accent-light); }
+    body.dark-mode .theme-toggle-btn svg { color: var(--accent-dark); }
+    
+    .language-flag {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+    }
+    .language-flag.active { opacity: 1; border-color: var(--accent-light); }
+    body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
+
+    .language-switcher {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
+    .lang-icon {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .lang-section { display: none; }
+    
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 30px;
+    }
+    body.dark-mode header { border-color: var(--border-dark); }
+    
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.025em;
+      color: var(--primary-light);
+    }
+    body.dark-mode h1 { color: var(--primary-dark); }
+    
+    .info {
+      font-size: 0.95em;
+      color: #64748b;
+      margin-top: 10px;
+    }
+    body.dark-mode .info { color: #94a3b8; }
+    .header-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .summary {
+      font-size: 1.1em;
+      margin: 30px 0;
+      color: var(--text-light);
+      background: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-light);
+    }
+    body.dark-mode .summary {
+      background: rgba(255,255,255,0.03);
+      color: var(--text-dark);
+      border-left-color: var(--accent-dark);
+    }
+    
+    .cv-flex {
+      display: flex; 
+      gap: 50px;
+    }
+    
+    aside {
+      flex: 0 0 350px;
+      background-color: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    body.dark-mode aside {
+      background-color: var(--aside-dark);
+    }
+    .skill-title { 
+      font-weight: 700; 
+      display: block; 
+      margin-bottom: 2px;
+      font-size: 0.9em;
+      color: var(--primary-light);
+    }
+    body.dark-mode .skill-title { color: var(--primary-dark); }
+
+    .main-content { 
+      flex: 1; 
+    }
+
+    h2 {
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark-mode h2 { color: var(--accent-dark); }
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+    body.dark-mode h2::after { background: var(--border-dark); }
+    
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-list li {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .experience-item {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 30px;
+      border-left: 2px solid var(--border-light);
+    }
+    body.dark-mode .experience-item { border-left-color: var(--border-dark); }
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-light);
+      border-radius: 50%;
+    }
+    body.dark-mode .experience-item::before { background: var(--accent-dark); }
+    
+    .item-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      color: var(--primary-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    body.dark-mode .item-title { color: var(--primary-dark); }
+    
+    .dates {
+      font-size: 0.8em;
+      color: #64748b;
+      font-weight: 500;
+      font-style: normal;
+    }
+    
+    .experience-item ul {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+    }
+    .experience-item li { margin-bottom: 4px; font-size: 0.95em; }
+
+    @media (max-width: 900px) {
+      .container { margin: 0; border-radius: 0; padding: 30px 20px; }
+      .cv-flex { flex-direction: column; }
+      .header-flex { flex-direction: column; text-align: center; gap: 20px; }
+      .header-photo { margin: 0; }
+      .top-bar { position: static; align-items: center; margin-bottom: 20px; }
+      aside { flex: none; width: 100%; }
+    }
+
+    /* Print specific styles */
+    @media print {
+      @page { margin: 0.5cm; size: A4; }
+      body { background: #fff !important; color: #000 !important; font-size: 9.5pt !important; line-height: 1.2 !important; }
+      .container { box-shadow: none !important; padding: 10px !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
+      .top-bar, .language-switcher { display: none !important; }
+      header { margin-bottom: 15px !important; padding-bottom: 10px !important; }
+      h1 { font-size: 2.2em !important; }
+      h2 { font-size: 1.1em !important; margin: 15px 0 8px 0 !important; }
+      .summary { margin: 10px 0 !important; padding: 10px !important; font-size: 1em !important; }
+      .cv-flex { gap: 20px !important; }
+      aside { flex: 0 0 260px !important; padding: 10px !important; }
+      .skill-block { margin-bottom: 8px !important; }
+      .experience-item { margin-bottom: 12px !important; padding-left: 15px !important; }
+      .experience-item ul { margin-top: 3px !important; }
+      .experience-item li { margin-bottom: 1px !important; font-size: 9pt !important; }
+      .item-title { font-size: 10pt !important; }
+      .dates { font-size: 8pt !important; }
+      .lang-icon { width: 14px !important; height: 9px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-buttons">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
+        <span id="icon-sun">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </span>
+        <span id="icon-moon" style="display: none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+      </button>
+      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_FR.pdf" download title="Télécharger le PDF">
+        <span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg>
+        </span>
+      </a>
+    </div>
+    <div class="language-switcher">
+      <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
+      <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
+    </div>
+  </div>
+
+  <div class="container">
+    <main>
+      {% for lang_code in ['fr', 'en'] %}
+      <div id="{{ lang_code }}" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>{{ identity.name }}</h1>
+            <div class="info">
+              <span id="age{% if lang_code == 'en' %}-en{% endif %}"></span> {% if lang_code == 'fr' %}ans{% else %}years old{% endif %}&nbsp;|&nbsp;{% if lang_code == 'fr' %}Né le{% else %}Born{% endif %} 20/10/1977<br>
+              {{ identity.address }}<br>
+              <a href="mailto:{{ identity.email }}">{{ identity.email }}</a> &nbsp;|&nbsp; {{ identity.phone }} &nbsp;|&nbsp; {{ identity.license[lang_code] }}
+            </div>
+          </div>
+          <img src="{{ identity.photo }}" class="header-photo" alt="{{ identity.name }}">
+        </div>
+        <h2>{% if lang_code == 'fr' %}Résumé professionnel{% else %}Professional Summary{% endif %}</h2>
+        <div class="summary">
+          {{ summary[lang_code] }}
+        </div>
+        <div class="cv-flex">
+          <aside>
+            <h2>{% if lang_code == 'fr' %}Compétences clés{% else %}Key Skills{% endif %}</h2>
+            {% for skill in skills %}
+            <div class="skill-block">
+              <span class="skill-title">{{ skill.title[lang_code] }}</span>
+              <div class="skill-desc">{{ skill.desc[lang_code] }}</div>
+            </div>
+            {% endfor %}
+
+            <h2>{% if lang_code == 'fr' %}Langues{% else %}Languages{% endif %}</h2>
+            <ul class="skills-list">
+              {% for lang in languages %}
+              <li><img src="https://flagcdn.com/{{ lang.flag }}.svg" alt="{{ lang.name[lang_code] }}" class="lang-icon">{{ lang.name[lang_code] }} : {{ lang.level[lang_code] }}</li>
+              {% endfor %}
+            </ul>
+
+            <h2>{% if lang_code == 'fr' %}Formation{% else %}Education{% endif %}</h2>
+            {% for edu in education %}
+            <div class="skill-block">
+              <span class="skill-title">{{ edu.title[lang_code] }}</span>
+              <div class="skill-desc">{{ edu.desc[lang_code] }}</div>
+            </div>
+            {% endfor %}
+          </aside>
+          <div class="main-content">
+            <h2>{% if lang_code == 'fr' %}Expérience professionnelle{% else %}Professional Experience{% endif %}</h2>
+            {% for exp in experiences %}
+            <div class="experience-item">
+              <h3 class="item-title"><span>{{ exp.role[lang_code] }}{% if exp.company %} – {{ exp.company }}{% endif %}</span> <span class="dates">{{ exp.location }} – {{ exp.dates[lang_code] }}</span></h3>
+              <ul>
+                {% for task in exp.tasks[lang_code] %}
+                <li>{{ task|safe }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </main>
+  </div>
+  <script>
+    function calculateAge(birthDateStr) {
+      const today = new Date();
+      const birthDate = new Date(birthDateStr);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; }
+      return age;
+    }
+    function calculateExperience(startDateStr) {
+      const today = new Date();
+      const startDate = new Date(startDateStr);
+      let years = today.getFullYear() - startDate.getFullYear();
+      if (today.getMonth() < startDate.getMonth() || (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())) { years--; }
+      return years;
+    }
+
+    function switchLanguage(lang) {
+      document.getElementById('fr').style.display = lang === 'fr' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.querySelectorAll('.language-flag').forEach(flag => {
+        flag.classList.toggle('active', flag.dataset.lang === lang);
+      });
+      localStorage.setItem('preferredLang', lang);
+
+      var pdfLink = document.getElementById('pdf-link');
+      if (pdfLink) {
+        if (lang === 'fr') {
+          pdfLink.href = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.download = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.title = 'Télécharger le PDF';
+        } else {
+          pdfLink.href = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.download = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.title = 'Download PDF';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const age = calculateAge('{{ identity.birth_date }}');
+      if (document.getElementById('age')) document.getElementById('age').textContent = age;
+      if (document.getElementById('age-en')) document.getElementById('age-en').textContent = age;
+
+      const savedLang = "{{ force_lang or '' }}" || localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      switchLanguage(savedLang);
+      document.querySelectorAll('.language-flag').forEach((flag) => {
+        flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
+      });
+
+      const themeToggle = document.getElementById('theme-toggle');
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+
+      function setTheme(mode) {
+        if (mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          iconSun.style.display = 'none';
+          iconMoon.style.display = 'inline-block';
+        } else {
+          document.body.classList.remove('dark-mode');
+          iconSun.style.display = 'inline-block';
+          iconMoon.style.display = 'none';
+        }
+        localStorage.setItem('theme', mode);
+      }
+
+      themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'));
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
+    });
+  </script>
+</body>
+</html>

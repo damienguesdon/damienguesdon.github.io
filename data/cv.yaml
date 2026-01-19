@@ -1,0 +1,199 @@
+identity:
+  name: "Damien GUESDON"
+  birth_date: "1977-10-20"
+  address: "31, rue Pasteur, 44770 La Plaine-sur-Mer, France"
+  email: "guesdondamien@free.fr"
+  phone: "+33 6 63 71 17 80"
+  license: 
+    fr: "Permis B"
+    en: "Driving License"
+  photo: "photo.jpg"
+
+summary:
+  fr: >
+    Plus de 20 ans d'expertise en Direction Technique (CTO/DSI), aujourd'hui complétés par une spécialisation en Ingénierie IA. 
+    Ma conviction profonde est que la réussite technologique appartient avant tout aux talents qui la portent. 
+    Manager engagé, j’ai dirigé des équipes allant jusqu’à 18 collaborateurs en plaçant le mentorat 
+    et la progression de chacun au cœur de mon action, afin de transcender les collectifs. 
+    Entrepreneur dans l’âme et ancré en région nantaise, j'allie un réseau de décideurs stratégiques 
+    à une maîtrise opérationnelle de l’IA. Je souhaite mettre cette capacité à fédérer des pôles d'expertise 
+    au service du développement d'entreprises, pour transformer les promesses de l'IA en leviers de croissance concrets.
+  en: >
+    Over 20 years of expertise in Technical Leadership (CTO/CIO), now enhanced by a specialization in AI Engineering. 
+    I deeply believe that technological success is driven by the talent behind it. 
+    As a dedicated manager, I have led teams of up to 18 people, placing mentorship and 
+    individual growth at the core of my leadership to empower teams. 
+    With an entrepreneurial mindset and based in the Nantes region, I combine a strategic 
+    network of decision-makers with hands-on AI expertise. I am eager to leverage my ability 
+    to unite and build expert teams to support business development, 
+    turning the promises of AI into tangible growth.
+
+skills:
+  - title: { fr: "Stratégie IA :", en: "AI Strategy:" }
+    desc: { fr: "Cadrage ROI, roadmaps PoC vers Prod, Gouvernance & Éthique (RGPD).", en: "ROI assessment, PoC to Prod roadmaps, AI Governance (GDPR)." }
+  - title: { fr: "IA Générative :", en: "Generative AI:" }
+    desc: { fr: "Systèmes RAG, Agents autonomes (LangGraph), Fine-tuning (LoRA).", en: "RAG systems, Autonomous Agents (LangGraph), LLM Fine-tuning." }
+  - title: { fr: "MLOps :", en: "MLOps:" }
+    desc: { fr: "Automatisation CI/CD, Airflow, tracking MLflow, monitoring (Data Drift).", en: "AI CI/CD pipelines, Airflow, MLflow tracking, Drift monitoring." }
+  - title: { fr: "IA/ML Core :", en: "AI/ML Core:" }
+    desc: { fr: "Deep Learning (PyTorch), Reinforcement Learning, Transformers.", en: "Deep Learning (PyTorch), Reinforcement Learning, Transformers." }
+  - title: { fr: "Architecture IT :", en: "IT Architecture:" }
+    desc: { fr: "Cloud Azure, Vector DB, System Design & Cybersécurité.", en: "Azure Cloud, Vector DBs, System Design & Cybersecurity." }
+  - title: { fr: "Leadership :", en: "Leadership:" }
+    desc: { fr: "Direction technique (20 ans XP), management & reporting COMEX.", en: "Technical Direction (20y XP), management & Executive reporting." }
+  - title: { fr: "Soft Skills :", en: "Soft Skills:" }
+    desc: { fr: "Adaptabilité, Communication, Esprit d'équipe, Résolution de problèmes, Gestion du temps.", en: "Adaptability, Communication, Teamwork, Problem-Solving, Time Management." }
+
+languages:
+  - name: { fr: "Français", en: "French" }
+    level: { fr: "Maternelle", en: "Native" }
+    flag: "fr"
+  - name: { fr: "Anglais", en: "English" }
+    level: { fr: "Courant + Technique", en: "Fluent (including technical)" }
+    flag: "gb"
+  - name: { fr: "Catalan", en: "Catalan" }
+    level: { fr: "En cours d’apprentissage", en: "In progress" }
+    flag: "es"
+  - name: { fr: "Allemand", en: "German" }
+    level: { fr: "Notions", en: "Basic" }
+    flag: "de"
+  - name: { fr: "Japonais", en: "Japanese" }
+    level: { fr: "Initiation", en: "Beginner" }
+    flag: "jp"
+
+education:
+  - title: 
+      fr: "AI Engineer, OpenClassrooms, 2026"
+      en: "Master of Science in AI Engineering, OpenClassrooms (U.S. Accredited University), 2026"
+    desc:
+      fr: "Double diplôme : Titre RNCP 39775 (Niveau 7) & Master of Science (Accréditation Université Américaine)."
+      en: "RNCP 39775 (Level 7) : Specialization: Data Science and Machine Learning Operations"
+  - title:
+      fr: "BTS TSGRI, Créteil (94), 2005-2006"
+      en: "Higher Technical Diploma (BTS) in IT Resource Management, Créteil, France, 2005-2006"
+    desc:
+      fr: "Titre RNCP 1262 (Niveau 5) : Technicien Supérieur Gestionnaire de Ressources Informatiques"
+      en: "RNCP 1262 (Level 5) : (BTS TSGRI – “Technicien Supérieur Gestionnaire de Ressources Informatiques”)"
+  - title:
+      fr: "BTS Analyste-programmeur (CNFDI, à distance), 2002-2003"
+      en: "Higher Technical Diploma (BTS) in Computer Programming, CNFDI (remote), 2002-2003"
+    desc:
+      fr: "Titre RNCP 4683 (Niveau 5) : Visual Basic, C++, PHP, HTML"
+      en: "RNCP 4683 (Level 5) : Visual Basic, C++, PHP, HTML"
+  - title:
+      fr: "DEUG Sciences de la Vie, Nantes (44), 1997"
+      en: "DEUG in Life Sciences, Nantes, France, 1997"
+    desc:
+      fr: "Programmation Pascal et Turbo-Pascal"
+      en: "Pascal and Turbo-Pascal programming"
+  - title:
+      fr: "Bac S, spécialité mathématiques, Lamballe (22), 1996"
+      en: "Scientific Baccalaureate, Mathematics Major, Lamballe, France, 1996"
+    desc:
+      fr: ""
+      en: ""
+
+experiences:
+  - role:
+      fr: "Dirigeant / CTO – Conseil & Direction Technique"
+      en: "Founder / CTO – Consulting & Technical Leadership"
+    company: "KISAI DG, SLU"
+    location: "Andorre"
+    dates:
+      fr: "depuis 2018"
+      en: "since 2018"
+    tasks:
+      fr:
+        - "Conseil stratégique IT & Direction Technique : Cadrage technologique, roadmaps de transformation et accompagnement des directions (CTO as a Service)."
+        - "Développement et mise en œuvre technique de solutions d’IA Générative (systèmes RAG, agents autonomes) et pipelines MLOps."
+        - "Direction technique (CTO as a Service) pour opérateurs et grands comptes."
+        - "Pilotage de la stratégie cybersécurité et conformité RGPD des systèmes d'information."
+        - "Supervision de projets d’infrastructure critique : backbone opérateur, datacenters et réseaux sécurisés."
+        - "DSI externalisé pour plusieurs clients et accompagnement du changement au niveau direction."
+      en:
+        - "Strategic IT Consulting & Technical Leadership: Technology scoping, transformation roadmaps, and executive advisory (CTO-as-a-Service)."
+        - "Technical development and implementation of Generative AI solutions (RAG systems, autonomous agents) and MLOps pipelines."
+        - "Technical Direction (CTO-as-a-Service) for major accounts and telecom operators."
+        - "Leadership of cybersecurity strategy and GDPR compliance for information systems."
+        - "Oversight of critical infrastructure projects: operator backbone and secure networks."
+        - "Outsourced CIO for several clients and change management at executive level."
+  - role:
+      fr: "Directeur Technique Infrastructure"
+      en: "Technical Director Infrastructure"
+    company: "Alphalink"
+    location: "Pornic"
+    dates:
+      fr: "Janvier 2024 – Mai 2025"
+      en: "January 2024 – May 2025"
+    tasks:
+      fr:
+        - "Direction de la stratégie infrastructure et sécurité pour un opérateur télécom national."
+        - "Management et mentorat d’une équipe de 18 collaborateurs pluridisciplinaires (systèmes, réseaux, VoIP, sécurité)."
+        - "Pilotage opérationnel des budgets : négociation fournisseurs et gestion des évolutions salariales."
+        - "Modernisation des infrastructures : évolution du cœur de réseau MPLS, initialisation de la stratégie cybersécurité, automatisation."
+        - "Animation du changement (CAB) et mise en place de politiques de conformité (ISO, RGPD)."
+        - "Représentation technique auprès de la direction générale et du COMEX."
+      en:
+        - "Directed infrastructure and security strategy for a national telecom operator."
+        - "Management and mentorship of a multidisciplinary team of 18 employees (systems, networks, VoIP, security)."
+        - "Operational budget management: supplier negotiations and salary development management."
+        - "Infrastructure modernization: MPLS core network evolution, initialization of the cybersecurity strategy, automation."
+        - "Change management (CAB) and implementation of compliance policies (ISO, GDPR)."
+        - "Technical representation with executive management and COMEX."
+  - role:
+      fr: "Directeur Technique / Consultant Système Réseau"
+      en: "Technical Director / Systems & Network Consultant"
+    company: "Auto-entrepreneur"
+    location: "La Plaine-sur-Mer (44)"
+    dates:
+      fr: "2011 – 2018"
+      en: "2011 – 2018"
+    tasks:
+      fr:
+        - "Déploiement et administration de backbone opérateur, datacenters, réseaux MPLS."
+        - "Ingénierie réseau, intégration de services FAI, DSI externalisé."
+        - "Management de projets et accompagnement des clients dans la transformation de leur SI."
+      en:
+        - "Deployed and managed operator backbone, datacenters, MPLS networks."
+        - "Network engineering, ISP service integration, outsourced CIO."
+        - "Project management and client support for IT transformation."
+  - role:
+      fr: "Architecte Réseau"
+      en: "Network Architect"
+    company: "ALPHALINK"
+    location: "Pornic (44)"
+    dates:
+      fr: "2008 – 2011"
+      en: "2008 – 2011"
+    tasks:
+      fr:
+        - "Design d’architectures réseaux, gestion de projets, formation client."
+        - "Encadrement et formation d’équipe de production."
+        - "Administration système, VOIP, réseau sur plateformes Linux."
+      en:
+        - "Designed network architectures, managed projects, provided client training."
+        - "Led and trained production teams."
+        - "Systems administration, VoIP, Linux-based networks."
+  - role:
+      fr: "Expériences antérieures"
+      en: "Previous Experience"
+    company: ""
+    location: ""
+    dates:
+      fr: "2005 – 2008"
+      en: "2005 – 2008"
+    tasks:
+      fr:
+        - "<strong>PYGRAM</strong>, Nantes (44) – 2007-2008 : Gestionnaire Système et Réseau – Déploiement de solutions TSE en cluster, virtualisation embarquée (VmWare)."
+        - "<strong>Renault</strong>, Le Mans (72) – 2007 : Administrateur Système – Gestion de parc informatique (1900 postes), maintenance, assistance, formation, sauvegardes."
+        - "<strong>BI-SAM</strong>, Paris 8 (75) – 2006-2007 : Administrateur Système UNIX – Installation et administration serveurs UNIX (AIX), monitoring (Nagios), sauvegardes (Backup Exec)."
+        - "<strong>BNP Paribas</strong>, Paris 8 (75) – 2006 : TSGRI – Administration serveurs Linux Debian, Windows NT et 2003, mise en place de filtrage open source (IPCop)."
+        - "<strong>ACRELEC</strong>, France – 2008 : Technicien Informatique Itinérant (6 mois) – Déploiement et installation de réseaux informatiques (restauration)."
+        - "<strong>CLUB INTERNET</strong>, Paris 19 (75) – 2005 : Support Technicien (1 an) – Support utilisateur, dépannage et installation ADSL."
+      en:
+        - "<strong>PYGRAM</strong>, Nantes – 2007-2008: Systems & Network Manager – Deployed clustered TSE solutions, embedded virtualization (VmWare)."
+        - "<strong>Renault</strong>, Le Mans – 2007: Systems Administrator – Managed IT assets (1,900 workstations), maintenance, support, training, backups."
+        - "<strong>BI-SAM</strong>, Paris – 2006-2007: UNIX Systems Administrator – Installed and managed UNIX (AIX), monitoring (Nagios), backups (Backup Exec)."
+        - "<strong>BNP Paribas</strong>, Paris – 2006: IT Specialist – Administered Debian Linux, Windows NT and 2003 servers, implemented open-source filtering (IPCop)."
+        - "<strong>ACRELEC</strong>, France – 2008: IT Field Technician (6 months) – Deployed and installed IT networks (restaurant sector)."
+        - "<strong>CLUB INTERNET</strong>, Paris – 2005: Support Technician (1 year) – User support, troubleshooting and ADSL installation."

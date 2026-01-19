@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- SERIAL: v20260117-Final-Design -->
+  <!-- SERIAL: v20260119-0111 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Damien GUESDON - CV</title>
@@ -28,19 +28,19 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      background: var(--bg-light); /* Fond clair pour plus d'aération */
+      background: var(--bg-light);
       color: var(--text-light);
       margin: 0;
       padding: 0;
-      line-height: 1.6; /* Plus d'aération */
-      font-size: 16px; /* Taille de base plus grande */
+      line-height: 1.6;
+      font-size: 16px;
     }
     body.dark-mode {
       background: var(--bg-dark);
       color: var(--text-dark);
     }
     .container {
-      max-width: 1300px; /* Test pour un autre équilibre visuel */
+      max-width: 1300px;
       margin: 40px auto;
       background: var(--container-light);
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
@@ -52,10 +52,7 @@
       background: var(--container-dark);
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     }
-    body.dark-mode aside { /* Styles spécifiques à la sidebar en mode sombre */
-      background-color: var(--aside-dark);
-    }
-    .top-bar { /* Positionnement des outils */
+    .top-bar {
       position: absolute;
       top: 30px;
       right: 40px;
@@ -97,23 +94,23 @@
       opacity: 0.6;
       transition: all 0.2s;
       border: 2px solid transparent;
-      flex-shrink: 0; /* Empêche le rétrécissement */
+      flex-shrink: 0;
     }
     .language-flag.active { opacity: 1; border-color: var(--accent-light); }
     body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
 
-    .language-switcher { /* Nouvelle règle pour le conteneur des drapeaux */
+    .language-switcher {
       display: flex;
       flex-direction: row;
-      gap: 5px; /* Espacement entre les drapeaux */
+      gap: 5px;
     }
 
-        .lang-icon {
-      width: 18px; /* Taille désirée pour les pastilles */
+    .lang-icon {
+      width: 18px;
       height: 12px;
       border-radius: 2px;
       margin-right: 5px;
-      vertical-align: middle; /* Alignement avec le texte */
+      vertical-align: middle;
     }
 
     .lang-section { display: none; }
@@ -125,7 +122,7 @@
     }
     body.dark-mode header { border-color: var(--border-dark); }
     
-    .header-flex { /* Layout du header */
+    .header-flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -139,13 +136,13 @@
     }
     body.dark-mode h1 { color: var(--primary-dark); }
     
-    .info { /* Bloc d'informations sous le nom */
+    .info {
       font-size: 0.95em;
       color: #64748b;
       margin-top: 10px;
     }
     body.dark-mode .info { color: #94a3b8; }
-    .header-photo { /* Photo de profil */
+    .header-photo {
       width: 140px;
       height: 140px;
       border-radius: 16px;
@@ -153,7 +150,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
-    .summary { /* Bloc résumé professionnel */
+    .summary {
       font-size: 1.1em;
       margin: 30px 0;
       color: var(--text-light);
@@ -168,31 +165,34 @@
       border-left-color: var(--accent-dark);
     }
     
-    .cv-flex { /* Conteneur principal pour la sidebar et le main content */
+    .cv-flex {
       display: flex; 
-      gap: 50px; /* Espacement accru pour l'aération */
+      gap: 50px;
     }
     
     aside {
-      flex: 0 0 350px; /* Largeur de la sidebar légèrement augmentée */
-      background-color: var(--aside-light); /* Fond coloré pour la sidebar */
-      padding: 20px; /* Un peu d'aération interne */
-      border-radius: 8px; /* Bords légèrement arrondis */
+      flex: 0 0 350px;
+      background-color: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
     }
-    body.dark-mode aside { /* Styles spécifiques à la sidebar en mode sombre */
+    body.dark-mode aside {
       background-color: var(--aside-dark);
     }
-    body.dark-mode .skill-title { /* Couleur des titres de skills/formation en mode sombre */
-      color: var(--primary-dark);
+    .skill-title { 
+      font-weight: 700; 
+      display: block; 
+      margin-bottom: 2px;
+      font-size: 0.9em;
+      color: var(--primary-light);
     }
-    aside h2:first-of-type { /* Aligner le premier titre de la sidebar */
-      margin-top: 0;
-    }
+    body.dark-mode .skill-title { color: var(--primary-dark); }
+
     .main-content { 
       flex: 1; 
     }
 
-    h2 { /* Styles des titres de section */
+    h2 {
       font-size: 1.3em;
       font-weight: 700;
       text-transform: uppercase;
@@ -212,7 +212,7 @@
     }
     body.dark-mode h2::after { background: var(--border-dark); }
     
-    .skills-list { /* Liste des compétences */
+    .skills-list {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -222,17 +222,7 @@
       font-size: 0.9em;
     }
 
-
-    .skill-title { 
-      font-weight: 700; 
-      display: block; 
-      margin-bottom: 2px;
-      font-size: 0.9em; /* Aligné avec skills-list li */
-      color: var(--primary-light); /* Aligné avec skills-list strong */
-    }
-    
-
-    .experience-item { /* Item d'expérience professionnelle */
+    .experience-item {
       position: relative;
       padding-left: 25px;
       margin-bottom: 30px;
@@ -251,7 +241,7 @@
     }
     body.dark-mode .experience-item::before { background: var(--accent-dark); }
     
-    .item-title { /* Titre de l'expérience */
+    .item-title {
       font-size: 1.1em;
       font-weight: 700;
       margin: 0 0 5px 0;
@@ -262,7 +252,7 @@
     }
     body.dark-mode .item-title { color: var(--primary-dark); }
     
-    .dates { /* Dates des expériences */
+    .dates {
       font-size: 0.8em;
       color: #64748b;
       font-weight: 500;
@@ -275,7 +265,6 @@
     }
     .experience-item li { margin-bottom: 4px; font-size: 0.95em; }
 
-    /* Responsive adjustments */
     @media (max-width: 900px) {
       .container { margin: 0; border-radius: 0; padding: 30px 20px; }
       .cv-flex { flex-direction: column; }
@@ -285,7 +274,6 @@
       aside { flex: none; width: 100%; }
     }
 
-    /* Print specific styles */
     @media print {
       @page { margin: 1cm; size: A4; }
       body { background: #fff !important; color: #000 !important; font-size: 9pt !important; }
@@ -299,39 +287,19 @@
   </style>
 </head>
 <body>
-  <!-- Top Bar for Theme and Language Toggles -->
   <div class="top-bar">
     <div class="top-buttons">
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
         <span id="icon-sun">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </span>
         <span id="icon-moon" style="display: none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </span>
       </button>
       <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_FR.pdf" download title="Télécharger le PDF">
         <span>
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/>
-            <polyline points="16 3 21 8" fill="none"/>
-            <text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text>
-          </svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg>
         </span>
       </a>
     </div>
@@ -343,7 +311,7 @@
 
   <div class="container">
     <main>
-      <!-- ======== FRANÇAIS ======== -->
+      
       <div id="fr" class="lang-section">
         <div class="header-flex">
           <div>
@@ -358,257 +326,372 @@
         </div>
         <h2>Résumé professionnel</h2>
         <div class="summary">
-          Expertise de plus de <span id="xp"></span> ans combinant direction technique (CTO/DSI) et ingénierie IA. Reconnu pour le pilotage d’équipes et la mise en œuvre de stratégies technologiques complexes, j'accompagne désormais les organisations dans leur transition vers l'intelligence artificielle : du cadrage stratégique (ROI, roadmaps) au déploiement opérationnel (RAG, MLOps, LLM). Expert en infrastructures sécurisées et transformation numérique, je fédère les talents pour transformer l'innovation en valeur métier concrète. Ouvert aux opportunités de Directeur Technique, DSI ou CTO pour accompagner la croissance et l’innovation d’une organisation.
+          Plus de 20 ans d'expertise en Direction Technique (CTO/DSI), aujourd'hui complétés par une spécialisation en Ingénierie IA.  Ma conviction profonde est que la réussite technologique appartient avant tout aux talents qui la portent.  Manager engagé, j’ai dirigé des équipes allant jusqu’à 18 collaborateurs en plaçant le mentorat  et la progression de chacun au cœur de mon action, afin de transcender les collectifs.  Entrepreneur dans l’âme et ancré en région nantaise, j'allie un réseau de décideurs stratégiques  à une maîtrise opérationnelle de l’IA. Je souhaite mettre cette capacité à fédérer des pôles d'expertise  au service du développement d'entreprises, pour transformer les promesses de l'IA en leviers de croissance concrets.
+
         </div>
         <div class="cv-flex">
           <aside>
             <h2>Compétences clés</h2>
+            
             <div class="skill-block">
               <span class="skill-title">Stratégie IA :</span>
               <div class="skill-desc">Cadrage ROI, roadmaps PoC vers Prod, Gouvernance & Éthique (RGPD).</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">IA Générative :</span>
               <div class="skill-desc">Systèmes RAG, Agents autonomes (LangGraph), Fine-tuning (LoRA).</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">MLOps :</span>
               <div class="skill-desc">Automatisation CI/CD, Airflow, tracking MLflow, monitoring (Data Drift).</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">IA/ML Core :</span>
               <div class="skill-desc">Deep Learning (PyTorch), Reinforcement Learning, Transformers.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Architecture IT :</span>
               <div class="skill-desc">Cloud Azure, Vector DB, System Design & Cybersécurité.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Leadership :</span>
               <div class="skill-desc">Direction technique (20 ans XP), management & reporting COMEX.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Soft Skills :</span>
               <div class="skill-desc">Adaptabilité, Communication, Esprit d'équipe, Résolution de problèmes, Gestion du temps.</div>
             </div>
+            
+
             <h2>Langues</h2>
             <ul class="skills-list">
+              
               <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
+              
               <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : Courant + Technique</li>
+              
               <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d’apprentissage</li>
+              
               <li><img src="https://flagcdn.com/de.svg" alt="Allemand" class="lang-icon">Allemand : Notions</li>
+              
               <li><img src="https://flagcdn.com/jp.svg" alt="Japonais" class="lang-icon">Japonais : Initiation</li>
+              
             </ul>
+
             <h2>Formation</h2>
+            
             <div class="skill-block">
               <span class="skill-title">AI Engineer, OpenClassrooms, 2026</span>
-              <div class="skill-desc">Titre RNCP 39775 (Niveau 7) : Expert en ingénierie et science des données</div>
+              <div class="skill-desc">Double diplôme : Titre RNCP 39775 (Niveau 7) & Master of Science (Accréditation Université Américaine).</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span>
               <div class="skill-desc">Titre RNCP 1262 (Niveau 5) : Technicien Supérieur Gestionnaire de Ressources Informatiques</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">BTS Analyste-programmeur (CNFDI, à distance), 2002-2003</span>
               <div class="skill-desc">Titre RNCP 4683 (Niveau 5) : Visual Basic, C++, PHP, HTML</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">DEUG Sciences de la Vie, Nantes (44), 1997</span>
               <div class="skill-desc">Programmation Pascal et Turbo-Pascal</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Bac S, spécialité mathématiques, Lamballe (22), 1996</span>
               <div class="skill-desc"></div>
             </div>
+            
           </aside>
           <div class="main-content">
             <h2>Expérience professionnelle</h2>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Dirigeant / CTO – Conseil & Direction Technique</span> <span class="dates">KISAI DG, SLU – Andorre – depuis 2018</span></h3>
+              <h3 class="item-title"><span>Dirigeant / CTO – Conseil & Direction Technique – KISAI DG, SLU</span> <span class="dates">Andorre – depuis 2018</span></h3>
               <ul>
-                <li>Conseil stratégique en IA et IT : Cadrage, roadmaps de transformation et évaluation du ROI.</li>
-                <li>Conception et mise en œuvre de solutions d’IA Générative (systèmes RAG, agents autonomes) et de pipelines MLOps.</li>
+                
+                <li>Conseil stratégique IT & Direction Technique : Cadrage technologique, roadmaps de transformation et accompagnement des directions (CTO as a Service).</li>
+                
+                <li>Développement et mise en œuvre technique de solutions d’IA Générative (systèmes RAG, agents autonomes) et pipelines MLOps.</li>
+                
                 <li>Direction technique (CTO as a Service) pour opérateurs et grands comptes.</li>
+                
                 <li>Pilotage de la stratégie cybersécurité et conformité RGPD des systèmes d'information.</li>
+                
                 <li>Supervision de projets d’infrastructure critique : backbone opérateur, datacenters et réseaux sécurisés.</li>
+                
                 <li>DSI externalisé pour plusieurs clients et accompagnement du changement au niveau direction.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique Infrastructure</span> <span class="dates">Alphalink, Pornic – Janvier 2024 – Mai 2025</span></h3>
+              <h3 class="item-title"><span>Directeur Technique Infrastructure – Alphalink</span> <span class="dates">Pornic – Janvier 2024 – Mai 2025</span></h3>
               <ul>
+                
                 <li>Direction de la stratégie infrastructure et sécurité pour un opérateur télécom national.</li>
-                <li>Management d’équipes techniques pluridisciplinaires (systèmes, réseaux, datacenter, VoIP, sécurité).</li>
-                <li>Pilotage de projets de transformation et de modernisation des infrastructures : évolution du cœur de réseau MPLS, déploiement et conception de l’infrastructure de cybersécurité, virtualisation, automatisation.</li>
-                <li>Mise en place d’un process de gestion des changements structuré, avec animation d’un Change Advisory Board (CAB).</li>
-                <li>Optimisation des process, gestion des budgets et des fournisseurs.</li>
-                <li>Mise en place de politiques de sécurité et de conformité (ISO, RGPD).</li>
-                <li>Représentation technique auprès de la direction générale.</li>
+                
+                <li>Management et mentorat d’une équipe de 18 collaborateurs pluridisciplinaires (systèmes, réseaux, VoIP, sécurité).</li>
+                
+                <li>Pilotage opérationnel des budgets : négociation fournisseurs et gestion des évolutions salariales.</li>
+                
+                <li>Modernisation des infrastructures : évolution du cœur de réseau MPLS, initialisation de la stratégie cybersécurité, automatisation.</li>
+                
+                <li>Animation du changement (CAB) et mise en place de politiques de conformité (ISO, RGPD).</li>
+                
+                <li>Représentation technique auprès de la direction générale et du COMEX.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique / Consultant Système Réseau</span> <span class="dates">Auto-entrepreneur, La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
+              <h3 class="item-title"><span>Directeur Technique / Consultant Système Réseau – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
               <ul>
+                
                 <li>Déploiement et administration de backbone opérateur, datacenters, réseaux MPLS.</li>
+                
                 <li>Ingénierie réseau, intégration de services FAI, DSI externalisé.</li>
+                
                 <li>Management de projets et accompagnement des clients dans la transformation de leur SI.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Architecte Réseau</span> <span class="dates">ALPHALINK, Pornic (44) – 2008 – 2011</span></h3>
+              <h3 class="item-title"><span>Architecte Réseau – ALPHALINK</span> <span class="dates">Pornic (44) – 2008 – 2011</span></h3>
               <ul>
+                
                 <li>Design d’architectures réseaux, gestion de projets, formation client.</li>
+                
                 <li>Encadrement et formation d’équipe de production.</li>
+                
                 <li>Administration système, VOIP, réseau sur plateformes Linux.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Expériences antérieures</span> <span class="dates">2005 – 2008</span></h3>
+              <h3 class="item-title"><span>Expériences antérieures</span> <span class="dates"> – 2005 – 2008</span></h3>
               <ul>
+                
                 <li><strong>PYGRAM</strong>, Nantes (44) – 2007-2008 : Gestionnaire Système et Réseau – Déploiement de solutions TSE en cluster, virtualisation embarquée (VmWare).</li>
+                
                 <li><strong>Renault</strong>, Le Mans (72) – 2007 : Administrateur Système – Gestion de parc informatique (1900 postes), maintenance, assistance, formation, sauvegardes.</li>
+                
                 <li><strong>BI-SAM</strong>, Paris 8 (75) – 2006-2007 : Administrateur Système UNIX – Installation et administration serveurs UNIX (AIX), monitoring (Nagios), sauvegardes (Backup Exec).</li>
+                
                 <li><strong>BNP Paribas</strong>, Paris 8 (75) – 2006 : TSGRI – Administration serveurs Linux Debian, Windows NT et 2003, mise en place de filtrage open source (IPCop).</li>
+                
                 <li><strong>ACRELEC</strong>, France – 2008 : Technicien Informatique Itinérant (6 mois) – Déploiement et installation de réseaux informatiques (restauration).</li>
+                
                 <li><strong>CLUB INTERNET</strong>, Paris 19 (75) – 2005 : Support Technicien (1 an) – Support utilisateur, dépannage et installation ADSL.</li>
+                
               </ul>
             </div>
+            
           </div>
         </div>
       </div>
-      <!-- ======== ENGLISH ======== -->
+      
       <div id="en" class="lang-section">
         <div class="header-flex">
           <div>
             <h1>Damien GUESDON</h1>
             <div class="info">
-              <span id="age-en"></span> years old&nbsp;|&nbsp;Born 10/20/1977<br>
+              <span id="age-en"></span> years old&nbsp;|&nbsp;Born 20/10/1977<br>
               31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
-              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> | +33 6 63 71 17 80 | Driving License
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80 &nbsp;|&nbsp; Driving License
             </div>
           </div>
           <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
         </div>
         <h2>Professional Summary</h2>
         <div class="summary">
-          Over <span id="xp-en"></span> years of expertise bridging Technical Leadership (CTO/CIO) and AI Engineering. Proven track record in leading teams and executing complex IT strategies, now empowering organizations through their AI transition: from strategic scoping (ROI, roadmaps) to operational deployment (RAG, MLOps, LLM). Expert in secure infrastructure and digital transformation, I unite teams to turn technological innovation into tangible business value. Open to CTO, CIO, or Technical Director opportunities to support organizational growth and innovation.
+          Over 20 years of expertise in Technical Leadership (CTO/CIO), now enhanced by a specialization in AI Engineering.  I deeply believe that technological success is driven by the talent behind it.  As a dedicated manager, I have led teams of up to 18 people, placing mentorship and  individual growth at the core of my leadership to empower teams.  With an entrepreneurial mindset and based in the Nantes region, I combine a strategic  network of decision-makers with hands-on AI expertise. I am eager to leverage my ability  to unite and build expert teams to support business development,  turning the promises of AI into tangible growth.
+
         </div>
         <div class="cv-flex">
           <aside>
             <h2>Key Skills</h2>
+            
             <div class="skill-block">
               <span class="skill-title">AI Strategy:</span>
               <div class="skill-desc">ROI assessment, PoC to Prod roadmaps, AI Governance (GDPR).</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Generative AI:</span>
               <div class="skill-desc">RAG systems, Autonomous Agents (LangGraph), LLM Fine-tuning.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">MLOps:</span>
               <div class="skill-desc">AI CI/CD pipelines, Airflow, MLflow tracking, Drift monitoring.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">AI/ML Core:</span>
               <div class="skill-desc">Deep Learning (PyTorch), Reinforcement Learning, Transformers.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">IT Architecture:</span>
               <div class="skill-desc">Azure Cloud, Vector DBs, System Design & Cybersecurity.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Leadership:</span>
               <div class="skill-desc">Technical Direction (20y XP), management & Executive reporting.</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Soft Skills:</span>
               <div class="skill-desc">Adaptability, Communication, Teamwork, Problem-Solving, Time Management.</div>
             </div>
+            
+
             <h2>Languages</h2>
             <ul class="skills-list">
-              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: Native</li>
-              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: Fluent (including technical)</li>
-              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: In progress</li>
-              <li><img src="https://flagcdn.com/de.svg" alt="German" class="lang-icon">German: Basic</li>
-              <li><img src="https://flagcdn.com/jp.svg" alt="Japanese" class="lang-icon">Japanese: Beginner</li>
+              
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French : Native</li>
+              
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English : Fluent (including technical)</li>
+              
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : In progress</li>
+              
+              <li><img src="https://flagcdn.com/de.svg" alt="German" class="lang-icon">German : Basic</li>
+              
+              <li><img src="https://flagcdn.com/jp.svg" alt="Japanese" class="lang-icon">Japanese : Beginner</li>
+              
             </ul>
+
             <h2>Education</h2>
+            
             <div class="skill-block">
               <span class="skill-title">Master of Science in AI Engineering, OpenClassrooms (U.S. Accredited University), 2026</span>
               <div class="skill-desc">RNCP 39775 (Level 7) : Specialization: Data Science and Machine Learning Operations</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Higher Technical Diploma (BTS) in IT Resource Management, Créteil, France, 2005-2006</span>
               <div class="skill-desc">RNCP 1262 (Level 5) : (BTS TSGRI – “Technicien Supérieur Gestionnaire de Ressources Informatiques”)</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Higher Technical Diploma (BTS) in Computer Programming, CNFDI (remote), 2002-2003</span>
               <div class="skill-desc">RNCP 4683 (Level 5) : Visual Basic, C++, PHP, HTML</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">DEUG in Life Sciences, Nantes, France, 1997</span>
               <div class="skill-desc">Pascal and Turbo-Pascal programming</div>
             </div>
+            
             <div class="skill-block">
               <span class="skill-title">Scientific Baccalaureate, Mathematics Major, Lamballe, France, 1996</span>
               <div class="skill-desc"></div>
             </div>
+            
           </aside>
           <div class="main-content">
             <h2>Professional Experience</h2>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Founder / CTO – Consulting & Technical Leadership</span> <span class="dates">KISAI DG, SLU – Andorra – since 2018</span></h3>
+              <h3 class="item-title"><span>Founder / CTO – Consulting & Technical Leadership – KISAI DG, SLU</span> <span class="dates">Andorre – since 2018</span></h3>
               <ul>
-                <li>Strategic AI & IT Consulting: Scoping, transformation roadmaps, and ROI assessment.</li>
-                <li>Design and implementation of Generative AI solutions (RAG systems, autonomous agents) and MLOps pipelines.</li>
+                
+                <li>Strategic IT Consulting & Technical Leadership: Technology scoping, transformation roadmaps, and executive advisory (CTO-as-a-Service).</li>
+                
+                <li>Technical development and implementation of Generative AI solutions (RAG systems, autonomous agents) and MLOps pipelines.</li>
+                
                 <li>Technical Direction (CTO-as-a-Service) for major accounts and telecom operators.</li>
+                
                 <li>Leadership of cybersecurity strategy and GDPR compliance for information systems.</li>
+                
                 <li>Oversight of critical infrastructure projects: operator backbone and secure networks.</li>
+                
                 <li>Outsourced CIO for several clients and change management at executive level.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Technical Director Infrastructure</span> <span class="dates">Alphalink, Pornic – January 2024 – May 2025</span></h3>
+              <h3 class="item-title"><span>Technical Director Infrastructure – Alphalink</span> <span class="dates">Pornic – January 2024 – May 2025</span></h3>
               <ul>
+                
                 <li>Directed infrastructure and security strategy for a national telecom operator.</li>
-                <li>Managed multidisciplinary technical teams (systems, networks, datacenter, VoIP, security).</li>
-                <li>Led transformation and modernization projects: MPLS core network evolution, deployment and design of cybersecurity infrastructure, virtualization, automation.</li>
-                <li>Established a structured change management process, including leading a Change Advisory Board (CAB).</li>
-                <li>Optimized processes, managed budgets and suppliers.</li>
-                <li>Implemented security and compliance policies (ISO, GDPR).</li>
-                <li>Technical representation with executive management.</li>
+                
+                <li>Management and mentorship of a multidisciplinary team of 18 employees (systems, networks, VoIP, security).</li>
+                
+                <li>Operational budget management: supplier negotiations and salary development management.</li>
+                
+                <li>Infrastructure modernization: MPLS core network evolution, initialization of the cybersecurity strategy, automation.</li>
+                
+                <li>Change management (CAB) and implementation of compliance policies (ISO, GDPR).</li>
+                
+                <li>Technical representation with executive management and COMEX.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Technical Director / Systems & Network Consultant</span> <span class="dates">Freelance, La Plaine-sur-Mer – 2011 – 2018</span></h3>
+              <h3 class="item-title"><span>Technical Director / Systems & Network Consultant – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
               <ul>
+                
                 <li>Deployed and managed operator backbone, datacenters, MPLS networks.</li>
+                
                 <li>Network engineering, ISP service integration, outsourced CIO.</li>
+                
                 <li>Project management and client support for IT transformation.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Network Architect</span> <span class="dates">ALPHALINK, Pornic – 2008 – 2011</span></h3>
+              <h3 class="item-title"><span>Network Architect – ALPHALINK</span> <span class="dates">Pornic (44) – 2008 – 2011</span></h3>
               <ul>
+                
                 <li>Designed network architectures, managed projects, provided client training.</li>
+                
                 <li>Led and trained production teams.</li>
+                
                 <li>Systems administration, VoIP, Linux-based networks.</li>
+                
               </ul>
             </div>
+            
             <div class="experience-item">
-              <h3 class="item-title"><span>Previous Experience</span> <span class="dates">2005 – 2008</span></h3>
+              <h3 class="item-title"><span>Previous Experience</span> <span class="dates"> – 2005 – 2008</span></h3>
               <ul>
+                
                 <li><strong>PYGRAM</strong>, Nantes – 2007-2008: Systems & Network Manager – Deployed clustered TSE solutions, embedded virtualization (VmWare).</li>
+                
                 <li><strong>Renault</strong>, Le Mans – 2007: Systems Administrator – Managed IT assets (1,900 workstations), maintenance, support, training, backups.</li>
+                
                 <li><strong>BI-SAM</strong>, Paris – 2006-2007: UNIX Systems Administrator – Installed and managed UNIX (AIX), monitoring (Nagios), backups (Backup Exec).</li>
+                
                 <li><strong>BNP Paribas</strong>, Paris – 2006: IT Specialist – Administered Debian Linux, Windows NT and 2003 servers, implemented open-source filtering (IPCop).</li>
+                
                 <li><strong>ACRELEC</strong>, France – 2008: IT Field Technician (6 months) – Deployed and installed IT networks (restaurant sector).</li>
+                
                 <li><strong>CLUB INTERNET</strong>, Paris – 2005: Support Technician (1 year) – User support, troubleshooting and ADSL installation.</li>
+                
               </ul>
             </div>
+            
           </div>
         </div>
       </div>
+      
     </main>
   </div>
   <script>
@@ -617,21 +700,14 @@
       const birthDate = new Date(birthDateStr);
       let age = today.getFullYear() - birthDate.getFullYear();
       const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; }
       return age;
     }
     function calculateExperience(startDateStr) {
       const today = new Date();
       const startDate = new Date(startDateStr);
       let years = today.getFullYear() - startDate.getFullYear();
-      if (
-        today.getMonth() < startDate.getMonth() ||
-        (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())
-      ) {
-        years--;
-      }
+      if (today.getMonth() < startDate.getMonth() || (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())) { years--; }
       return years;
     }
 
@@ -643,7 +719,6 @@
       });
       localStorage.setItem('preferredLang', lang);
 
-      // MAJ du lien PDF selon la langue
       var pdfLink = document.getElementById('pdf-link');
       if (pdfLink) {
         if (lang === 'fr') {
@@ -659,34 +734,16 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      // Âge dynamique
       const age = calculateAge('1977-10-20');
-      const ageFrElem = document.getElementById('age');
-      if (ageFrElem) ageFrElem.textContent = age;
-      const ageEnElem = document.getElementById('age-en');
-      if (ageEnElem) ageEnElem.textContent = age;
+      if (document.getElementById('age')) document.getElementById('age').textContent = age;
+      if (document.getElementById('age-en')) document.getElementById('age-en').textContent = age;
 
-      // Expérience dynamique (depuis 2005)
-      const xpYears = calculateExperience('2005-01-01');
-      const xpElem = document.getElementById('xp');
-      if (xpElem) xpElem.textContent = xpYears;
-      const xpEnElem = document.getElementById('xp-en');
-      if (xpEnElem) xpEnElem.textContent = xpYears;
-
-      // Langue
-      const savedLang = localStorage.getItem('preferredLang');
-      let lang = 'fr';
-      if (savedLang) {
-        lang = savedLang;
-      } else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) {
-        lang = 'en';
-      }
-      switchLanguage(lang);
+      const savedLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      switchLanguage(savedLang);
       document.querySelectorAll('.language-flag').forEach((flag) => {
         flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
       });
 
-      // THEME SWITCH
       const themeToggle = document.getElementById('theme-toggle');
       const iconSun = document.getElementById('icon-sun');
       const iconMoon = document.getElementById('icon-moon');
@@ -704,19 +761,9 @@
         localStorage.setItem('theme', mode);
       }
 
-      themeToggle.addEventListener('click', function () {
-        const isDark = document.body.classList.contains('dark-mode');
-        setTheme(isDark ? 'light' : 'dark');
-      });
-
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        setTheme(savedTheme);
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
-      } else {
-        setTheme('light');
-      }
+      themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'));
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
     });
   </script>
 </body>
