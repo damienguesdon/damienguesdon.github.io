@@ -38,9 +38,11 @@ jobs:
     needs: validate
     if: github.ref != 'refs/heads/main' && github.event_name == 'push'
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_PAT }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Create and Auto-merge PR
         run: |
           gh pr create --base main --head ${{ github.ref_name }} --title "ci: Merge ${{ github.ref_name }} to main" --body "Automated PR from CI" || echo "PR already exists"
@@ -64,4 +66,4 @@ jobs:
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4# Final CI test
