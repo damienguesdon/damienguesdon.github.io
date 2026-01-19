@@ -33,4 +33,4 @@ Pour toute question ou prise de contact, veuillez me joindre via [mon profil Git
 
 *Merci de visiter mon CV en ligne !*
 
-## Mise à jour du design (Jan 2026) : Version responsive & aérée.
+## Mise à jour du design (Jan 2026) : Version responsive & aérée.\n## Automatisation (Jan 2026) : Structure dynamique via YAML et Jinja2.
