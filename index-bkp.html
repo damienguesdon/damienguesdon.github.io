@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- SERIAL: v20260119-0111 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Damien GUESDON - CV</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #f3f4f6;
+      --bg-dark: #0f172a;
+      --text-light: #1f2937;
+      --text-dark: #f8fafc;
+      --container-light: #ffffff;
+      --container-dark: #1e293b;
+      --primary-light: #1e40af;
+      --primary-dark: #60a5fa;
+      --secondary-light: #3730a3;
+      --secondary-dark: #818cf8;
+      --accent-light: #4f46e5;
+      --accent-dark: #a5b4fc;
+      --aside-light: #eef0f4;
+      --aside-dark: #334155;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .container {
+      max-width: 1300px;
+      margin: 40px auto;
+      background: var(--container-light);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 50px; 
+      position: relative;
+    }
+    body.dark-mode .container {
+      background: var(--container-dark);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .top-bar {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 10;
+    }
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .theme-toggle-btn {
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark-mode .theme-toggle-btn {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border-dark);
+    }
+    .theme-toggle-btn svg { width: 20px; height: 20px; color: var(--accent-light); }
+    body.dark-mode .theme-toggle-btn svg { color: var(--accent-dark); }
+    
+    .language-flag {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+    }
+    .language-flag.active { opacity: 1; border-color: var(--accent-light); }
+    body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
+
+    .language-switcher {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
+    .lang-icon {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .lang-section { display: none; }
+    
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 30px;
+    }
+    body.dark-mode header { border-color: var(--border-dark); }
+    
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.025em;
+      color: var(--primary-light);
+    }
+    body.dark-mode h1 { color: var(--primary-dark); }
+    
+    .info {
+      font-size: 0.95em;
+      color: #64748b;
+      margin-top: 10px;
+    }
+    body.dark-mode .info { color: #94a3b8; }
+    .header-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .summary {
+      font-size: 1.1em;
+      margin: 30px 0;
+      color: var(--text-light);
+      background: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-light);
+    }
+    body.dark-mode .summary {
+      background: rgba(255,255,255,0.03);
+      color: var(--text-dark);
+      border-left-color: var(--accent-dark);
+    }
+    
+    .cv-flex {
+      display: flex; 
+      gap: 50px;
+    }
+    
+    aside {
+      flex: 0 0 350px;
+      background-color: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    body.dark-mode aside {
+      background-color: var(--aside-dark);
+    }
+    .skill-title { 
+      font-weight: 700; 
+      display: block; 
+      margin-bottom: 2px;
+      font-size: 0.9em;
+      color: var(--primary-light);
+    }
+    body.dark-mode .skill-title { color: var(--primary-dark); }
+
+    .main-content { 
+      flex: 1; 
+    }
+
+    h2 {
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark-mode h2 { color: var(--accent-dark); }
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+    body.dark-mode h2::after { background: var(--border-dark); }
+    
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-list li {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .experience-item {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 30px;
+      border-left: 2px solid var(--border-light);
+    }
+    body.dark-mode .experience-item { border-left-color: var(--border-dark); }
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-light);
+      border-radius: 50%;
+    }
+    body.dark-mode .experience-item::before { background: var(--accent-dark); }
+    
+    .item-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      color: var(--primary-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    body.dark-mode .item-title { color: var(--primary-dark); }
+    
+    .dates {
+      font-size: 0.8em;
+      color: #64748b;
+      font-weight: 500;
+      font-style: normal;
+    }
+    
+    .experience-item ul {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+    }
+    .experience-item li { margin-bottom: 4px; font-size: 0.95em; }
+
+    @media (max-width: 900px) {
+      .container { margin: 0; border-radius: 0; padding: 30px 20px; }
+      .cv-flex { flex-direction: column; }
+      .header-flex { flex-direction: column; text-align: center; gap: 20px; }
+      .header-photo { margin: 0; }
+      .top-bar { position: static; align-items: center; margin-bottom: 20px; }
+      aside { flex: none; width: 100%; }
+    }
+
+    @media print {
+      @page { margin: 1cm; size: A4; }
+      body { background: #fff !important; color: #000 !important; font-size: 9pt !important; }
+      .container { box-shadow: none !important; padding: 0 !important; width: 100% !important; max-width: none !important; }
+      .top-bar, .language-switcher { display: none !important; }
+      .experience-item { border-left: 1px solid #ccc !important; }
+      .experience-item::before { background: #000 !important; }
+      h1, h2, .item-title strong { color: #000 !important; }
+      .summary { border: 1px solid #eee !important; background: #fafafa !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-buttons">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
+        <span id="icon-sun">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </span>
+        <span id="icon-moon" style="display: none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+      </button>
+      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_FR.pdf" download title="Télécharger le PDF">
+        <span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg>
+        </span>
+      </a>
+    </div>
+    <div class="language-switcher">
+      <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
+      <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
+    </div>
+  </div>
+
+  <div class="container">
+    <main>
+      
+      <div id="fr" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+            <div class="info">
+              <span id="age"></span> ans&nbsp;|&nbsp;Né le 20/10/1977<br>
+              31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80 &nbsp;|&nbsp; Permis B
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+        <h2>Résumé professionnel</h2>
+        <div class="summary">
+          Plus de 20 ans d'expertise en Direction Technique (CTO/DSI), aujourd'hui complétés par une spécialisation en Ingénierie IA.  Ma conviction profonde est que la réussite technologique appartient avant tout aux talents qui la portent.  Manager engagé, j’ai dirigé des équipes allant jusqu’à 18 collaborateurs en plaçant le mentorat  et la progression de chacun au cœur de mon action, afin de transcender les collectifs.  Entrepreneur dans l’âme et ancré en région nantaise, j'allie un réseau de décideurs stratégiques  à une maîtrise opérationnelle de l’IA. Je souhaite mettre cette capacité à fédérer des pôles d'expertise  au service du développement d'entreprises, pour transformer les promesses de l'IA en leviers de croissance concrets.
+
+        </div>
+        <div class="cv-flex">
+          <aside>
+            <h2>Compétences clés</h2>
+            
+            <div class="skill-block">
+              <span class="skill-title">Stratégie IA :</span>
+              <div class="skill-desc">Cadrage ROI, roadmaps PoC vers Prod, Gouvernance & Éthique (RGPD).</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">IA Générative :</span>
+              <div class="skill-desc">Systèmes RAG, Agents autonomes (LangGraph), Fine-tuning (LoRA).</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">MLOps :</span>
+              <div class="skill-desc">Automatisation CI/CD, Airflow, tracking MLflow, monitoring (Data Drift).</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">IA/ML Core :</span>
+              <div class="skill-desc">Deep Learning (PyTorch), Reinforcement Learning, Transformers.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Architecture IT :</span>
+              <div class="skill-desc">Cloud Azure, Vector DB, System Design & Cybersécurité.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Leadership :</span>
+              <div class="skill-desc">Direction technique (20 ans XP), management & reporting COMEX.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Soft Skills :</span>
+              <div class="skill-desc">Adaptabilité, Communication, Esprit d'équipe, Résolution de problèmes, Gestion du temps.</div>
+            </div>
+            
+
+            <h2>Langues</h2>
+            <ul class="skills-list">
+              
+              <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
+              
+              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : Courant + Technique</li>
+              
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d’apprentissage</li>
+              
+              <li><img src="https://flagcdn.com/de.svg" alt="Allemand" class="lang-icon">Allemand : Notions</li>
+              
+              <li><img src="https://flagcdn.com/jp.svg" alt="Japonais" class="lang-icon">Japonais : Initiation</li>
+              
+            </ul>
+
+            <h2>Formation</h2>
+            
+            <div class="skill-block">
+              <span class="skill-title">AI Engineer, OpenClassrooms, 2026</span>
+              <div class="skill-desc">Double diplôme : Titre RNCP 39775 (Niveau 7) & Master of Science (Accréditation Université Américaine).</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span>
+              <div class="skill-desc">Titre RNCP 1262 (Niveau 5) : Technicien Supérieur Gestionnaire de Ressources Informatiques</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">BTS Analyste-programmeur (CNFDI, à distance), 2002-2003</span>
+              <div class="skill-desc">Titre RNCP 4683 (Niveau 5) : Visual Basic, C++, PHP, HTML</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">DEUG Sciences de la Vie, Nantes (44), 1997</span>
+              <div class="skill-desc">Programmation Pascal et Turbo-Pascal</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Bac S, spécialité mathématiques, Lamballe (22), 1996</span>
+              <div class="skill-desc"></div>
+            </div>
+            
+          </aside>
+          <div class="main-content">
+            <h2>Expérience professionnelle</h2>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Dirigeant / CTO – Conseil & Direction Technique – KISAI DG, SLU</span> <span class="dates">Andorre – depuis 2018</span></h3>
+              <ul>
+                
+                <li>Conseil stratégique IT & Direction Technique : Cadrage technologique, roadmaps de transformation et accompagnement des directions (CTO as a Service).</li>
+                
+                <li>Développement et mise en œuvre technique de solutions d’IA Générative (systèmes RAG, agents autonomes) et pipelines MLOps.</li>
+                
+                <li>Direction technique (CTO as a Service) pour opérateurs et grands comptes.</li>
+                
+                <li>Pilotage de la stratégie cybersécurité et conformité RGPD des systèmes d'information.</li>
+                
+                <li>Supervision de projets d’infrastructure critique : backbone opérateur, datacenters et réseaux sécurisés.</li>
+                
+                <li>DSI externalisé pour plusieurs clients et accompagnement du changement au niveau direction.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique Infrastructure – Alphalink</span> <span class="dates">Pornic – Janvier 2024 – Mai 2025</span></h3>
+              <ul>
+                
+                <li>Direction de la stratégie infrastructure et sécurité pour un opérateur télécom national.</li>
+                
+                <li>Management et mentorat d’une équipe de 18 collaborateurs pluridisciplinaires (systèmes, réseaux, VoIP, sécurité).</li>
+                
+                <li>Pilotage opérationnel des budgets : négociation fournisseurs et gestion des évolutions salariales.</li>
+                
+                <li>Modernisation des infrastructures : évolution du cœur de réseau MPLS, initialisation de la stratégie cybersécurité, automatisation.</li>
+                
+                <li>Animation du changement (CAB) et mise en place de politiques de conformité (ISO, RGPD).</li>
+                
+                <li>Représentation technique auprès de la direction générale et du COMEX.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique / Consultant Système Réseau – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
+              <ul>
+                
+                <li>Déploiement et administration de backbone opérateur, datacenters, réseaux MPLS.</li>
+                
+                <li>Ingénierie réseau, intégration de services FAI, DSI externalisé.</li>
+                
+                <li>Management de projets et accompagnement des clients dans la transformation de leur SI.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Architecte Réseau – ALPHALINK</span> <span class="dates">Pornic (44) – 2008 – 2011</span></h3>
+              <ul>
+                
+                <li>Design d’architectures réseaux, gestion de projets, formation client.</li>
+                
+                <li>Encadrement et formation d’équipe de production.</li>
+                
+                <li>Administration système, VOIP, réseau sur plateformes Linux.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Expériences antérieures</span> <span class="dates"> – 2005 – 2008</span></h3>
+              <ul>
+                
+                <li><strong>PYGRAM</strong>, Nantes (44) – 2007-2008 : Gestionnaire Système et Réseau – Déploiement de solutions TSE en cluster, virtualisation embarquée (VmWare).</li>
+                
+                <li><strong>Renault</strong>, Le Mans (72) – 2007 : Administrateur Système – Gestion de parc informatique (1900 postes), maintenance, assistance, formation, sauvegardes.</li>
+                
+                <li><strong>BI-SAM</strong>, Paris 8 (75) – 2006-2007 : Administrateur Système UNIX – Installation et administration serveurs UNIX (AIX), monitoring (Nagios), sauvegardes (Backup Exec).</li>
+                
+                <li><strong>BNP Paribas</strong>, Paris 8 (75) – 2006 : TSGRI – Administration serveurs Linux Debian, Windows NT et 2003, mise en place de filtrage open source (IPCop).</li>
+                
+                <li><strong>ACRELEC</strong>, France – 2008 : Technicien Informatique Itinérant (6 mois) – Déploiement et installation de réseaux informatiques (restauration).</li>
+                
+                <li><strong>CLUB INTERNET</strong>, Paris 19 (75) – 2005 : Support Technicien (1 an) – Support utilisateur, dépannage et installation ADSL.</li>
+                
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+      <div id="en" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+            <div class="info">
+              <span id="age-en"></span> years old&nbsp;|&nbsp;Born 20/10/1977<br>
+              31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80 &nbsp;|&nbsp; Driving License
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+        <h2>Professional Summary</h2>
+        <div class="summary">
+          Over 20 years of expertise in Technical Leadership (CTO/CIO), now enhanced by a specialization in AI Engineering.  I deeply believe that technological success is driven by the talent behind it.  As a dedicated manager, I have led teams of up to 18 people, placing mentorship and  individual growth at the core of my leadership to empower teams.  With an entrepreneurial mindset and based in the Nantes region, I combine a strategic  network of decision-makers with hands-on AI expertise. I am eager to leverage my ability  to unite and build expert teams to support business development,  turning the promises of AI into tangible growth.
+
+        </div>
+        <div class="cv-flex">
+          <aside>
+            <h2>Key Skills</h2>
+            
+            <div class="skill-block">
+              <span class="skill-title">AI Strategy:</span>
+              <div class="skill-desc">ROI assessment, PoC to Prod roadmaps, AI Governance (GDPR).</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Generative AI:</span>
+              <div class="skill-desc">RAG systems, Autonomous Agents (LangGraph), LLM Fine-tuning.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">MLOps:</span>
+              <div class="skill-desc">AI CI/CD pipelines, Airflow, MLflow tracking, Drift monitoring.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">AI/ML Core:</span>
+              <div class="skill-desc">Deep Learning (PyTorch), Reinforcement Learning, Transformers.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">IT Architecture:</span>
+              <div class="skill-desc">Azure Cloud, Vector DBs, System Design & Cybersecurity.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Leadership:</span>
+              <div class="skill-desc">Technical Direction (20y XP), management & Executive reporting.</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Soft Skills:</span>
+              <div class="skill-desc">Adaptability, Communication, Teamwork, Problem-Solving, Time Management.</div>
+            </div>
+            
+
+            <h2>Languages</h2>
+            <ul class="skills-list">
+              
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French : Native</li>
+              
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English : Fluent (including technical)</li>
+              
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : In progress</li>
+              
+              <li><img src="https://flagcdn.com/de.svg" alt="German" class="lang-icon">German : Basic</li>
+              
+              <li><img src="https://flagcdn.com/jp.svg" alt="Japanese" class="lang-icon">Japanese : Beginner</li>
+              
+            </ul>
+
+            <h2>Education</h2>
+            
+            <div class="skill-block">
+              <span class="skill-title">Master of Science in AI Engineering, OpenClassrooms (U.S. Accredited University), 2026</span>
+              <div class="skill-desc">RNCP 39775 (Level 7) : Specialization: Data Science and Machine Learning Operations</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Higher Technical Diploma (BTS) in IT Resource Management, Créteil, France, 2005-2006</span>
+              <div class="skill-desc">RNCP 1262 (Level 5) : (BTS TSGRI – “Technicien Supérieur Gestionnaire de Ressources Informatiques”)</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Higher Technical Diploma (BTS) in Computer Programming, CNFDI (remote), 2002-2003</span>
+              <div class="skill-desc">RNCP 4683 (Level 5) : Visual Basic, C++, PHP, HTML</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">DEUG in Life Sciences, Nantes, France, 1997</span>
+              <div class="skill-desc">Pascal and Turbo-Pascal programming</div>
+            </div>
+            
+            <div class="skill-block">
+              <span class="skill-title">Scientific Baccalaureate, Mathematics Major, Lamballe, France, 1996</span>
+              <div class="skill-desc"></div>
+            </div>
+            
+          </aside>
+          <div class="main-content">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Founder / CTO – Consulting & Technical Leadership – KISAI DG, SLU</span> <span class="dates">Andorre – since 2018</span></h3>
+              <ul>
+                
+                <li>Strategic IT Consulting & Technical Leadership: Technology scoping, transformation roadmaps, and executive advisory (CTO-as-a-Service).</li>
+                
+                <li>Technical development and implementation of Generative AI solutions (RAG systems, autonomous agents) and MLOps pipelines.</li>
+                
+                <li>Technical Direction (CTO-as-a-Service) for major accounts and telecom operators.</li>
+                
+                <li>Leadership of cybersecurity strategy and GDPR compliance for information systems.</li>
+                
+                <li>Oversight of critical infrastructure projects: operator backbone and secure networks.</li>
+                
+                <li>Outsourced CIO for several clients and change management at executive level.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Technical Director Infrastructure – Alphalink</span> <span class="dates">Pornic – January 2024 – May 2025</span></h3>
+              <ul>
+                
+                <li>Directed infrastructure and security strategy for a national telecom operator.</li>
+                
+                <li>Management and mentorship of a multidisciplinary team of 18 employees (systems, networks, VoIP, security).</li>
+                
+                <li>Operational budget management: supplier negotiations and salary development management.</li>
+                
+                <li>Infrastructure modernization: MPLS core network evolution, initialization of the cybersecurity strategy, automation.</li>
+                
+                <li>Change management (CAB) and implementation of compliance policies (ISO, GDPR).</li>
+                
+                <li>Technical representation with executive management and COMEX.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Technical Director / Systems & Network Consultant – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
+              <ul>
+                
+                <li>Deployed and managed operator backbone, datacenters, MPLS networks.</li>
+                
+                <li>Network engineering, ISP service integration, outsourced CIO.</li>
+                
+                <li>Project management and client support for IT transformation.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Network Architect – ALPHALINK</span> <span class="dates">Pornic (44) – 2008 – 2011</span></h3>
+              <ul>
+                
+                <li>Designed network architectures, managed projects, provided client training.</li>
+                
+                <li>Led and trained production teams.</li>
+                
+                <li>Systems administration, VoIP, Linux-based networks.</li>
+                
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Previous Experience</span> <span class="dates"> – 2005 – 2008</span></h3>
+              <ul>
+                
+                <li><strong>PYGRAM</strong>, Nantes – 2007-2008: Systems & Network Manager – Deployed clustered TSE solutions, embedded virtualization (VmWare).</li>
+                
+                <li><strong>Renault</strong>, Le Mans – 2007: Systems Administrator – Managed IT assets (1,900 workstations), maintenance, support, training, backups.</li>
+                
+                <li><strong>BI-SAM</strong>, Paris – 2006-2007: UNIX Systems Administrator – Installed and managed UNIX (AIX), monitoring (Nagios), backups (Backup Exec).</li>
+                
+                <li><strong>BNP Paribas</strong>, Paris – 2006: IT Specialist – Administered Debian Linux, Windows NT and 2003 servers, implemented open-source filtering (IPCop).</li>
+                
+                <li><strong>ACRELEC</strong>, France – 2008: IT Field Technician (6 months) – Deployed and installed IT networks (restaurant sector).</li>
+                
+                <li><strong>CLUB INTERNET</strong>, Paris – 2005: Support Technician (1 year) – User support, troubleshooting and ADSL installation.</li>
+                
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+  <script>
+    function calculateAge(birthDateStr) {
+      const today = new Date();
+      const birthDate = new Date(birthDateStr);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; }
+      return age;
+    }
+    function calculateExperience(startDateStr) {
+      const today = new Date();
+      const startDate = new Date(startDateStr);
+      let years = today.getFullYear() - startDate.getFullYear();
+      if (today.getMonth() < startDate.getMonth() || (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())) { years--; }
+      return years;
+    }
+
+    function switchLanguage(lang) {
+      document.getElementById('fr').style.display = lang === 'fr' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.querySelectorAll('.language-flag').forEach(flag => {
+        flag.classList.toggle('active', flag.dataset.lang === lang);
+      });
+      localStorage.setItem('preferredLang', lang);
+
+      var pdfLink = document.getElementById('pdf-link');
+      if (pdfLink) {
+        if (lang === 'fr') {
+          pdfLink.href = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.download = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.title = 'Télécharger le PDF';
+        } else {
+          pdfLink.href = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.download = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.title = 'Download PDF';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const age = calculateAge('1977-10-20');
+      if (document.getElementById('age')) document.getElementById('age').textContent = age;
+      if (document.getElementById('age-en')) document.getElementById('age-en').textContent = age;
+
+      const savedLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      switchLanguage(savedLang);
+      document.querySelectorAll('.language-flag').forEach((flag) => {
+        flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
+      });
+
+      const themeToggle = document.getElementById('theme-toggle');
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+
+      function setTheme(mode) {
+        if (mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          iconSun.style.display = 'none';
+          iconMoon.style.display = 'inline-block';
+        } else {
+          document.body.classList.remove('dark-mode');
+          iconSun.style.display = 'inline-block';
+          iconMoon.style.display = 'none';
+        }
+        localStorage.setItem('theme', mode);
+      }
+
+      themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'));
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
+    });
+  </script>
+</body>
+</html>
