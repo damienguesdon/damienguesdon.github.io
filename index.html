@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- SERIAL: v20260119-0111 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Damien GUESDON - CV</title>
+  <title>Damien GUESDON - Senior TAM</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -24,6 +23,7 @@
       --aside-dark: #334155;
       --border-light: #e2e8f0;
       --border-dark: #334155;
+      --red-hat-color: #d9230f; /* Ajout couleur spécifique */
     }
     * { box-sizing: border-box; }
     body {
@@ -136,6 +136,25 @@
     }
     body.dark-mode h1 { color: var(--primary-dark); }
     
+    /* Nouveau style pour le rôle cible */
+    .target-role {
+      font-size: 1.3em; 
+      font-weight: 700; 
+      color: var(--red-hat-color); 
+      margin-bottom: 10px; 
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .target-role span {
+      display: block;
+      font-size: 0.6em;
+      font-weight: 400;
+      color: #64748b;
+      text-transform: none;
+      margin-top: 3px;
+    }
+    body.dark-mode .target-role span { color: #94a3b8; }
+
     .info {
       font-size: 0.95em;
       color: #64748b;
@@ -187,6 +206,10 @@
       color: var(--primary-light);
     }
     body.dark-mode .skill-title { color: var(--primary-dark); }
+    .skill-desc {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
 
     .main-content { 
       flex: 1; 
@@ -257,13 +280,15 @@
       color: #64748b;
       font-weight: 500;
       font-style: normal;
+      white-space: nowrap;
+      margin-left: 10px;
     }
     
     .experience-item ul {
       margin: 10px 0 0 0;
       padding-left: 18px;
     }
-    .experience-item li { margin-bottom: 4px; font-size: 0.95em; }
+    .experience-item li { margin-bottom: 6px; font-size: 0.95em; }
 
     @media (max-width: 900px) {
       .container { margin: 0; border-radius: 0; padding: 30px 20px; }
@@ -272,6 +297,8 @@
       .header-photo { margin: 0; }
       .top-bar { position: static; align-items: center; margin-bottom: 20px; }
       aside { flex: none; width: 100%; }
+      .item-title { flex-direction: column; }
+      .dates { margin-left: 0; margin-top: 5px; }
     }
 
     @media print {
@@ -283,6 +310,7 @@
       .experience-item::before { background: #000 !important; }
       h1, h2, .item-title strong { color: #000 !important; }
       .summary { border: 1px solid #eee !important; background: #fafafa !important; }
+      .target-role { color: #d9230f !important; } /* Force red for title print */
     }
   </style>
 </head>
@@ -316,6 +344,10 @@
         <div class="header-flex">
           <div>
             <h1>Damien GUESDON</h1>
+            <div class="target-role">
+              SENIOR TECHNICAL ACCOUNT MANAGER (TAM)
+              <span>Expert Infrastructure & IA | Ex-Directeur Technique</span>
+            </div>
             <div class="info">
               <span id="age"></span> ans&nbsp;|&nbsp;Né le 20/10/1977<br>
               31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
@@ -324,177 +356,87 @@
           </div>
           <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
         </div>
+
         <h2>Résumé professionnel</h2>
         <div class="summary">
-          Plus de 20 ans d'expertise en Direction Technique (CTO/DSI), aujourd'hui complétés par une spécialisation en Ingénierie IA.  Ma conviction profonde est que la réussite technologique appartient avant tout aux talents qui la portent.  Manager engagé, j’ai dirigé des équipes allant jusqu’à 18 collaborateurs en plaçant le mentorat  et la progression de chacun au cœur de mon action, afin de transcender les collectifs.  Entrepreneur dans l’âme et ancré en région nantaise, j'allie un réseau de décideurs stratégiques  à une maîtrise opérationnelle de l’IA. Je souhaite mettre cette capacité à fédérer des pôles d'expertise  au service du développement d'entreprises, pour transformer les promesses de l'IA en leviers de croissance concrets.
-
+          Expert IT Senior avec 20 ans d'expérience, je fais le pont entre les impératifs de production critique (Ops) et les enjeux business stratégiques. 
+          Ancien Directeur Technique avec un fort bagage Réseau et Bare Metal, je me spécialise aujourd'hui dans l'industrialisation de l'IA sur OpenShift.
+          Je me positionne comme un "Trusted Advisor" pour les DSI, capable de sécuriser leurs opérations existantes tout en accélérant leur adoption de l'IA.
+          Je souhaite mettre ma résilience opérationnelle et ma vision architecturale au service du succès des clients Red Hat.
         </div>
+
         <div class="cv-flex">
           <aside>
             <h2>Compétences clés</h2>
-            
-            <div class="skill-block">
-              <span class="skill-title">Stratégie IA :</span>
-              <div class="skill-desc">Cadrage ROI, roadmaps PoC vers Prod, Gouvernance & Éthique (RGPD).</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">IA Générative :</span>
-              <div class="skill-desc">Systèmes RAG, Agents autonomes (LangGraph), Fine-tuning (LoRA).</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">MLOps :</span>
-              <div class="skill-desc">Automatisation CI/CD, Airflow, tracking MLflow, monitoring (Data Drift).</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">IA/ML Core :</span>
-              <div class="skill-desc">Deep Learning (PyTorch), Reinforcement Learning, Transformers.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Architecture IT :</span>
-              <div class="skill-desc">Cloud Azure, Vector DB, System Design & Cybersécurité.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Leadership :</span>
-              <div class="skill-desc">Direction technique (20 ans XP), management & reporting COMEX.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Soft Skills :</span>
-              <div class="skill-desc">Adaptabilité, Communication, Esprit d'équipe, Résolution de problèmes, Gestion du temps.</div>
-            </div>
-            
+            <div class="skill-block"><span class="skill-title">Plateformes & Cloud :</span><div class="skill-desc">Red Hat OpenShift (OCP), Kubernetes, Docker, RHEL/CentOS, Azure Hybride.</div></div>
+            <div class="skill-block"><span class="skill-title">Stratégie IA :</span><div class="skill-desc">Industrialisation (MLOps), Roadmaps PoC vers Prod, Gouvernance & Éthique.</div></div>
+            <div class="skill-block"><span class="skill-title">IA Générative :</span><div class="skill-desc">Systèmes RAG, Agents autonomes, LLM Serving (vLLM, Ollama) sur OpenShift.</div></div>
+            <div class="skill-block"><span class="skill-title">Architecture IT :</span><div class="skill-desc">Haute Dispo (HA), Vector DBs, System Design & Cybersécurité.</div></div>
+            <div class="skill-block"><span class="skill-title">Leadership :</span><div class="skill-desc">Gestion de Crise (Escalades), Revues Stratégiques (QBR), Conseil C-Level.</div></div>
+            <div class="skill-block"><span class="skill-title">Soft Skills :</span><div class="skill-desc">Orientation Client, Communication de Crise, Pédagogie, Résolution de problèmes.</div></div>
 
             <h2>Langues</h2>
             <ul class="skills-list">
-              
               <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
-              
               <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : Courant + Technique</li>
-              
               <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d’apprentissage</li>
-              
               <li><img src="https://flagcdn.com/de.svg" alt="Allemand" class="lang-icon">Allemand : Notions</li>
-              
-              <li><img src="https://flagcdn.com/jp.svg" alt="Japonais" class="lang-icon">Japonais : Initiation</li>
-              
             </ul>
 
             <h2>Formation</h2>
-            
-            <div class="skill-block">
-              <span class="skill-title">AI Engineer, OpenClassrooms, 2026</span>
-              <div class="skill-desc">Double diplôme : Titre RNCP 39775 (Niveau 7) & Master of Science (Accréditation Université Américaine).</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span>
-              <div class="skill-desc">Titre RNCP 1262 (Niveau 5) : Technicien Supérieur Gestionnaire de Ressources Informatiques</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">BTS Analyste-programmeur (CNFDI, à distance), 2002-2003</span>
-              <div class="skill-desc">Titre RNCP 4683 (Niveau 5) : Visual Basic, C++, PHP, HTML</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">DEUG Sciences de la Vie, Nantes (44), 1997</span>
-              <div class="skill-desc">Programmation Pascal et Turbo-Pascal</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Bac S, spécialité mathématiques, Lamballe (22), 1996</span>
-              <div class="skill-desc"></div>
-            </div>
-            
+            <div class="skill-block"><span class="skill-title">AI Engineer, OpenClassrooms, 2026</span><div class="skill-desc">Spécialisation : Data Science et MLOps (Diplôme Niveau 7 RNCP).</div></div>
+            <div class="skill-block"><span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span><div class="skill-desc">Technicien Supérieur Gestionnaire de Ressources Informatiques</div></div>
+            <div class="skill-block"><span class="skill-title">BTS Analyste-programmeur (CNFDI), 2002-2003</span><div class="skill-desc">Visual Basic, C++, PHP, HTML</div></div>
           </aside>
+
           <div class="main-content">
             <h2>Expérience professionnelle</h2>
             
             <div class="experience-item">
-              <h3 class="item-title"><span>Dirigeant / CTO – Conseil & Direction Technique – KISAI DG, SLU</span> <span class="dates">Andorre – depuis 2018</span></h3>
+              <h3 class="item-title"><span>Architecte OpenShift & IA (R&D Lab) – KISAI (Auto-formation)</span> <span class="dates">Remote – Depuis Juin 2025</span></h3>
               <ul>
-                
-                <li>Conseil stratégique IT & Direction Technique : Cadrage technologique, roadmaps de transformation et accompagnement des directions (CTO as a Service).</li>
-                
-                <li>Développement et mise en œuvre technique de solutions d’IA Générative (systèmes RAG, agents autonomes) et pipelines MLOps.</li>
-                
-                <li>Direction technique (CTO as a Service) pour opérateurs et grands comptes.</li>
-                
-                <li>Pilotage de la stratégie cybersécurité et conformité RGPD des systèmes d'information.</li>
-                
-                <li>Supervision de projets d’infrastructure critique : backbone opérateur, datacenters et réseaux sécurisés.</li>
-                
-                <li>DSI externalisé pour plusieurs clients et accompagnement du changement au niveau direction.</li>
-                
+                <li><strong>Formation Intensive & Lab :</strong> Déploiement d'un cluster OpenShift (SNO) sur Bare-Metal pour monter en compétence sur l'écosystème Red Hat.</li>
+                <li><strong>Projets Applicatifs :</strong> Intégration de modèles LLM (Ollama) via les opérateurs OpenShift AI et mise en place de pipelines RAG sécurisés.</li>
+                <li><strong>Objectif :</strong> Pivot de carrière complet de l'Infrastructure traditionnelle vers l'Ingénierie IA et les plateformes de conteneurs.</li>
               </ul>
             </div>
-            
+
             <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique Infrastructure – Alphalink</span> <span class="dates">Pornic – Janvier 2024 – Mai 2025</span></h3>
+              <h3 class="item-title"><span>Directeur Technique (CTO) - Infrastructure – Alphalink</span> <span class="dates">France – Jan 2024 – Mai 2025</span></h3>
               <ul>
-                
-                <li>Direction de la stratégie infrastructure et sécurité pour un opérateur télécom national.</li>
-                
-                <li>Management et mentorat d’une équipe de 18 collaborateurs pluridisciplinaires (systèmes, réseaux, VoIP, sécurité).</li>
-                
-                <li>Pilotage opérationnel des budgets : négociation fournisseurs et gestion des évolutions salariales.</li>
-                
-                <li>Modernisation des infrastructures : évolution du cœur de réseau MPLS, initialisation de la stratégie cybersécurité, automatisation.</li>
-                
-                <li>Animation du changement (CAB) et mise en place de politiques de conformité (ISO, RGPD).</li>
-                
-                <li>Représentation technique auprès de la direction générale et du COMEX.</li>
-                
+                <li><strong>Gestion d'Incidents Critiques :</strong> Pilotage des équipes infrastructure et escalades du support Tier 3 pour les comptes télécom stratégiques (SLA garantis).</li>
+                <li><strong>Relation Client Stratégique :</strong> Animation des revues techniques (QBR) et présentation des roadmaps d'évolution.</li>
+                <li><strong>Leadership Technique :</strong> Direction d'une équipe pluridisciplinaire (18 pers.) focalisée sur l'excellence opérationnelle et la fiabilité réseau.</li>
+                <li><strong>Modernisation :</strong> Évolution du cœur de réseau MPLS, stratégie cybersécurité et conformité (ISO, RGPD).</li>
               </ul>
             </div>
-            
+
             <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique / Consultant Système Réseau – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
+              <h3 class="item-title"><span>Consultant Senior Infrastructure & Réseau – KISAI (Indépendant)</span> <span class="dates">France / Remote – 2018 – 2023</span></h3>
               <ul>
-                
+                <li><strong>Infrastructure Critique :</strong> Supervision de projets backbone opérateur, datacenters et réseaux sécurisés.</li>
+                <li><strong>Conseil Stratégique :</strong> Audit d'architectures existantes et recommandations de sécurisation.</li>
+                <li><strong>Gestion de Projet :</strong> Pilotage de migrations complexes et transformation numérique.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique / Consultant Senior – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer – 2011 – 2018</span></h3>
+              <ul>
                 <li>Déploiement et administration de backbone opérateur, datacenters, réseaux MPLS.</li>
-                
-                <li>Ingénierie réseau, intégration de services FAI, DSI externalisé.</li>
-                
-                <li>Management de projets et accompagnement des clients dans la transformation de leur SI.</li>
-                
+                <li>Ingénierie réseau et intégration de services FAI.</li>
+                <li>Management de projets de transformation SI complexe.</li>
               </ul>
             </div>
-            
+
             <div class="experience-item">
-              <h3 class="item-title"><span>Architecte Réseau – ALPHALINK</span> <span class="dates">Pornic (44) – 2008 – 2011</span></h3>
+              <h3 class="item-title"><span>Expériences antérieures (SysAdmin & Réseau)</span> <span class="dates"> – 2005 – 2011</span></h3>
               <ul>
-                
-                <li>Design d’architectures réseaux, gestion de projets, formation client.</li>
-                
-                <li>Encadrement et formation d’équipe de production.</li>
-                
-                <li>Administration système, VOIP, réseau sur plateformes Linux.</li>
-                
-              </ul>
-            </div>
-            
-            <div class="experience-item">
-              <h3 class="item-title"><span>Expériences antérieures</span> <span class="dates"> – 2005 – 2008</span></h3>
-              <ul>
-                
-                <li><strong>PYGRAM</strong>, Nantes (44) – 2007-2008 : Gestionnaire Système et Réseau – Déploiement de solutions TSE en cluster, virtualisation embarquée (VmWare).</li>
-                
-                <li><strong>Renault</strong>, Le Mans (72) – 2007 : Administrateur Système – Gestion de parc informatique (1900 postes), maintenance, assistance, formation, sauvegardes.</li>
-                
-                <li><strong>BI-SAM</strong>, Paris 8 (75) – 2006-2007 : Administrateur Système UNIX – Installation et administration serveurs UNIX (AIX), monitoring (Nagios), sauvegardes (Backup Exec).</li>
-                
-                <li><strong>BNP Paribas</strong>, Paris 8 (75) – 2006 : TSGRI – Administration serveurs Linux Debian, Windows NT et 2003, mise en place de filtrage open source (IPCop).</li>
-                
-                <li><strong>ACRELEC</strong>, France – 2008 : Technicien Informatique Itinérant (6 mois) – Déploiement et installation de réseaux informatiques (restauration).</li>
-                
-                <li><strong>CLUB INTERNET</strong>, Paris 19 (75) – 2005 : Support Technicien (1 an) – Support utilisateur, dépannage et installation ADSL.</li>
-                
+                <li><strong>ALPHALINK</strong> (2008-2011) : Architecte Réseau – Design architectures, formation client.</li>
+                <li><strong>PYGRAM</strong> (2007-08) : Gestionnaire Système et Réseau (Virtualisation VmWare, TSE).</li>
+                <li><strong>Renault</strong> (2007) : Administrateur Système (Gestion de parc 1900 postes).</li>
+                <li><strong>BI-SAM</strong> (2006-07) : Admin UNIX (AIX) & Monitoring.</li>
+                <li><strong>BNP Paribas</strong> (2006) : Spécialiste IT (Debian/Windows).</li>
               </ul>
             </div>
             
@@ -506,6 +448,10 @@
         <div class="header-flex">
           <div>
             <h1>Damien GUESDON</h1>
+            <div class="target-role">
+              SENIOR TECHNICAL ACCOUNT MANAGER (TAM)
+              <span>Infrastructure Expert & AI Specialist | Ex-CTO</span>
+            </div>
             <div class="info">
               <span id="age-en"></span> years old&nbsp;|&nbsp;Born 20/10/1977<br>
               31, rue Pasteur, 44770 La Plaine-sur-Mer, France<br>
@@ -516,175 +462,83 @@
         </div>
         <h2>Professional Summary</h2>
         <div class="summary">
-          Over 20 years of expertise in Technical Leadership (CTO/CIO), now enhanced by a specialization in AI Engineering.  I deeply believe that technological success is driven by the talent behind it.  As a dedicated manager, I have led teams of up to 18 people, placing mentorship and  individual growth at the core of my leadership to empower teams.  With an entrepreneurial mindset and based in the Nantes region, I combine a strategic  network of decision-makers with hands-on AI expertise. I am eager to leverage my ability  to unite and build expert teams to support business development,  turning the promises of AI into tangible growth.
-
+          Senior IT Executive with 20 years of experience bridging the gap between critical infrastructure operations and strategic business goals. 
+          Former CTO with a deep background in Networking and Bare Metal, now specializing in Enterprise AI and OpenShift. 
+          I act as a trusted advisor for C-Level executives, helping them industrialize their AI adoption while ensuring the stability and security of their legacy systems. 
+          Seeking to leverage my 'Ops' resilience and 'AI' vision to drive customer success at Red Hat.
         </div>
         <div class="cv-flex">
           <aside>
             <h2>Key Skills</h2>
-            
-            <div class="skill-block">
-              <span class="skill-title">AI Strategy:</span>
-              <div class="skill-desc">ROI assessment, PoC to Prod roadmaps, AI Governance (GDPR).</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Generative AI:</span>
-              <div class="skill-desc">RAG systems, Autonomous Agents (LangGraph), LLM Fine-tuning.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">MLOps:</span>
-              <div class="skill-desc">AI CI/CD pipelines, Airflow, MLflow tracking, Drift monitoring.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">AI/ML Core:</span>
-              <div class="skill-desc">Deep Learning (PyTorch), Reinforcement Learning, Transformers.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">IT Architecture:</span>
-              <div class="skill-desc">Azure Cloud, Vector DBs, System Design & Cybersecurity.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Leadership:</span>
-              <div class="skill-desc">Technical Direction (20y XP), management & Executive reporting.</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Soft Skills:</span>
-              <div class="skill-desc">Adaptability, Communication, Teamwork, Problem-Solving, Time Management.</div>
-            </div>
-            
+            <div class="skill-block"><span class="skill-title">Platforms & Cloud:</span><div class="skill-desc">Red Hat OpenShift (OCP), Kubernetes, Docker, RHEL/CentOS, Hybrid Azure.</div></div>
+            <div class="skill-block"><span class="skill-title">AI Strategy:</span><div class="skill-desc">Industrialization (MLOps), PoC to Prod roadmaps, Governance.</div></div>
+            <div class="skill-block"><span class="skill-title">Generative AI:</span><div class="skill-desc">RAG systems, Autonomous Agents, LLM Serving (vLLM, Ollama) on OpenShift.</div></div>
+            <div class="skill-block"><span class="skill-title">IT Architecture:</span><div class="skill-desc">High Availability (HA), Vector DBs, System Design & Cybersecurity.</div></div>
+            <div class="skill-block"><span class="skill-title">Leadership:</span><div class="skill-desc">Crisis Management (Escalations), Strategic Reviews (QBR), C-Level Advisory.</div></div>
+            <div class="skill-block"><span class="skill-title">Soft Skills:</span><div class="skill-desc">Customer Obsession, Crisis Communication, Mentoring, Problem-Solving.</div></div>
 
             <h2>Languages</h2>
             <ul class="skills-list">
-              
-              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French : Native</li>
-              
-              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English : Fluent (including technical)</li>
-              
-              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : In progress</li>
-              
-              <li><img src="https://flagcdn.com/de.svg" alt="German" class="lang-icon">German : Basic</li>
-              
-              <li><img src="https://flagcdn.com/jp.svg" alt="Japanese" class="lang-icon">Japanese : Beginner</li>
-              
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: Native</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: Fluent (including technical)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: In progress</li>
+              <li><img src="https://flagcdn.com/de.svg" alt="German" class="lang-icon">German: Basic</li>
             </ul>
 
             <h2>Education</h2>
-            
-            <div class="skill-block">
-              <span class="skill-title">Master of Science in AI Engineering, OpenClassrooms (U.S. Accredited University), 2026</span>
-              <div class="skill-desc">RNCP 39775 (Level 7) : Specialization: Data Science and Machine Learning Operations</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Higher Technical Diploma (BTS) in IT Resource Management, Créteil, France, 2005-2006</span>
-              <div class="skill-desc">RNCP 1262 (Level 5) : (BTS TSGRI – “Technicien Supérieur Gestionnaire de Ressources Informatiques”)</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Higher Technical Diploma (BTS) in Computer Programming, CNFDI (remote), 2002-2003</span>
-              <div class="skill-desc">RNCP 4683 (Level 5) : Visual Basic, C++, PHP, HTML</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">DEUG in Life Sciences, Nantes, France, 1997</span>
-              <div class="skill-desc">Pascal and Turbo-Pascal programming</div>
-            </div>
-            
-            <div class="skill-block">
-              <span class="skill-title">Scientific Baccalaureate, Mathematics Major, Lamballe, France, 1996</span>
-              <div class="skill-desc"></div>
-            </div>
-            
+            <div class="skill-block"><span class="skill-title">Master of Science in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Specialization: Data Science and Machine Learning Operations.</div></div>
+            <div class="skill-block"><span class="skill-title">Higher Technical Diploma (BTS), IT Resource Mgmt, 2006</span><div class="skill-desc">IT Resource Management Specialist</div></div>
+            <div class="skill-block"><span class="skill-title">Higher Technical Diploma (BTS), Programming, 2003</span><div class="skill-desc">Visual Basic, C++, PHP, HTML</div></div>
           </aside>
+          
           <div class="main-content">
             <h2>Professional Experience</h2>
             
             <div class="experience-item">
-              <h3 class="item-title"><span>Founder / CTO – Consulting & Technical Leadership – KISAI DG, SLU</span> <span class="dates">Andorre – since 2018</span></h3>
+              <h3 class="item-title"><span>OpenShift & AI Architect (R&D Lab) – KISAI (Self-Training)</span> <span class="dates">Remote – Since June 2025</span></h3>
               <ul>
-                
-                <li>Strategic IT Consulting & Technical Leadership: Technology scoping, transformation roadmaps, and executive advisory (CTO-as-a-Service).</li>
-                
-                <li>Technical development and implementation of Generative AI solutions (RAG systems, autonomous agents) and MLOps pipelines.</li>
-                
-                <li>Technical Direction (CTO-as-a-Service) for major accounts and telecom operators.</li>
-                
-                <li>Leadership of cybersecurity strategy and GDPR compliance for information systems.</li>
-                
-                <li>Oversight of critical infrastructure projects: operator backbone and secure networks.</li>
-                
-                <li>Outsourced CIO for several clients and change management at executive level.</li>
-                
+                <li><strong>Intensive Training & Lab:</strong> Deployment of a Single Node OpenShift (SNO) cluster on bare-metal to master the Red Hat ecosystem (Day 1 & Day 2 ops).</li>
+                <li><strong>Applied AI Projects:</strong> Integration of LLM workloads (Ollama) using OpenShift AI operators and implementation of secure RAG pipelines.</li>
+                <li><strong>Career Pivot:</strong> Strategic transition from legacy Infrastructure expertise to modern AI Engineering and Container Platforms.</li>
               </ul>
             </div>
-            
+
             <div class="experience-item">
-              <h3 class="item-title"><span>Technical Director Infrastructure – Alphalink</span> <span class="dates">Pornic – January 2024 – May 2025</span></h3>
+              <h3 class="item-title"><span>Chief Technology Officer (CTO) - Infrastructure – Alphalink</span> <span class="dates">France – Jan 2024 – May 2025</span></h3>
               <ul>
-                
-                <li>Directed infrastructure and security strategy for a national telecom operator.</li>
-                
-                <li>Management and mentorship of a multidisciplinary team of 18 employees (systems, networks, VoIP, security).</li>
-                
-                <li>Operational budget management: supplier negotiations and salary development management.</li>
-                
-                <li>Infrastructure modernization: MPLS core network evolution, initialization of the cybersecurity strategy, automation.</li>
-                
-                <li>Change management (CAB) and implementation of compliance policies (ISO, GDPR).</li>
-                
-                <li>Technical representation with executive management and COMEX.</li>
-                
+                <li><strong>Critical Incident Management:</strong> Managed infra team and escalations Tier 3 support for strategic telecom accounts, ensuring SLAs were met during crises.</li>
+                <li><strong>Strategic Roadmap:</strong> Led technical quarterly business reviews (QBRs) to align infrastructure evolution with business needs.</li>
+                <li><strong>Team Leadership:</strong> Directed technical teams (18 people) focusing on operational excellence and network reliability.</li>
+                <li><strong>Infrastructure Modernization:</strong> MPLS core network evolution, cybersecurity strategy initialization, and compliance (ISO, GDPR).</li>
               </ul>
             </div>
-            
+
             <div class="experience-item">
-              <h3 class="item-title"><span>Technical Director / Systems & Network Consultant – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer (44) – 2011 – 2018</span></h3>
+              <h3 class="item-title"><span>Senior Infrastructure & Network Consultant – KISAI (Freelance)</span> <span class="dates">France / Remote – 2018 – 2023</span></h3>
               <ul>
-                
+                <li><strong>Critical Infrastructure:</strong> Oversight of operator backbones, datacenters, and secure networks for various clients.</li>
+                <li><strong>Strategic Consulting (CTO-as-a-Service):</strong> Auditing existing architectures and recommending security and optimization strategies.</li>
+                <li><strong>Project Management:</strong> Leading complex migrations and digital transformation initiatives.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Technical Director / Senior Consultant – Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer – 2011 – 2018</span></h3>
+              <ul>
                 <li>Deployed and managed operator backbone, datacenters, MPLS networks.</li>
-                
-                <li>Network engineering, ISP service integration, outsourced CIO.</li>
-                
-                <li>Project management and client support for IT transformation.</li>
-                
+                <li>Network engineering and ISP service integration.</li>
+                <li>Project management for complex IT transformations.</li>
               </ul>
             </div>
-            
+
             <div class="experience-item">
-              <h3 class="item-title"><span>Network Architect – ALPHALINK</span> <span class="dates">Pornic (44) – 2008 – 2011</span></h3>
+              <h3 class="item-title"><span>Previous Experience</span> <span class="dates"> – 2005 – 2011</span></h3>
               <ul>
-                
-                <li>Designed network architectures, managed projects, provided client training.</li>
-                
-                <li>Led and trained production teams.</li>
-                
-                <li>Systems administration, VoIP, Linux-based networks.</li>
-                
-              </ul>
-            </div>
-            
-            <div class="experience-item">
-              <h3 class="item-title"><span>Previous Experience</span> <span class="dates"> – 2005 – 2008</span></h3>
-              <ul>
-                
-                <li><strong>PYGRAM</strong>, Nantes – 2007-2008: Systems & Network Manager – Deployed clustered TSE solutions, embedded virtualization (VmWare).</li>
-                
-                <li><strong>Renault</strong>, Le Mans – 2007: Systems Administrator – Managed IT assets (1,900 workstations), maintenance, support, training, backups.</li>
-                
-                <li><strong>BI-SAM</strong>, Paris – 2006-2007: UNIX Systems Administrator – Installed and managed UNIX (AIX), monitoring (Nagios), backups (Backup Exec).</li>
-                
-                <li><strong>BNP Paribas</strong>, Paris – 2006: IT Specialist – Administered Debian Linux, Windows NT and 2003 servers, implemented open-source filtering (IPCop).</li>
-                
-                <li><strong>ACRELEC</strong>, France – 2008: IT Field Technician (6 months) – Deployed and installed IT networks (restaurant sector).</li>
-                
-                <li><strong>CLUB INTERNET</strong>, Paris – 2005: Support Technician (1 year) – User support, troubleshooting and ADSL installation.</li>
-                
+                <li><strong>ALPHALINK</strong> (2008-2011): Network Architect – Designed architectures, managed projects.</li>
+                <li><strong>PYGRAM</strong> (2007-08): Systems & Network Manager (VmWare, TSE).</li>
+                <li><strong>Renault</strong> (2007): Systems Administrator (1,900 workstations).</li>
+                <li><strong>BI-SAM</strong> (2006-07): UNIX Systems Administrator (AIX).</li>
+                <li><strong>BNP Paribas</strong> (2006): IT Specialist.</li>
               </ul>
             </div>
             
@@ -702,13 +556,6 @@
       const m = today.getMonth() - birthDate.getMonth();
       if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; }
       return age;
-    }
-    function calculateExperience(startDateStr) {
-      const today = new Date();
-      const startDate = new Date(startDateStr);
-      let years = today.getFullYear() - startDate.getFullYear();
-      if (today.getMonth() < startDate.getMonth() || (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())) { years--; }
-      return years;
     }
 
     function switchLanguage(lang) {
