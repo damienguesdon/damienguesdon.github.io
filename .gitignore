@@ -1,13 +1,17 @@
-# Python
 __pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
+*.pyc
 .env
-venv/
-.venv/
-env/
-
-# OS
+.envrc
 .DS_Store
-Thumbs.db
+.coverage
+htmlcov/
+pixi.lock
+.pixi/
+data/
+_bmad-output/
+
+.venv_conda
+venv
+.venv
+__pycache__
+.ipynb_checkpoints
