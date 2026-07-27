@@ -29,7 +29,9 @@ def render_cv(data_file, template_file, output_file, overrides=None, force_lang=
 
     xp_years = calculate_experience("2005-01-01")
     data["xp_years"] = xp_years
-    data["serial_version"] = datetime.datetime.now(datetime.timezone.utc).strftime("v%Y%m%d-%H%M")
+    data["serial_version"] = datetime.datetime.now(datetime.timezone.utc).strftime(
+        "v%Y%m%d-%H%M"
+    )
     data["force_lang"] = force_lang
 
     # Process summary variables
