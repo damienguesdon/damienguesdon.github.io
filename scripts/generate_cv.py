@@ -1,13 +1,14 @@
-import yaml
-import jinja2
+import argparse
 import datetime
 import os
-import argparse
+
+import jinja2
+import yaml
 
 
 def calculate_experience(start_date_str):
-    start_date = datetime.datetime.strptime(start_date_str, "%Y-%m-%d")
-    today = datetime.datetime.now()
+    start_date = datetime.date.fromisoformat(start_date_str)
+    today = datetime.date.today()
     years = today.year - start_date.year
     if (today.month, today.day) < (start_date.month, start_date.day):
         years -= 1
@@ -28,7 +29,7 @@ def render_cv(data_file, template_file, output_file, overrides=None, force_lang=
 
     xp_years = calculate_experience("2005-01-01")
     data["xp_years"] = xp_years
-    data["serial_version"] = datetime.datetime.now().strftime("v%Y%m%d-%H%M")
+    data["serial_version"] = datetime.datetime.now(datetime.timezone.utc).strftime("v%Y%m%d-%H%M")
     data["force_lang"] = force_lang
 
     # Process summary variables
