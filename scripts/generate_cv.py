@@ -8,7 +8,7 @@ import yaml
 
 def calculate_experience(start_date_str):
     start_date = datetime.date.fromisoformat(start_date_str)
-    today = datetime.date.today()
+    today = datetime.datetime.now(datetime.timezone.utc).date()
     years = today.year - start_date.year
     if (today.month, today.day) < (start_date.month, start_date.day):
         years -= 1
