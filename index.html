@@ -3,339 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Damien GUESDON - Directeur Plateforme & Infrastructure</title>
+  <title>Damien GUESDON - VP Engineering</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg-light: #f3f4f6;
-      --bg-dark: #0f172a;
-      --text-light: #1f2937;
-      --text-dark: #f8fafc;
-      --container-light: #ffffff;
-      --container-dark: #1e293b;
-      --primary-light: #1e40af;
-      --primary-dark: #60a5fa;
-      --secondary-light: #3730a3;
-      --secondary-dark: #818cf8;
-      --accent-light: #4f46e5;
-      --accent-dark: #a5b4fc;
-      --aside-light: #eef0f4;
-      --aside-dark: #334155;
-      --border-light: #e2e8f0;
-      --border-dark: #334155;
-      --red-hat-color: #d9230f; 
-    }
+    :root { --bg-light: #f3f4f6; --bg-dark: #0f172a; --text-light: #1f2937; --text-dark: #f8fafc; --container-light: #ffffff; --container-dark: #1e293b; --primary-light: #1e40af; --primary-dark: #60a5fa; --secondary-light: #3730a3; --secondary-dark: #818cf8; --accent-light: #4f46e5; --accent-dark: #a5b4fc; --aside-light: #eef0f4; --aside-dark: #334155; --border-light: #e2e8f0; --border-dark: #334155; --red-hat-color: #d9230f; }
     * { box-sizing: border-box; }
-    body {
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-    body.dark-mode {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    .container {
-      max-width: 1300px;
-      margin: 40px auto;
-      background: var(--container-light);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      padding: 50px; 
-      position: relative;
-    }
-    body.dark-mode .container {
-      background: var(--container-dark);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-    .top-bar {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-      z-index: 10;
-    }
-    .top-buttons {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .theme-toggle-btn {
-      background: rgba(0,0,0,0.05);
-      border: 1px solid var(--border-light);
-      cursor: pointer;
-      border-radius: 8px;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-    }
-    body.dark-mode .theme-toggle-btn {
-      background: rgba(255,255,255,0.05);
-      border-color: var(--border-dark);
-    }
+    body { font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg-light); color: var(--text-light); margin: 0; padding: 0; line-height: 1.6; font-size: 16px; }
+    body.dark-mode { background: var(--bg-dark); color: var(--text-dark); }
+    .container { max-width: 1300px; margin: 40px auto; background: var(--container-light); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 12px; padding: 50px; position: relative; }
+    body.dark-mode .container { background: var(--container-dark); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
+    .top-bar { position: absolute; top: 30px; right: 40px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; z-index: 10; }
+    .top-buttons { display: flex; gap: 10px; align-items: center; }
+    .theme-toggle-btn { background: rgba(0,0,0,0.05); border: 1px solid var(--border-light); cursor: pointer; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    body.dark-mode .theme-toggle-btn { background: rgba(255,255,255,0.05); border-color: var(--border-dark); }
     .theme-toggle-btn svg { width: 20px; height: 20px; color: var(--accent-light); }
     body.dark-mode .theme-toggle-btn svg { color: var(--accent-dark); }
-    
-    .language-flag {
-      width: 28px;
-      height: 28px;
-      border-radius: 4px;
-      cursor: pointer;
-      opacity: 0.6;
-      transition: all 0.2s;
-      border: 2px solid transparent;
-      flex-shrink: 0;
-    }
+    .language-flag { width: 28px; height: 28px; border-radius: 4px; cursor: pointer; opacity: 0.6; transition: all 0.2s; border: 2px solid transparent; flex-shrink: 0; }
     .language-flag.active { opacity: 1; border-color: var(--accent-light); }
     body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
-
-    .language-switcher {
-      display: flex;
-      flex-direction: row;
-      gap: 5px;
-    }
-
-    .lang-icon {
-      width: 18px;
-      height: 12px;
-      border-radius: 2px;
-      margin-right: 5px;
-      vertical-align: middle;
-    }
-
+    .language-switcher { display: flex; flex-direction: row; gap: 5px; }
     .lang-section { display: none; }
-    
-    header {
-      margin-bottom: 40px;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 30px;
-    }
+    header { margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 30px; }
     body.dark-mode header { border-color: var(--border-dark); }
-    
-    .header-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    h1 {
-      font-size: 2.8em;
-      font-weight: 800;
-      margin: 0;
-      letter-spacing: -0.025em;
-      color: var(--primary-light);
-    }
+    .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    h1 { font-size: 2.8em; font-weight: 800; margin: 0; letter-spacing: -0.025em; color: var(--primary-light); }
     body.dark-mode h1 { color: var(--primary-dark); }
-    
-    .target-role {
-      font-size: 1.3em; 
-      font-weight: 700; 
-      color: var(--red-hat-color); 
-      margin-bottom: 10px; 
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-    .target-role span {
-      display: block;
-      font-size: 0.65em;
-      font-weight: 400;
-      color: #64748b;
-      text-transform: none;
-      margin-top: 4px;
-    }
+    .target-role { font-size: 1.3em; font-weight: 700; color: var(--red-hat-color); margin-bottom: 10px; line-height: 1.2; text-transform: uppercase; }
+    .target-role span { display: block; font-size: 0.65em; font-weight: 400; color: #64748b; text-transform: none; margin-top: 4px; }
     body.dark-mode .target-role span { color: #94a3b8; }
-
-    .info {
-      font-size: 0.95em;
-      color: #64748b;
-      margin-top: 10px;
-    }
+    .info { font-size: 0.95em; color: #64748b; margin-top: 10px; }
     body.dark-mode .info { color: #94a3b8; }
-    .header-photo {
-      width: 140px;
-      height: 140px;
-      border-radius: 16px;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    
-    .summary {
-      font-size: 1.1em;
-      margin: 30px 0;
-      color: var(--text-light);
-      background: var(--aside-light);
-      padding: 20px;
-      border-radius: 8px;
-      border-left: 4px solid var(--accent-light);
-    }
-    body.dark-mode .summary {
-      background: rgba(255,255,255,0.03);
-      color: var(--text-dark);
-      border-left-color: var(--accent-dark);
-    }
-    
-    .cv-flex {
-      display: flex; 
-      gap: 50px;
-    }
-    
-    aside {
-      flex: 0 0 350px;
-      background-color: var(--aside-light);
-      padding: 20px;
-      border-radius: 8px;
-    }
-    body.dark-mode aside {
-      background-color: var(--aside-dark);
-    }
-    .skill-title { 
-      font-weight: 700; 
-      display: block; 
-      margin-bottom: 2px;
-      font-size: 0.9em;
-      color: var(--primary-light);
-    }
+    .summary { font-size: 1.1em; margin: 30px 0; color: var(--text-light); background: var(--aside-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-light); text-align: justify;}
+    body.dark-mode .summary { background: rgba(255,255,255,0.03); color: var(--text-dark); border-left-color: var(--accent-dark); }
+    .cv-flex { display: flex; gap: 50px; }
+    aside { flex: 0 0 320px; background-color: var(--aside-light); padding: 20px; border-radius: 8px; }
+    body.dark-mode aside { background-color: var(--aside-dark); }
+    .skill-block { margin-bottom: 20px; }
+    .skill-title { font-weight: 700; display: block; margin-bottom: 2px; font-size: 0.9em; color: var(--primary-light); }
     body.dark-mode .skill-title { color: var(--primary-dark); }
-    .skill-desc {
-      margin-bottom: 15px;
-      font-size: 0.9em;
-    }
-
-    .main-content { 
-      flex: 1; 
-    }
-
-    h2 {
-      font-size: 1.3em;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent-light);
-      margin: 40px 0 20px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .skill-desc { margin-bottom: 15px; font-size: 0.9em; }
+    .main-content { flex: 1; }
+    h2 { font-size: 1.3em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-light); margin: 40px 0 20px 0; display: flex; align-items: center; gap: 10px; }
     body.dark-mode h2 { color: var(--accent-dark); }
-    h2::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border-light);
-    }
+    h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); }
     body.dark-mode h2::after { background: var(--border-dark); }
-    
-    .skills-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .skills-list li {
-      margin-bottom: 15px;
-      font-size: 0.9em;
-    }
-
-    .experience-item {
-      position: relative;
-      padding-left: 25px;
-      margin-bottom: 30px;
-      border-left: 2px solid var(--border-light);
-    }
+    .skills-list { list-style: none; padding: 0; margin: 0; }
+    .skills-list li { margin-bottom: 15px; font-size: 0.9em; }
+    .experience-item { position: relative; padding-left: 25px; margin-bottom: 30px; border-left: 2px solid var(--border-light); }
     body.dark-mode .experience-item { border-left-color: var(--border-dark); }
-    .experience-item::before {
-      content: "";
-      position: absolute;
-      left: -7px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
-      background: var(--accent-light);
-      border-radius: 50%;
-    }
+    .experience-item::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; background: var(--accent-light); border-radius: 50%; }
     body.dark-mode .experience-item::before { background: var(--accent-dark); }
-    
-    .item-title {
-      font-size: 1.1em;
-      font-weight: 700;
-      margin: 0 0 5px 0;
-      color: var(--primary-light);
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
+    .item-title { font-size: 1.1em; font-weight: 700; margin: 0 0 5px 0; color: var(--primary-light); display: flex; justify-content: space-between; align-items: baseline; }
     body.dark-mode .item-title { color: var(--primary-dark); }
-    
-    .dates {
-      font-size: 0.8em;
-      color: #64748b;
-      font-weight: 500;
-      font-style: normal;
-      white-space: nowrap;
-      margin-left: 10px;
-    }
-    
-    .experience-item ul {
-      margin: 10px 0 0 0;
-      padding-left: 18px;
-    }
-    .experience-item li { margin-bottom: 6px; font-size: 0.95em; }
-
-    @media (max-width: 900px) {
-      .container { margin: 0; border-radius: 0; padding: 30px 20px; }
-      .cv-flex { flex-direction: column; }
-      .header-flex { flex-direction: column; text-align: center; gap: 20px; }
-      .header-photo { margin: 0; }
-      .top-bar { position: static; align-items: center; margin-bottom: 20px; }
-      aside { flex: none; width: 100%; }
-      .item-title { flex-direction: column; }
-      .dates { margin-left: 0; margin-top: 5px; }
-    }
-
-    @media print {
-      @page { margin: 1cm; size: A4; }
-      body { background: #fff !important; color: #000 !important; font-size: 9pt !important; }
-      .container { box-shadow: none !important; padding: 0 !important; width: 100% !important; max-width: none !important; }
-      .top-bar, .language-switcher { display: none !important; }
-      .experience-item { border-left: 1px solid #ccc !important; }
-      .experience-item::before { background: #000 !important; }
-      h1, h2, .item-title strong { color: #000 !important; }
-      .summary { border: 1px solid #eee !important; background: #fafafa !important; }
-      .target-role { color: #d9230f !important; }
-    }
+    .dates { font-size: 0.8em; color: #64748b; font-weight: 500; font-style: normal; white-space: nowrap; margin-left: 10px; }
+    .experience-item ul { margin: 10px 0 0 0; padding-left: 18px; }
+    .experience-item li { margin-bottom: 6px; font-size: 0.95em; text-align: justify; }
+    @media (max-width: 900px) { .container { margin: 0; border-radius: 0; padding: 30px 20px; } .cv-flex { flex-direction: column; } .header-flex { flex-direction: column; text-align: center; gap: 20px; } .top-bar { position: static; align-items: center; margin-bottom: 20px; } aside { flex: none; width: 100%; } .item-title { flex-direction: column; } .dates { margin-left: 0; margin-top: 5px; } }
+    @media print { @page { margin: 1cm; size: A4; } body { background: #fff !important; color: #000 !important; font-size: 9.5pt !important; } .container { box-shadow: none !important; padding: 0 !important; width: 100% !important; max-width: none !important; } .top-bar, .language-switcher { display: none !important; } .experience-item { border-left: 1px solid #ccc !important; } .experience-item::before { background: #000 !important; } h1, h2, .item-title strong { color: #000 !important; } .summary { border: 1px solid #eee !important; background: #fafafa !important; } .target-role { color: #d9230f !important; } }
   </style>
 </head>
 <body>
   <div class="top-bar">
     <div class="top-buttons">
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
-        <span id="icon-sun">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </span>
-        <span id="icon-moon" style="display: none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </span>
+        <span id="icon-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        <span id="icon-moon" style="display: none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
       </button>
-      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_FR.pdf" download title="Télécharger le PDF">
-        <span>
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg>
-        </span>
-      </a>
     </div>
     <div class="language-switcher">
       <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
       <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
     </div>
   </div>
-
   <div class="container">
     <main>
       
@@ -345,94 +84,77 @@
           <div>
             <h1>Damien GUESDON</h1>
               <div class="target-role">
-                DIRECTEUR PLATEFORME & INFRASTRUCTURE / EX-CTO
-                <span>Infrastructures Critiques, SRE, FinOps & Gouvernance MLOps</span>
+                VP ENGINEERING / DIRECTEUR INFRASTRUCTURE IT
+                <span>Infrastructures Critiques, DevOps/SRE, FinOps & Gouvernance MLOps</span>
               </div>
             <div class="info">
-              La Plaine-sur-Mer, France<br>
+              La Plaine-sur-Mer, France / Andorre<br>
               <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
             </div>
           </div>
-          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+          <!-- Optionnel : Ajouter <img src="photo.jpg" class="header-photo" alt="Damien GUESDON"> ici -->
         </div>
 
         <h2>Résumé professionnel</h2>
         <div class="summary">
-          Dirigeant informatique avec 20 ans d'expérience totale, incluant un parcours éprouvé d'Ingénieur à Directeur Technique (CTO). Spécialisé dans les infrastructures critiques, la gouvernance IT et la gestion budgétaire stratégique. Succès démontrés dans l'intégration post-fusion (M&A) et la direction d'opérations internationales en Europe et en Afrique (France, Andorre, Luxembourg, Portugal, Maroc, Île Maurice). Diplômé d'un Master en Ingénierie IA, j'allie pragmatisme opérationnel et architectures de plateformes sécurisées (Cloud Computing, Data Analysis, et IA souveraine). Mon objectif est d'utiliser l'innovation pour maîtriser la dette technique, optimiser les écosystèmes logiciels ERP, et aligner l'ingénierie sur la vision financière de l'entreprise grâce à un leadership d'équipes transverses.
+          Dirigeant informatique avec 20 ans d'expertise dans les infrastructures critiques, la direction de départements techniques et la gouvernance FinOps stratégique. Parcours éprouvé dans la gestion d'environnements à très grande échelle exigeant un zéro-downtime, incluant la supervision d'équipes DevOps/SRE et la migration de cœurs de réseau massifs. Ayant récemment validé un Master en Ingénierie IA, je fais le pont entre l'infrastructure robuste traditionnelle et les plateformes MLOps modernes et sécurisées. Ma spécialité : aligner les feuilles de route d'ingénierie sur la vision financière de l'entreprise, optimiser drastiquement le P&L, et diriger des équipes transverses performantes dans des contextes internationaux complexes.
         </div>
 
         <div class="cv-flex">
           <aside>
            <h2>Compétences clés</h2>
             <div class="skill-block"><span class="skill-title">Stratégie & Direction (C-Level) :</span><div class="skill-desc">Alignement de l'IT sur les objectifs métiers, pilotage global, direction de départements techniques transverses (18 collaborateurs), culture de la rentabilité.</div></div>
-            <div class="skill-block"><span class="skill-title">Négociation & Gestion des Fournisseurs (FinOps) :</span><div class="skill-desc">Mise en concurrence stratégique, stratégie d'achats de bout en bout, et réduction drastique des OPEX/CAPEX.</div></div>
-            <div class="skill-block"><span class="skill-title">SRE & Infrastructures Critiques :</span><div class="skill-desc">Haute disponibilité (SLA/SLO), observabilité, résilience des réseaux et systèmes, et rationalisation opérationnelle.</div></div>
-            <div class="skill-block"><span class="skill-title">Fusions-Acquisitions (M&A) & Transformation :</span><div class="skill-desc">Audit technique (due diligence), harmonisation et intégration d'infrastructures technologiques complexes.</div></div>
-            <div class="skill-block"><span class="skill-title">Gouvernance MLOps & IA Souveraine :</span><div class="skill-desc">Industrialisation et hébergement sécurisé des plateformes d'IA, intégration de modèles (Model Gateway), protection contre les fuites de données et conformité.</div></div>
+            <div class="skill-block"><span class="skill-title">SRE & Infrastructures Critiques :</span><div class="skill-desc">Haute disponibilité (SLA/SLO), observabilité, résilience des réseaux (MPLS, BGP) et rationalisation opérationnelle.</div></div>
+            <div class="skill-block"><span class="skill-title">Cloud, MLOps & Gouvernance :</span><div class="skill-desc">Supervision d'équipes DevOps (Kubernetes, microservices), standards CI/CD, architecture IA souveraine, et conformité ISO 27001 / HDS.</div></div>
+            <div class="skill-block"><span class="skill-title">Négociation & FinOps :</span><div class="skill-desc">Mise en concurrence stratégique, stratégie d'achats de bout en bout, et réduction drastique des OPEX/CAPEX.</div></div>
             
             <h2>Langues</h2>
             <ul class="skills-list">
-              <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
-              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : Courant + Technique</li>
-              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d'apprentissage</li>
+              <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon" style="width:18px; margin-right:5px; vertical-align:middle;">Français : Maternelle</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon" style="width:18px; margin-right:5px; vertical-align:middle;">Anglais : Courant + Technique</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon" style="width:18px; margin-right:5px; vertical-align:middle;">Catalan : En cours d'apprentissage</li>
             </ul>
 
             <h2>Formation</h2>
-            <div class="skill-block"><span class="skill-title">Diplôme de niveau 7 en IA Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Cursus d'ingénierie technique (Data Science & MLOps). Projet de fin d'études orienté sur la gouvernance IT et l'architecture souveraine.</div></div>
-            <div class="skill-block"><span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span><div class="skill-desc">Technicien Supérieur Gestionnaire de Ressources Informatiques</div></div>
-            <div class="skill-block"><span class="skill-title">BTS Analyste Programmeur, CNFDI, 2001</span></div>
+            <div class="skill-block"><span class="skill-title">Master / Diplôme niv. 7 en IA Engineering</span><div class="skill-desc">OpenClassrooms, 2026<br>Data Science & MLOps</div></div>
+            <div class="skill-block"><span class="skill-title">BTS TSGRI</span><div class="skill-desc">Créteil, 2005-2006</div></div>
+            <div class="skill-block"><span class="skill-title">BTS Analyste Programmeur</span><div class="skill-desc">CNFDI, 2001</div></div>
           </aside>
 
           <div class="main-content">
             <h2>Expérience professionnelle</h2>
             
             <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique (CTO) - Infrastructure - Alphalink</span> <span class="dates">France / International - Jan 2024 - Mai 2025</span></h3>
+              <h3 class="item-title"><span>Directeur Technique (CTO) - Infrastructure - Alphalink</span> <span class="dates">France / International | Jan 2024 - Mai 2025</span></h3>
               <ul>
-                <li><strong>Fusions-Acquisitions & Harmonisation Réseau Globale :</strong> Direction de l'intégration technique post-fusion de 4 réseaux distincts pour aboutir à une infrastructure MPLS moderne et unifiée. Support de la connectivité ADSL/Fibre de 40 000 sites physiques d'entreprises et des milliards de minutes de VoIP, incluant la gestion de points de présence (PoPs) internationaux au Luxembourg et au Maroc.</li>
-                <li><strong>Gestion des Fournisseurs & Optimisation Budgétaire Stratégique (FinOps) :</strong> 
-                  <ul style="list-style-type: circle; margin-top: 5px; margin-bottom: 5px;">
-                    <li><strong>Projet de fusion réseau :</strong> Refonte complète de la stratégie d'achat face à une cotation initiale de 130 M€ (Cisco). Mise en concurrence élargie (Juniper, Huawei, HP) et optimisation rigoureuse de l'architecture cible, permettant de valider et délivrer le projet final pour 2 M€.</li>
-                    <li><strong>Licences Office 365 :</strong> Audits capacitaires et renégociation des contrats, générant une économie annuelle récurrente de 70 K€.</li>
-                  </ul>
-                </li>
-                <li><strong>Gouvernance IT & Cybersécurité :</strong> Création et présidence du comité d'approbation des changements (CAB) inter-services pour imposer une gestion stricte des changements. Co-définition et négociation d'une infrastructure SOC de nouvelle génération (Palo Alto) et pilotage du renouvellement de 4 certifications ISO majeures (ISO 27001, 9001, 22301 et HDS).</li>
-                <li><strong>Leadership d'équipes transverses :</strong> Direction globale d'un département performant de 18 ingénieurs. Restructuration en 4 pôles d'expertise (VoIP, Réseau, R&D, Datacenter) pour optimiser les SLA et la livraison des services globaux.</li>
+                <li><strong>Direction d'Ingénierie :</strong> Direction d'un département performant de 18 ingénieurs. Restructuration en 4 pôles techniques spécialisés (VoIP, Réseau, R&D, Datacenter) pour piloter rigoureusement les SLA et l'excellence opérationnelle.</li>
+                <li><strong>Modernisation d'Infrastructure :</strong> Supervision des équipes DevOps/SRE et ingénierie réseau pour exécuter l'intégration post-fusion de 4 réseaux opérateurs en un backbone MPLS unifié (zéro-downtime) supportant 40 000 sites.</li>
+                <li><strong>Gouvernance IT & Conformité :</strong> Création et présidence du CAB (Change Advisory Board) pour imposer une discipline de livraison et des politiques de sécurité strictes. Architecture du SOC de nouvelle génération (Palo Alto) et renouvellement des certifications ISO (27001, 9001, 22301, HDS).</li>
+                <li><strong>Impact Financier :</strong> Refonte de la stratégie d'achat pour la fusion réseau. En remplaçant les fournisseurs historiques et en ré-architecturant le design cible, le devis initial de 130 M€ a été drastiquement optimisé pour un déploiement validé à 2 M€.</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Architecte IA Souveraine & Gouvernance MLOps - KISAI (R&D)</span> <span class="dates">Remote (Basé en Andorre/France) - Depuis Juin 2025</span></h3>
+              <h3 class="item-title"><span>Congé Académique & Master en Ingénierie IA</span> <span class="dates">OpenClassrooms / Projet R&D KISAI | Juin 2025 - Présent</span></h3>
               <ul>
-                <li><strong>Stratégie d'Innovation & Cloud Computing :</strong> Conception et développement de "SophIA", un modèle d'architecture IA souveraine B2B. Approche pragmatique visant à industrialiser et héberger des environnements d'IA d'entreprise en interne (architectures compatibles Microsoft Azure) pour éliminer les risques liés au Shadow AI.</li>
-                <li><strong>DevOps & Data Analysis :</strong> Intégration des bonnes pratiques MLOps pour sécuriser les flux de données et garantir la conformité sur l'ensemble de la stack technologique.</li>
-                <li><strong>Leadership d'Opinion :</strong> Auteur de l'essai technique <em>"SophIA : Assistant suprême ?"</em>, destiné à démystifier le fonctionnement des modèles pour les comités de direction et traduire les capacités techniques en stratégies de gouvernance actionnables.</li>
+                <li>Période dédiée à la montée en compétences académique, validant avec succès un diplôme de niveau 7 (Master) en Ingénierie IA pour faire la jonction entre l'infrastructure traditionnelle et les charges de travail Machine Learning.</li>
+                <li><strong>Projet R&D (SophIA) :</strong> Conception d'une architecture IA d'entreprise souveraine (compatible Azure, on-premise) pour maîtriser la conformité et les fuites de données. Création des fondations MLOps nécessaires à l'hébergement sécurisé de pipelines IA.</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Consultant Senior Infrastructure & Directeur de Transition - KISAI (Indépendant)</span> <span class="dates">France / International - 2018 - 2023</span></h3>
+              <h3 class="item-title"><span>Directeur IT Externe & Lead Architecte Infra (Mandat Dédié)</span> <span class="dates">France / International | 2011 - 2023</span></h3>
               <ul>
-                <li><strong>Déploiements Majeurs & Opérations Internationales :</strong> Architecture et supervision de migrations critiques pour le compte d'opérateurs, incluant des environnements de cybersécurité (opérations menées en France, au Portugal et à l'Île Maurice).</li>
-                <li><strong>Sécurité & Conformité :</strong> Pilotage d'infrastructures résilientes permettant l'application stricte des normes de sécurité pour l'obtention et le renouvellement d'accréditations (ISO 27001, HDS).</li>
-                <li><strong>Haute Disponibilité :</strong> Design et intégration de cœurs de réseau (backbones) opérateurs et datacenters avec une exigence de disponibilité absolue.</li>
+                <li>Opération sous un mandat externe exclusif de longue durée pour diriger et architecturer les déploiements d'infrastructures complexes pour des FAI et opérateurs télécom.</li>
+                <li>Supervision des équipes techniques dans le design, la migration et la gestion de backbones opérateurs robustes, de datacenters multi-sites et d'environnements cloud modernes exigeant une haute disponibilité absolue.</li>
+                <li>Direction de l'implémentation des fondations d'infrastructure et des protocoles de sécurité garantissant l'adhérence continue aux normes ISO 27001 et HDS.</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique / Consultant Senior - Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer - 2011 - 2018</span></h3>
+              <h3 class="item-title"><span>Expériences antérieures (Admin Systèmes & Architecte Réseau)</span> <span class="dates">2005 - 2011</span></h3>
               <ul>
-                <li>Déploiement et administration de cœurs de réseau opérateurs, datacenters et réseaux MPLS.</li>
-                <li>Ingénierie réseau et intégration de services pour fournisseurs d'accès. Design d'architectures orientées haute disponibilité.</li>
-              </ul>
-            </div>
-
-            <div class="experience-item">
-              <h3 class="item-title"><span>Expériences antérieures (Administration Systèmes & Réseaux)</span> <span class="dates"> - 2005 - 2011</span></h3>
-              <ul>
-                <li><strong>ALPHALINK</strong> (2008-2011) : Architecte Réseau - Design architectures, formation client.</li>
-                <li><strong>PYGRAM</strong> (2007-08) : Gestionnaire Système et Réseau (Virtualisation VmWare, TSE).</li>
-                <li><strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07) : Administration Systèmes et Support Informatique sur parcs d'envergure.</li>
+                <li><strong>ALPHALINK, PYGRAM, Renault, BNP Paribas :</strong> Évolution technique en environnements d'envergure. Déploiement d'architectures réseau, gestion de clusters VmWare, et support IT critique pour les secteurs bancaire et automobile.</li>
               </ul>
             </div>
             
@@ -446,94 +168,77 @@
           <div>
             <h1>Damien GUESDON</h1>
               <div class="target-role">
-                HEAD OF PLATFORM & INFRASTRUCTURE / EX-CTO
-                <span>Critical Infrastructure, SRE, FinOps & MLOps Governance</span>
+                VP ENGINEERING / DIRECTOR OF IT INFRASTRUCTURE
+                <span>Critical Infrastructure, DevOps/SRE, FinOps & MLOps Governance</span>
               </div>
             <div class="info">
-              La Plaine-sur-Mer, France<br>
+              La Plaine-sur-Mer, France / Andorra<br>
               <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
             </div>
           </div>
-          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+          <!-- Optionnel : Ajouter <img src="photo.jpg" class="header-photo" alt="Damien GUESDON"> ici -->
         </div>
         
         <h2>Professional Summary</h2>
         <div class="summary">
-          IT Executive with 20 years of total experience, including progressive leadership roles up to Chief Technology Officer (CTO). Specialized in critical infrastructure, IT Governance, and strategic budgeting. Proven track record in driving corporate growth, M&A harmonization, and leading cross-border operations across Europe and Africa (France, Andorra, Luxembourg, Portugal, Morocco, Mauritius). Having recently completed an MSc in AI Engineering, I combine operational pragmatism with secure platform architectures (Cloud Computing, Data Analysis, and sovereign AI). My objective is to leverage innovation to manage technical debt, optimize ERP software ecosystems, and align engineering with the company's financial vision through cross-functional team leadership.
+          IT Executive with over 20 years of expertise in critical infrastructure, technical department leadership, and strategic FinOps governance. Proven track record of managing extreme-scale environments requiring zero-downtime operations, including the oversight of DevOps/SRE teams and the migration of massive network backbones. Having recently integrated an MSc in AI Engineering, I bridge the gap between traditional robust infrastructure and modern, secure MLOps platforms. I specialize in aligning engineering roadmaps with corporate financial vision, drastically optimizing P&L, and leading high-performing, cross-functional teams in complex, international environments.
         </div>
         
         <div class="cv-flex">
           <aside>
             <h2>Key Skills</h2>
             <div class="skill-block"><span class="skill-title">Strategy & Leadership (C-Level):</span><div class="skill-desc">Aligning IT with business goals, global roadmap execution, leading cross-functional technical departments (18+ staff), driving a culture of profitability.</div></div>
-            <div class="skill-block"><span class="skill-title">Vendor & Contract Management (FinOps):</span><div class="skill-desc">Strategic competitive bidding, end-to-end procurement strategy, and drastic OPEX/CAPEX reductions.</div></div>
-            <div class="skill-block"><span class="skill-title">SRE & Critical Infrastructure:</span><div class="skill-desc">High availability (SLO/SLA), system resilience, network and infrastructure observability, and operational scaling.</div></div>
-            <div class="skill-block"><span class="skill-title">M&A & Transformation:</span><div class="skill-desc">IT due diligence, harmonization, and integration of complex technological infrastructures.</div></div>
-            <div class="skill-block"><span class="skill-title">MLOps & Sovereign AI Governance:</span><div class="skill-desc">Industrialization and secure on-premise hosting of AI platforms, model integration, preventing data leakage, and compliance management.</div></div>
+            <div class="skill-block"><span class="skill-title">Critical Infrastructure & SRE:</span><div class="skill-desc">High availability (SLO/SLA), network & system resilience (MPLS, BGP), and operational scaling.</div></div>
+            <div class="skill-block"><span class="skill-title">Cloud, MLOps & Governance:</span><div class="skill-desc">Overseeing DevOps teams (Kubernetes, microservices), CI/CD standards, sovereign AI architecture, and ISO 27001 / HDS compliance.</div></div>
+            <div class="skill-block"><span class="skill-title">Vendor Mgmt & FinOps:</span><div class="skill-desc">Strategic competitive bidding, end-to-end procurement strategy, and drastic OPEX/CAPEX reductions.</div></div>
             
             <h2>Languages</h2>
             <ul class="skills-list">
-              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: Native</li>
-              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: Fluent (including technical)</li>
-              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: In progress</li>
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon" style="width:18px; margin-right:5px; vertical-align:middle;">French: Native</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon" style="width:18px; margin-right:5px; vertical-align:middle;">English: Fluent (including technical)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon" style="width:18px; margin-right:5px; vertical-align:middle;">Catalan: In progress</li>
             </ul>
 
             <h2>Education</h2>
-            <div class="skill-block"><span class="skill-title">MSc in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Technical engineering curriculum (Data Science & MLOps). Final project focused on IT governance and sovereign architecture.</div></div>
-            <div class="skill-block"><span class="skill-title">Higher Technical Diploma (BTS), IT Resource Mgmt, 2005-2006</span><div class="skill-desc">IT Resource Management Specialist</div></div>
-            <div class="skill-block"><span class="skill-title">Higher National Diploma (BTS), Analyst Programmer, CNFDI, 2001</span></div>
+            <div class="skill-block"><span class="skill-title">MSc in AI Engineering</span><div class="skill-desc">OpenClassrooms, 2026<br>Data Science & MLOps</div></div>
+            <div class="skill-block"><span class="skill-title">Higher Technical Diploma (BTS)</span><div class="skill-desc">IT Resource Mgmt, 2005-2006</div></div>
+            <div class="skill-block"><span class="skill-title">Higher National Diploma (BTS)</span><div class="skill-desc">Analyst Programmer, 2001</div></div>
           </aside>
           
           <div class="main-content">
             <h2>Professional Experience</h2>
             
             <div class="experience-item">
-              <h3 class="item-title"><span>Chief Technology Officer (CTO) - Infrastructure - Alphalink</span> <span class="dates">France / International - Jan 2024 - May 2025</span></h3>
+              <h3 class="item-title"><span>Chief Technology Officer (CTO) - Infrastructure</span> <span class="dates">Alphalink | Jan 2024 - May 2025</span></h3>
               <ul>
-                <li><strong>M&A & Global Network Harmonization:</strong> Directed the technical post-merger integration of 4 distinct networks into a unified, modern MPLS infrastructure. Supported ADSL/Fiber connectivity for 40,000 physical corporate sites and billions of minutes of VoIP, managing international Points of Presence (PoPs) in Luxembourg and Morocco.</li>
-                <li><strong>Strategic FinOps & Budgeting:</strong>
-                  <ul style="list-style-type: circle; margin-top: 5px; margin-bottom: 5px;">
-                    <li><strong>Network Merger Project:</strong> Overhauled the procurement strategy against an initial €130M quote (Cisco). Orchestrated competitive bidding (Juniper, Huawei, HP) and rigorously optimized the target architecture, successfully delivering the final project for €2M.</li>
-                    <li><strong>Office 365 Licensing:</strong> Conducted capacity audits and contract renegotiation, generating €70K in recurring annual savings.</li>
-                  </ul>
-                </li>
-                <li><strong>IT Governance & Cybersecurity:</strong> Established and chaired the cross-departmental Change Advisory Board (CAB) to enforce strict change management. Architected a next-generation SOC infrastructure (Palo Alto) and successfully managed the renewal of 4 major ISO certifications (ISO 27001, 9001, 22301, and HDS).</li>
-                <li><strong>Cross-functional Team Leadership:</strong> Directed a high-performing 18-person engineering department, restructuring the team into 4 specialized technical hubs (VoIP, Network, R&D, Datacenter) to optimize SLA standards and global service delivery.</li>
+                <li><strong>Engineering Leadership:</strong> Directed a high-performing 18-person engineering department, restructuring the organization into four specialized technical hubs (VoIP, Network, R&D, Datacenter) to strictly manage SLAs and operational excellence.</li>
+                <li><strong>Infrastructure Modernization:</strong> Supervised DevOps/SRE and network engineering teams to execute the technical post-merger integration of four distinct operator networks into a unified, zero-downtime MPLS backbone supporting 40,000 corporate sites.</li>
+                <li><strong>IT Governance & Compliance:</strong> Established and chaired the Change Advisory Board (CAB) to enforce release discipline and strict security policies. Architected a next-generation SOC (Palo Alto) and secured the renewal of critical ISO certifications (27001, 9001, 22301, HDS).</li>
+                <li><strong>Financial Impact:</strong> Overhauled the procurement strategy for a massive network merger. By replacing legacy vendors and re-architecting the target design, successfully reduced the initial €130M quote down to a highly optimized €2M deployment.</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Sovereign AI Architect & MLOps Governance - KISAI (R&D)</span> <span class="dates">Remote (Based in Andorra/France) - Since June 2025</span></h3>
+              <h3 class="item-title"><span>Academic Sabbatical & MSc in AI Engineering</span> <span class="dates">OpenClassrooms / KISAI R&D | Jun 2025 - Present</span></h3>
               <ul>
-                <li><strong>Innovation Strategy & Cloud Computing:</strong> Conceptualized and developed "SophIA," a sovereign B2B AI architecture model. Championed a pragmatic approach to industrialize and host enterprise-grade AI on-premise (Microsoft Azure compatible architectures) to eliminate "Shadow AI" risks.</li>
-                <li><strong>DevOps & Data Analysis:</strong> Integrated MLOps best practices to secure data flows and ensure compliance across the technology stack.</li>
-                <li><strong>Thought Leadership:</strong> Authored the technical essay <em>"SophIA: Assistant suprême?"</em> to demystify AI models for C-suite executives and translate technical capabilities into actionable governance strategies.</li>
+                <li>Dedicated an extensive period to academic upskilling, successfully validating an MSc in AI Engineering to bridge the gap between traditional infrastructure and modern machine learning workloads.</li>
+                <li><strong>R&D Project (SophIA):</strong> Conceptualized and designed a sovereign, enterprise-grade AI architecture (Azure-compatible, on-premise) to mitigate data leakage and manage compliance. Engineered the MLOps foundations required to securely host AI pipelines.</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Senior Infrastructure Consultant & Interim IT Director - Freelance / KISAI</span> <span class="dates">France / International - 2018 - 2023</span></h3>
+              <h3 class="item-title"><span>External IT Director & Lead Infra Architect (Dedicated Mandate)</span> <span class="dates">France / International | 2011 - 2023</span></h3>
               <ul>
-                <li><strong>Complex Deployments & International Operations:</strong> Architected and supervised critical infrastructure migrations for ISPs, including SOC environments (operations across France, Portugal, and Mauritius).</li>
-                <li><strong>Security & Compliance:</strong> Steered the deployment of resilient foundations enabling strict adherence to security standards (facilitating ISO 27001 and HDS certification renewals).</li>
-                <li><strong>High-Availability Architecture:</strong> Designed and integrated robust operator backbones and datacenters requiring zero-downtime operational standards.</li>
+                <li>Operated under a long-term dedicated external mandate to direct and architect complex infrastructure deployments for Internet Service Providers (ISPs) and telecom operators.</li>
+                <li>Supervised technical teams in the design, migration, and management of robust operator backbones, multi-site datacenters, and modern cloud environments requiring absolute high availability.</li>
+                <li>Directed the implementation of resilient infrastructure foundations and security protocols, directly facilitating continuous adherence to strict ISO 27001 and HDS security standards.</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Technical Director / Senior Consultant - Freelance</span> <span class="dates">La Plaine-sur-Mer - 2011 - 2018</span></h3>
+              <h3 class="item-title"><span>Previous Roles (SysAdmin & Network Architect)</span> <span class="dates">2005 - 2011</span></h3>
               <ul>
-                <li>Deployed and managed operator backbones, datacenters, and MPLS networks.</li>
-                <li>Led network engineering and ISP service integrations, focusing on high availability designs.</li>
-              </ul>
-            </div>
-
-            <div class="experience-item">
-              <h3 class="item-title"><span>Previous Experience (SysAdmin & Network)</span> <span class="dates"> - 2005 - 2011</span></h3>
-              <ul>
-                <li><strong>ALPHALINK</strong> (2008-2011): Network Architect - Designed architectures, managed technical projects.</li>
-                <li><strong>PYGRAM</strong> (2007-08): Systems & Network Manager (VmWare, TSE).</li>
-                <li><strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07): Systems Administrator & IT Support in large-scale enterprise environments.</li>
+                <li><strong>ALPHALINK, PYGRAM, Renault, BNP Paribas:</strong> Progressive technical foundation in large-scale enterprise environments. Managed network architectures, VmWare clusters, and critical IT support for top-tier financial and automotive corporations.</li>
               </ul>
             </div>
             
@@ -551,45 +256,21 @@
         flag.classList.toggle('active', flag.dataset.lang === lang);
       });
       localStorage.setItem('preferredLang', lang);
-
-      var pdfLink = document.getElementById('pdf-link');
-      if (pdfLink) {
-        if (lang === 'fr') {
-          pdfLink.href = 'CV_Damien_Guesdon_FR.pdf';
-          pdfLink.download = 'CV_Damien_Guesdon_FR.pdf';
-          pdfLink.title = 'Télécharger le PDF';
-        } else {
-          pdfLink.href = 'Resume_Damien_Guesdon_EN.pdf';
-          pdfLink.download = 'Resume_Damien_Guesdon_EN.pdf';
-          pdfLink.title = 'Download PDF';
-        }
-      }
     }
-
     document.addEventListener('DOMContentLoaded', function () {
       const savedLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
       switchLanguage(savedLang);
       document.querySelectorAll('.language-flag').forEach((flag) => {
         flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
       });
-
       const themeToggle = document.getElementById('theme-toggle');
       const iconSun = document.getElementById('icon-sun');
       const iconMoon = document.getElementById('icon-moon');
-
       function setTheme(mode) {
-        if (mode === 'dark') {
-          document.body.classList.add('dark-mode');
-          iconSun.style.display = 'none';
-          iconMoon.style.display = 'inline-block';
-        } else {
-          document.body.classList.remove('dark-mode');
-          iconSun.style.display = 'inline-block';
-          iconMoon.style.display = 'none';
-        }
+        if (mode === 'dark') { document.body.classList.add('dark-mode'); iconSun.style.display = 'none'; iconMoon.style.display = 'inline-block'; }
+        else { document.body.classList.remove('dark-mode'); iconSun.style.display = 'inline-block'; iconMoon.style.display = 'none'; }
         localStorage.setItem('theme', mode);
       }
-
       themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'));
       const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       setTheme(savedTheme);
