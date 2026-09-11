@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Damien GUESDON - Directeur Informatique / Ex-CTO</title>
+  <title>Damien GUESDON - VP Engineering</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -160,12 +160,14 @@
       margin-top: 10px;
     }
     body.dark-mode .info { color: #94a3b8; }
+    
     .header-photo {
       width: 140px;
       height: 140px;
       border-radius: 16px;
       object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: transparent;
+      border: none;
     }
     
     .summary {
@@ -176,6 +178,7 @@
       padding: 20px;
       border-radius: 8px;
       border-left: 4px solid var(--accent-light);
+      text-align: left; 
     }
     body.dark-mode .summary {
       background: rgba(255,255,255,0.03);
@@ -287,9 +290,13 @@
       margin: 10px 0 0 0;
       padding-left: 18px;
     }
-    .experience-item li { margin-bottom: 6px; font-size: 0.95em; }
+    .experience-item li { 
+      margin-bottom: 8px; 
+      font-size: 0.95em; 
+      text-align: left; 
+    }
 
-    @media (max-width: 900px) {
+    @media screen and (max-width: 900px) {
       .container { margin: 0; border-radius: 0; padding: 30px 20px; }
       .cv-flex { flex-direction: column; }
       .header-flex { flex-direction: column; text-align: center; gap: 20px; }
@@ -300,16 +307,78 @@
       .dates { margin-left: 0; margin-top: 5px; }
     }
 
+    /* CODE D'IMPRESSION CENTRÉ VERTICALEMENT */
     @media print {
-      @page { margin: 1cm; size: A4; }
-      body { background: #fff !important; color: #000 !important; font-size: 9pt !important; }
-      .container { box-shadow: none !important; padding: 0 !important; width: 100% !important; max-width: none !important; }
+      @page { margin: 0; size: A4 portrait; }
+      body { 
+        -webkit-print-color-adjust: exact !important; 
+        print-color-adjust: exact !important; 
+        font-size: 9.5px !important; 
+        line-height: 1.35 !important;
+        background: var(--bg-light) !important;
+        color: var(--text-light) !important;
+      }
+      
+      body.dark-mode { background: var(--bg-light) !important; color: var(--text-light) !important; }
+      body.dark-mode .container { background: var(--container-light) !important; }
+      body.dark-mode aside { background: var(--aside-light) !important; }
+      body.dark-mode .summary { background: var(--aside-light) !important; color: var(--text-light) !important; border-left-color: var(--accent-light) !important; }
+      body.dark-mode h1, body.dark-mode .item-title, body.dark-mode .skill-title { color: var(--primary-light) !important; }
+      body.dark-mode h2 { color: var(--accent-light) !important; }
+      body.dark-mode .target-role span, body.dark-mode .info, body.dark-mode .dates { color: #64748b !important; }
+      body.dark-mode h2::after { background: var(--border-light) !important; }
+      body.dark-mode .experience-item { border-left-color: var(--border-light) !important; }
+      body.dark-mode .experience-item::before { background: var(--accent-light) !important; }
+
+      .container { 
+        margin: 0 !important; 
+        padding: 8mm 12mm !important; 
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        
+        /* CENTRAGE VERTICAL */
+        min-height: 100vh !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; 
+      }
+      
+      .cv-flex {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important; 
+      }
+      aside {
+        flex: 0 0 200px !important; 
+        padding: 12px !important;
+      }
+      .main-content {
+        flex: 1 !important;
+      }
+      
+      header { margin-bottom: 8px !important; padding-bottom: 8px !important; }
+      .header-photo { width: 90px !important; height: 90px !important; border-radius: 8px !important; background: transparent !important; border: none !important; }
+      h1 { font-size: 2em !important; margin-bottom: 2px !important; }
+      .target-role { font-size: 1.1em !important; margin-bottom: 4px !important; }
+      .target-role span { margin-top: 2px !important; }
+      .info { margin-top: 4px !important; font-size: 0.9em !important; }
+      
+      .summary { margin: 8px 0 !important; padding: 12px !important; font-size: 1em !important; }
+      h2 { margin: 12px 0 6px 0 !important; font-size: 1.1em !important; }
+      
+      .skill-block { margin-bottom: 8px !important; }
+      .skill-desc { margin-bottom: 6px !important; font-size: 0.9em !important; }
+      .skills-list li { margin-bottom: 6px !important; }
+      
+      .experience-item { margin-bottom: 10px !important; padding-left: 20px !important; }
+      .experience-item::before { left: -6px !important; top: 4px !important; width: 10px !important; height: 10px !important; }
+      .item-title { font-size: 1.05em !important; margin-bottom: 2px !important; }
+      .experience-item ul { margin: 4px 0 0 0 !important; padding-left: 15px !important; }
+      .experience-item li { margin-bottom: 3px !important; font-size: 0.95em !important; }
+      
       .top-bar, .language-switcher { display: none !important; }
-      .experience-item { border-left: 1px solid #ccc !important; }
-      .experience-item::before { background: #000 !important; }
-      h1, h2, .item-title strong { color: #000 !important; }
-      .summary { border: 1px solid #eee !important; background: #fafafa !important; }
-      .target-role { color: #d9230f !important; }
     }
   </style>
 </head>
@@ -345,8 +414,8 @@
           <div>
             <h1>Damien GUESDON</h1>
               <div class="target-role">
-                DIRECTEUR INFORMATIQUE / EX-CTO
-                <span>Stratégie IT, Optimisation Budgétaire, Gouvernance & Harmonisation Post-M&A</span>
+                VP ENGINEERING / DIRECTOR OF AI PLATFORM
+                <span>Agent Orchestration, MLOps Governance, Platform Consolidation & Critical Infrastructure</span>
               </div>
             <div class="info">
               La Plaine-sur-Mer, France<br>
@@ -358,81 +427,66 @@
 
         <h2>Résumé professionnel</h2>
         <div class="summary">
-          Dirigeant informatique avec plus de 20 ans d'expérience globale dans la gestion d'infrastructures critiques, dont un parcours éprouvé d'Ingénieur à Directeur Technique (CTO). Spécialisé dans le pilotage de la croissance des entreprises : rationalisation des processus, optimisation stratégique des coûts fournisseurs et gouvernance post-fusion (M&A). Ayant récemment complété un diplôme de niveau 7 en Ingénierie IA, j'aborde les technologies émergentes avec pragmatisme. Mon objectif est d'utiliser l'innovation pour sécuriser la propriété intellectuelle (lutte contre le Shadow AI), maîtriser la dette technique et aligner l'ingénierie sur la vision stratégique et financière de l'entreprise.
+          Dirigeant informatique avec plus de 20 ans d'expérience technologique, je suis spécialisé dans le management de départements d'ingénierie à grande échelle et le pilotage de consolidations de plateformes complexes. Faisant le pont entre les infrastructures critiques traditionnelles (SRE, opérations zéro-downtime) et l'IA moderne, je conçois aujourd'hui des plateformes <strong>MLOps</strong> sécurisées et des architectures d'agents basées sur les LLM. Auteur de l'essai <em>"SophIA, L'Assistant Suprême ?"</em>, mon travail technique se concentre sur le développement de <strong>runtimes d'agents partagés (shared agent engines)</strong>, le routage d'intentions et la mise en place d'<strong>infrastructures d'évaluation</strong> robustes. Mon objectif : fédérer les équipes techniques transverses, m'associer étroitement avec la direction produit, et piloter l'exécution technique de plateformes IA d'envergure entreprise.
         </div>
 
         <div class="cv-flex">
           <aside>
            <h2>Compétences clés</h2>
-            <div class="skill-block"><span class="skill-title">Stratégie & Direction :</span><div class="skill-desc">Alignement de l'informatique sur les objectifs d'affaires, pilotage de feuilles de route globales, management de départements techniques (18+ collaborateurs), culture de la rentabilité.</div></div>
-            <div class="skill-block"><span class="skill-title">Négociation & Gestion des Fournisseurs :</span><div class="skill-desc">Mise en concurrence stratégique, pilotage d'appels d'offres, réduction drastique des OPEX/CAPEX.</div></div>
-            <div class="skill-block"><span class="skill-title">Excellence Opérationnelle & Processus :</span><div class="skill-desc">Standardisation ITIL/Lean, création de comité de changement (CAB), pilotage de certifications ISO.</div></div>
-            <div class="skill-block"><span class="skill-title">Fusions-Acquisitions (M&A) & Transformation :</span><div class="skill-desc">Audit technique (due diligence), harmonisation et fusion d'infrastructures technologiques complexes.</div></div>
-            <div class="skill-block"><span class="skill-title">Gouvernance des Données & IA Souveraine :</span><div class="skill-desc">Conception d'architectures sécurisées sur site (on-premise), automatisation de processus métier, protection contre la fuite de données.</div></div>
+            <div class="skill-block"><span class="skill-title">Stratégie & Leadership (C-Level) :</span><div class="skill-desc">Direction de départements techniques transverses, management de managers, alignement produit/ingénierie, et pilotage de migrations organisationnelles.</div></div>
+            <div class="skill-block"><span class="skill-title">AI Platform & LLM Orchestration :</span><div class="skill-desc">Conception de moteurs d'agents (Agent Engines), routage d'intentions (LiteLLM), gestion d'environnements reproductibles (Pixi), et opérations assistées par l'IA.</div></div>
+            <div class="skill-block"><span class="skill-title">Evaluation Infrastructure & MLOps :</span><div class="skill-desc">Mise en place de standards CI/CD pour l'IA, conception de suites de régression et de juges automatisés, et gouvernance des risques (Shadow AI).</div></div>
+            <div class="skill-block"><span class="skill-title">Platform Consolidation :</span><div class="skill-desc">Intégration d'infrastructures technologiques complexes (M&A), harmonisation de plateformes historiques, et gestion de l'échelle (scale).</div></div>
+            <div class="skill-block"><span class="skill-title">SRE & Fondations Critiques :</span><div class="skill-desc">Résilience absolue (SLA/SLO), observabilité, backbones physiques, et expertise approfondie Linux/Unix (30 ans de pratique technique "hands-on").</div></div>
             
             <h2>Langues</h2>
             <ul class="skills-list">
               <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
-              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : Courant + Technique</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : C2 Proficient (EF SET 75/100 - Bilingue)</li>
               <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d'apprentissage</li>
             </ul>
 
             <h2>Formation</h2>
-            <div class="skill-block"><span class="skill-title">Diplôme de niveau 7 en IA Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Cursus d'ingénierie technique d'excellence (Data Science & MLOps). Projet de fin d'études orienté personnellement sur la gouvernance et l'architecture souveraine.</div></div>
+            <div class="skill-block"><span class="skill-title">Diplôme de niveau 7 en IA Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Cursus d'ingénierie technique (Data Science & MLOps). Projet de fin d'études orienté sur l'infrastructure d'évaluation et l'architecture souveraine.</div></div>
             <div class="skill-block"><span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span><div class="skill-desc">Technicien Supérieur Gestionnaire de Ressources Informatiques</div></div>
-            <div class="skill-block"><span class="skill-title">BTS Analyste Programmeur, CNFDI, 2001</span></div>
           </aside>
 
           <div class="main-content">
+            
             <h2>Expérience professionnelle</h2>
             
             <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique de Transition & Architecte IA - KISAI R&D</span> <span class="dates">Full Remote (Andorre / France) - Depuis Juin 2025</span></h3>
+              <ul>
+                <li><strong>Architecture de Plateforme IA & R&D :</strong> Conception et développement de "sophia-brain", un modèle d'architecture IA B2B agissant comme un moteur d'agents partagé (Shared Agent Engine). Ingénierie de la couche d'orchestration et de routage d'intentions utilisant <strong>LiteLLM</strong> pour la gestion des API, et mise en place d'environnements d'exécution reproductibles via <strong>Pixi</strong>.</li>
+                <li><strong>Infrastructure d'Évaluation & MLOps :</strong> Design de l'infrastructure d'évaluation pour mesurer la performance des agents, intégrant des suites de régression et des standards MLOps visant à éliminer les risques de fuite de données ("Shadow AI") et à maintenir un haut niveau d'exigence technique sur les fonctionnalités d'assistance par l'IA.</li>
+                <li><strong>Conseil Stratégique (Fractional CTO) :</strong> Accompagnement technique de dirigeants sur des problématiques de consolidation de plateformes et d'évolution d'infrastructures critiques.</li>
+                <li><strong>Upskilling Stratégique (Validé) :</strong> Obtention d'un Master (Niveau 7) en Ingénierie IA, consolidant officiellement la jonction entre l'architecture de systèmes lourds et les charges de travail complexes du Machine Learning.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
               <h3 class="item-title"><span>Directeur Technique (CTO) - Infrastructure - Alphalink</span> <span class="dates">France - Jan 2024 - Mai 2025</span></h3>
               <ul>
-                <li><strong>Fusions-Acquisitions & Harmonisation Réseau :</strong> Direction de l'intégration technique post-fusion de 4 réseaux distincts (ancienne acquisition, réseau historique, réseau VXLAN plus récent, et nouvelle acquisition) pour aboutir à une infrastructure MPLS moderne et unifiée (supportant la connectivité ADSL/Fibre de 40 000 sites physiques d'entreprises et des milliards de minutes de téléphonie sur IP).</li>
-                <li><strong>Gestion des Fournisseurs & Optimisation Budgétaire :</strong> 
-                  <ul style="list-style-type: circle; margin-top: 5px; margin-bottom: 5px;">
-                    <li><strong>Projet de fusion réseau :</strong> Refonte complète de la stratégie d'achat face à une cotation initiale de 130 M€ (Cisco). Mise en concurrence élargie (Juniper, Huawei, HP) et optimisation rigoureuse de l'architecture cible, permettant de valider et délivrer le projet final pour 2 M€.</li>
-                    <li><strong>Licences Office 365 :</strong> Audit capacitaire et renégociation des contrats, générant une économie annuelle récurrente de 70 K€ (pour un périmètre de 150 collaborateurs).</li>
-                    <li><strong>Cybersécurité :</strong> Co-définition et négociation d'une infrastructure de supervision de la sécurité de nouvelle génération (SOC sur base Palo Alto).</li>
-                  </ul>
-                </li>
-                <li><strong>Gouvernance & Excellence Opérationnelle :</strong> Création et présidence du comité d'approbation des changements (CAB) inter-services. Standardisation stricte de la gestion des changements, réduisant drastiquement les incidents de production. Pilotage et validation du renouvellement de 4 certifications majeures (dont ISO 27001, 9001, 22301 et HDS).</li>
-                <li><strong>Leadership d'équipe :</strong> Direction globale d'un département de 18 ingénieurs. Restructuration en 4 pôles d'expertise (VoIP, Réseau, R&D, Datacenter).</li>
+                <li><strong>Consolidation de Plateforme & Engineering Leadership :</strong> Direction d'un département technique hautement distribué de 18 personnes (management de managers répartis sur 4 pôles). Pilotage de l'intégration technique post-fusion et consolidation de 4 réseaux historiques distincts vers une infrastructure backbone moderne et unifiée, supportant des milliards de minutes VoIP.</li>
+                <li><strong>Modernisation Cloud-Native :</strong> Accompagnement des équipes d'ingénierie dans la modernisation cloud-native de backbones physiques lourds (Cisco, Palo Alto), établissant des standards d'observabilité stricts face à des exigences de tolérance de panne nulle.</li>
+                <li><strong>Gouvernance IT & FinOps :</strong> Présidence du comité d'approbation des changements (CAB) pour imposer une discipline stricte des livraisons, architecture d'un SOC de nouvelle génération, gestion de 4 certifications ISO, et optimisation drastique des CapEx/OpEx (réduction d'une cotation de fusion réseau de 130 M€ à 2 M€ via une refonte architecturale).</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Architecte IA Souveraine & Gouvernance IT - KISAI (R&D)</span> <span class="dates">Remote - Depuis Juin 2025</span></h3>
+              <h3 class="item-title"><span>Directeur de Transition & Architecte Infrastructure (Mandat Externe)</span> <span class="dates">Full Remote (France / International) - 2018 - 2023</span></h3>
               <ul>
-                <li><strong>Stratégie d'Innovation & Preuve de Concept :</strong> Conception de "SophIA", un modèle d'architecture IA souveraine. Une approche pragmatique visant à doter les entreprises d'une IA performante tout en conservant les données hébergées en interne, contrant ainsi les risques majeurs de l'IA de l'ombre (Shadow AI).</li>
-                <li><strong>Leadership d'Opinion :</strong> Auteur de l'essai technique <em>"SophIA : Assistant suprême ?"</em>, destiné à démystifier le fonctionnement des modèles pour les comités de direction (Comex et Codir).</li>
+                <li><strong>Déploiements Majeurs & Opérations Internationales :</strong> Architecture et supervision d'infrastructures pour le compte d'opérateurs. Pilotage global à distance, incluant la gestion d'infrastructures internationales et le management d'équipes techniques réparties sur plusieurs fuseaux horaires.</li>
+                <li><strong>Haute Disponibilité & Sécurité :</strong> Design et intégration de cœurs de réseau (backbones) opérateurs et datacenters avec une exigence de disponibilité absolue (zero-downtime) et application stricte des normes de sécurité (ISO 27001, HDS).</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Consultant Senior Infrastructure & Directeur de Transition - KISAI (Indépendant)</span> <span class="dates">France / Télétravail - 2018 - 2023</span></h3>
+              <h3 class="item-title"><span>Expériences antérieures (SysAdmin, Architecte Réseau)</span> <span class="dates">France - 2005 - 2018</span></h3>
               <ul>
-                <li><strong>Sécurité & Conformité :</strong> Pilotage d'infrastructures résilientes permettant l'application stricte des normes de sécurité pour l'obtention et le renouvellement d'accréditations (ISO 27001, HDS).</li>
-                <li><strong>Déploiements Majeurs :</strong> Architecture et supervision de migrations critiques pour le compte d'opérateurs, incluant des environnements de cybersécurité.</li>
-                <li><strong>Haute Disponibilité :</strong> Design et intégration de cœurs de réseau (backbones) opérateurs et datacenters avec une exigence de disponibilité absolue.</li>
-              </ul>
-            </div>
-
-            <div class="experience-item">
-              <h3 class="item-title"><span>Directeur Technique / Consultant Senior - Auto-entrepreneur</span> <span class="dates">La Plaine-sur-Mer - 2011 - 2018</span></h3>
-              <ul>
-                <li>Déploiement et administration de cœurs de réseau opérateurs, datacenters et réseaux MPLS.</li>
-                <li>Ingénierie réseau et intégration de services pour fournisseurs d'accès. Design d'architectures orientées haute disponibilité.</li>
-              </ul>
-            </div>
-
-            <div class="experience-item">
-              <h3 class="item-title"><span>Expériences antérieures (Administration Systèmes & Réseaux)</span> <span class="dates"> - 2005 - 2011</span></h3>
-              <ul>
-                <li><strong>ALPHALINK</strong> (2008-2011) : Architecte Réseau - Design architectures, formation client.</li>
-                <li><strong>PYGRAM</strong> (2007-08) : Gestionnaire Système et Réseau (Virtualisation VmWare, TSE).</li>
-                <li><strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07) : Administration Systèmes et Support Informatique sur parcs d'envergure.</li>
+                <li><strong>Mandat Externe (2011-2018) :</strong> Directeur Technique & Lead Architecte - Ingénierie réseau et intégration de services pour FAI.</li>
+                <li><strong>ALPHALINK, PYGRAM, Renault, BNP Paribas (2005-2011) :</strong> Administration Systèmes & Réseaux, Virtualisation, Support IT sur parcs d'envergure.</li>
               </ul>
             </div>
             
@@ -446,8 +500,8 @@
           <div>
             <h1>Damien GUESDON</h1>
               <div class="target-role">
-                HEAD OF IT / EX-CTO
-                <span>IT Strategy, Budget Optimization, Vendor Management & Post-M&A Harmonization</span>
+                VP ENGINEERING / DIRECTOR OF AI PLATFORM
+                <span>Agent Orchestration, MLOps Governance, Platform Consolidation & Critical Infrastructure</span>
               </div>
             <div class="info">
               La Plaine-sur-Mer, France<br>
@@ -459,81 +513,66 @@
         
         <h2>Professional Summary</h2>
         <div class="summary">
-          IT Executive with over 20 years of global experience in critical infrastructure management, including a proven track record progressing from Engineering to Chief Technology Officer (CTO). Specialized in driving corporate growth: process rationalization, strategic vendor cost optimization, and post-merger governance (M&A). Having recently completed an MSc in AI Engineering, I approach emerging technologies with pragmatism. My objective is to leverage innovation to secure intellectual property (combating Shadow AI), manage technical debt, and align engineering with the company's strategic and financial vision.
+          As an IT Executive with over 20 years of technology experience, I specialize in scaling engineering organizations and steering large-scale platform consolidations. Bridging the gap between legacy critical infrastructure (SRE, zero-downtime operations) and modern AI, I currently architect secure <strong>MLOps</strong> platforms and LLM-based agent systems. Author of the essay <em>"SophIA, Supreme Assistant?"</em>, my defining technical work focuses on building <strong>shared agent engines</strong>, intent routing, and robust <strong>evaluation infrastructures</strong>. My objective is to empower cross-functional teams, partner deeply with product leadership, and drive the technical execution of enterprise-grade AI platforms.
         </div>
         
         <div class="cv-flex">
           <aside>
             <h2>Key Skills</h2>
-            <div class="skill-block"><span class="skill-title">Strategy & Leadership (C-Level):</span><div class="skill-desc">Aligning IT with business goals, global roadmap execution, leading cross-functional technical departments (18+ staff), driving a culture of profitability.</div></div>
-            <div class="skill-block"><span class="skill-title">Vendor & Contract Management:</span><div class="skill-desc">Strategic competitive bidding, end-to-end procurement strategy, and drastic OPEX/CAPEX reductions.</div></div>
-            <div class="skill-block"><span class="skill-title">Operational Excellence:</span><div class="skill-desc">ITIL/Lean standardization, building CABs, and steering major ISO certifications.</div></div>
-            <div class="skill-block"><span class="skill-title">M&A & Transformation:</span><div class="skill-desc">IT due diligence, harmonization, and integration of complex technological infrastructures.</div></div>
-            <div class="skill-block"><span class="skill-title">Data Governance & Sovereign AI:</span><div class="skill-desc">Designing secure on-premise architectures, business process automation, and preventing data leakage.</div></div>
+            <div class="skill-block"><span class="skill-title">Strategy & Leadership (C-Level):</span><div class="skill-desc">Leading cross-functional technical departments, managing managers, product/engineering alignment, and driving organizational migrations.</div></div>
+            <div class="skill-block"><span class="skill-title">AI Platform & LLM Orchestration:</span><div class="skill-desc">Designing shared Agent Engines, intent routing (LiteLLM), reproducible runtime environments (Pixi), and AI-assisted operations.</div></div>
+            <div class="skill-block"><span class="skill-title">Evaluation Infrastructure & MLOps:</span><div class="skill-desc">Establishing AI CI/CD standards, designing regression suites and automated judges, and mitigating Shadow AI risks.</div></div>
+            <div class="skill-block"><span class="skill-title">Platform Consolidation:</span><div class="skill-desc">Integrating complex technological infrastructures (M&A), harmonizing legacy platforms, and engineering for scale.</div></div>
+            <div class="skill-block"><span class="skill-title">SRE & Core Foundations:</span><div class="skill-desc">Absolute resilience (SLA/SLO), observability, physical backbones, and deep Linux/Unix expertise (30 years hands-on).</div></div>
             
             <h2>Languages</h2>
             <ul class="skills-list">
               <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: Native</li>
-              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: Fluent (including technical)</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: C2 Proficient (EF SET 75/100 - Bilingual)</li>
               <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: In progress</li>
             </ul>
 
             <h2>Education</h2>
-            <div class="skill-block"><span class="skill-title">MSc in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Rigorous technical engineering curriculum (Data Science & MLOps). Final project personally directed towards IT governance and sovereign architecture.</div></div>
+            <div class="skill-block"><span class="skill-title">MSc in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Technical engineering curriculum (Data Science & MLOps). Final project focused on evaluation infrastructure and sovereign architecture.</div></div>
             <div class="skill-block"><span class="skill-title">Higher Technical Diploma (BTS), IT Resource Mgmt, 2005-2006</span><div class="skill-desc">IT Resource Management Specialist</div></div>
-            <div class="skill-block"><span class="skill-title">Higher National Diploma (BTS), Analyst Programmer, CNFDI, 2001</span></div>
           </aside>
           
           <div class="main-content">
+            
             <h2>Professional Experience</h2>
             
             <div class="experience-item">
+              <h3 class="item-title"><span>Fractional CTO & AI Architect - KISAI R&D</span> <span class="dates">Full Remote (Andorra / France) - Since June 2025</span></h3>
+              <ul>
+                <li><strong>AI Platform Architecture & R&D:</strong> Conceptualizing and developing "sophia-brain", a sovereign B2B AI architecture model functioning as a shared Agent Engine. Engineered the orchestration and intent routing layer utilizing <strong>LiteLLM</strong> for LLM API management, and established reproducible runtime harnesses using <strong>Pixi</strong>.</li>
+                <li><strong>Evaluation Infrastructure & MLOps:</strong> Designed the evaluation infrastructure to assess agent performance, integrating regression suites and MLOps standards to eliminate "Shadow AI" data leakage risks and hold a high technical bar for AI-assisted features.</li>
+                <li><strong>Executive Consulting (Fractional CTO):</strong> Providing ad-hoc strategic and technical guidance to executives on critical infrastructure evolutions and platform consolidations.</li>
+                <li><strong>Strategic Upskilling (Completed):</strong> Dedicated prioritized bandwidth during this period to successfully acquire an MSc in AI Engineering, officially cementing the bridge between deep systems architecture and complex Machine Learning workloads.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
               <h3 class="item-title"><span>Chief Technology Officer (CTO) - Infrastructure - Alphalink</span> <span class="dates">France - Jan 2024 - May 2025</span></h3>
               <ul>
-                <li><strong>M&A & Network Harmonization:</strong> Directed the technical post-merger integration of 4 distinct networks (previous acquisition, historical network, newer VXLAN core, and recent acquisition) into a unified, modern MPLS infrastructure (supporting ADSL/Fiber connectivity for 40,000 physical corporate sites and billions of minutes of VoIP).</li>
-                <li><strong>Vendor Management & Strategic Financial Optimization:</strong>
-                  <ul style="list-style-type: circle; margin-top: 5px; margin-bottom: 5px;">
-                    <li><strong>Network Merger Project:</strong> Overhauled the procurement strategy against an initial €130M quote (Cisco). Orchestrated competitive bidding (Juniper, Huawei, HP) and rigorously optimized the target architecture, successfully delivering the final project for €2M.</li>
-                    <li><strong>Office 365 Licensing:</strong> Conducted a comprehensive capacity audit and contract renegotiation, generating €70K in recurring annual savings (for a scope of 150 employees).</li>
-                    <li><strong>Cybersecurity:</strong> Co-negotiated and defined the architecture for a next-generation SOC infrastructure (Palo Alto).</li>
-                  </ul>
-                </li>
-                <li><strong>Governance & Operational Excellence:</strong> Established and chaired the cross-departmental Change Advisory Board (CAB). Implemented strict change management standards, drastically reducing production incidents. Successfully managed and validated the renewal of 4 major ISO certifications (including ISO 27001, 9001, 22301, and HDS).</li>
-                <li><strong>Team Leadership:</strong> Directed an 18-person engineering department, restructuring the team into 4 specialized hubs (VoIP, Network, R&D, Datacenter).</li>
+                <li><strong>Platform Consolidation & Engineering Leadership:</strong> Led a highly distributed, 18-person engineering department (managing managers across 4 specialized hubs). Directed the technical post-merger integration and consolidation of 4 distinct legacy networks into a unified, modern MPLS backbone, supporting billions of telephony minutes.</li>
+                <li><strong>Cloud-native Modernization:</strong> Guided the engineering teams through the cloud-native modernization of heavy-duty physical infrastructures (Cisco, Palo Alto), establishing strict observability standards against zero-downtime requirements.</li>
+                <li><strong>IT Governance & FinOps:</strong> Chaired the cross-departmental CAB to enforce delivery discipline, architected a next-generation SOC, managed 4 ISO certifications, and drastically optimized CapEx/OpEx (e.g., reducing an initial €130M network merger quote to €2M through strategic architectural bidding).</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Sovereign AI Architect & IT Governance - KISAI (R&D)</span> <span class="dates">Remote - Since June 2025</span></h3>
+              <h3 class="item-title"><span>Interim IT Director & Infrastructure Architect (Dedicated Mandate)</span> <span class="dates">Full Remote (France / International) - 2018 - 2023</span></h3>
               <ul>
-                <li><strong>Innovation Strategy & POC:</strong> Conceptualized and developed "SophIA," a sovereign B2B AI architecture model. Championed a pragmatic approach providing enterprise-grade AI while keeping data strictly on-premise to eliminate "Shadow AI" risks.</li>
-                <li><strong>Thought Leadership:</strong> Authored the technical essay <em>"SophIA: Assistant suprême?"</em> to demystify AI models for C-suite executives and translate technical capabilities into actionable corporate governance strategies.</li>
+                <li><strong>Complex Deployments & International Operations:</strong> Architected and supervised infrastructures for ISPs. Provided global remote leadership, managing international infrastructures and distributed technical teams across multiple time zones.</li>
+                <li><strong>High-Availability & Security:</strong> Designed and integrated robust operator backbones and datacenters requiring absolute zero-downtime operational standards and strict adherence to security compliance (facilitating ISO 27001 and HDS certification renewals).</li>
               </ul>
             </div>
 
             <div class="experience-item">
-              <h3 class="item-title"><span>Senior Infrastructure Consultant & Interim IT Director - Freelance / KISAI</span> <span class="dates">France / Remote - 2018 - 2023</span></h3>
+              <h3 class="item-title"><span>Previous Experience (SysAdmin, Network Architect)</span> <span class="dates">France - 2005 - 2018</span></h3>
               <ul>
-                <li><strong>Security & Compliance:</strong> Steered the deployment of resilient foundations enabling strict adherence to security standards (facilitating ISO 27001 and HDS certification renewals).</li>
-                <li><strong>Complex Deployments:</strong> Architected and supervised critical infrastructure migrations for ISPs, including SOC environments.</li>
-                <li><strong>High-Availability Architecture:</strong> Designed and integrated robust operator backbones and datacenters requiring zero-downtime operational standards.</li>
-              </ul>
-            </div>
-
-            <div class="experience-item">
-              <h3 class="item-title"><span>Technical Director / Senior Consultant - Freelance</span> <span class="dates">La Plaine-sur-Mer - 2011 - 2018</span></h3>
-              <ul>
-                <li>Deployed and managed operator backbones, datacenters, and MPLS networks.</li>
-                <li>Led network engineering and ISP service integrations, focusing on high availability designs.</li>
-              </ul>
-            </div>
-
-            <div class="experience-item">
-              <h3 class="item-title"><span>Previous Experience (SysAdmin & Network)</span> <span class="dates"> - 2005 - 2011</span></h3>
-              <ul>
-                <li><strong>ALPHALINK</strong> (2008-2011): Network Architect - Designed architectures, managed technical projects.</li>
-                <li><strong>PYGRAM</strong> (2007-08): Systems & Network Manager (VmWare, TSE).</li>
-                <li><strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07): Systems Administrator & IT Support in large-scale enterprise environments.</li>
+                <li><strong>External Mandate (2011-2018):</strong> Technical Director & Lead Architect - Led network engineering and ISP service integrations.</li>
+                <li><strong>ALPHALINK, PYGRAM, Renault, BNP Paribas (2005-2011):</strong> Systems Administration, Virtualization, and IT Support in large-scale enterprise environments.</li>
               </ul>
             </div>
             
