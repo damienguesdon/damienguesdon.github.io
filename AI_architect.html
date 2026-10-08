@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Damien GUESDON - Expert IA & Architecte de Solutions</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #f3f4f6;
+      --bg-dark: #0f172a;
+      --text-light: #1f2937;
+      --text-dark: #f8fafc;
+      --container-light: #ffffff;
+      --container-dark: #1e293b;
+      --primary-light: #1e40af;
+      --primary-dark: #60a5fa;
+      --secondary-light: #3730a3;
+      --secondary-dark: #818cf8;
+      --accent-light: #4f46e5;
+      --accent-dark: #a5b4fc;
+      --aside-light: #eef0f4;
+      --aside-dark: #334155;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+      --red-hat-color: #d9230f; 
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .container {
+      max-width: 1300px;
+      margin: 40px auto;
+      background: var(--container-light);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 50px; 
+      position: relative;
+    }
+    body.dark-mode .container {
+      background: var(--container-dark);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .top-bar {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 10;
+    }
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .theme-toggle-btn {
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark-mode .theme-toggle-btn {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border-dark);
+    }
+    .theme-toggle-btn svg { width: 20px; height: 20px; color: var(--accent-light); }
+    body.dark-mode .theme-toggle-btn svg { color: var(--accent-dark); }
+    
+    .language-flag {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+    }
+    .language-flag.active { opacity: 1; border-color: var(--accent-light); }
+    body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
+
+    .language-switcher {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
+    .lang-icon {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .lang-section { display: none; }
+    
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 30px;
+    }
+    body.dark-mode header { border-color: var(--border-dark); }
+    
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.025em;
+      color: var(--primary-light);
+    }
+    body.dark-mode h1 { color: var(--primary-dark); }
+    
+    .target-role {
+      font-size: 1.3em; 
+      font-weight: 700; 
+      color: var(--red-hat-color); 
+      margin-bottom: 10px; 
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .target-role span {
+      display: block;
+      font-size: 0.65em;
+      font-weight: 400;
+      color: #64748b;
+      text-transform: none;
+      margin-top: 4px;
+    }
+    body.dark-mode .target-role span { color: #94a3b8; }
+
+    .info {
+      font-size: 0.95em;
+      color: #64748b;
+      margin-top: 10px;
+    }
+    body.dark-mode .info { color: #94a3b8; }
+    
+    .header-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: transparent;
+      border: none;
+    }
+    
+    .summary {
+      font-size: 1.1em;
+      margin: 30px 0;
+      color: var(--text-light);
+      background: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-light);
+      text-align: left; 
+    }
+    body.dark-mode .summary {
+      background: rgba(255,255,255,0.03);
+      color: var(--text-dark);
+      border-left-color: var(--accent-dark);
+    }
+    
+    .cv-flex {
+      display: flex; 
+      gap: 50px;
+    }
+    
+    aside {
+      flex: 0 0 350px;
+      background-color: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    body.dark-mode aside {
+      background-color: var(--aside-dark);
+    }
+    .skill-title { 
+      font-weight: 700; 
+      display: block; 
+      margin-bottom: 2px;
+      font-size: 0.9em;
+      color: var(--primary-light);
+    }
+    body.dark-mode .skill-title { color: var(--primary-dark); }
+    .skill-desc {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .main-content { 
+      flex: 1; 
+    }
+
+    h2 {
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark-mode h2 { color: var(--accent-dark); }
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+    body.dark-mode h2::after { background: var(--border-dark); }
+    
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-list li {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .experience-item {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 30px;
+      border-left: 2px solid var(--border-light);
+    }
+    body.dark-mode .experience-item { border-left-color: var(--border-dark); }
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-light);
+      border-radius: 50%;
+    }
+    body.dark-mode .experience-item::before { background: var(--accent-dark); }
+    
+    .item-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      color: var(--primary-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    body.dark-mode .item-title { color: var(--primary-dark); }
+    
+    .dates {
+      font-size: 0.8em;
+      color: #64748b;
+      font-weight: 500;
+      font-style: normal;
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+    
+    .experience-item ul {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+    }
+    .experience-item li { 
+      margin-bottom: 8px; 
+      font-size: 0.95em; 
+      text-align: left; 
+    }
+
+    @media screen and (max-width: 900px) {
+      .container { margin: 0; border-radius: 0; padding: 30px 20px; }
+      .cv-flex { flex-direction: column; }
+      .header-flex { flex-direction: column; text-align: center; gap: 20px; }
+      .header-photo { margin: 0; }
+      .top-bar { position: static; align-items: center; margin-bottom: 20px; }
+      aside { flex: none; width: 100%; }
+      .item-title { flex-direction: column; }
+      .dates { margin-left: 0; margin-top: 5px; }
+    }
+
+    /* CODE D'IMPRESSION CENTRÉ VERTICALEMENT */
+    @media print {
+      @page { margin: 0; size: A4 portrait; }
+      body { 
+        -webkit-print-color-adjust: exact !important; 
+        print-color-adjust: exact !important; 
+        font-size: 9.5px !important; 
+        line-height: 1.35 !important;
+        background: var(--bg-light) !important;
+        color: var(--text-light) !important;
+      }
+      
+      body.dark-mode { background: var(--bg-light) !important; color: var(--text-light) !important; }
+      body.dark-mode .container { background: var(--container-light) !important; }
+      body.dark-mode aside { background: var(--aside-light) !important; }
+      body.dark-mode .summary { background: var(--aside-light) !important; color: var(--text-light) !important; border-left-color: var(--accent-light) !important; }
+      body.dark-mode h1, body.dark-mode .item-title, body.dark-mode .skill-title { color: var(--primary-light) !important; }
+      body.dark-mode h2 { color: var(--accent-light) !important; }
+      body.dark-mode .target-role span, body.dark-mode .info, body.dark-mode .dates { color: #64748b !important; }
+      body.dark-mode h2::after { background: var(--border-light) !important; }
+      body.dark-mode .experience-item { border-left-color: var(--border-light) !important; }
+      body.dark-mode .experience-item::before { background: var(--accent-light) !important; }
+
+      .container { 
+        margin: 0 !important; 
+        padding: 8mm 12mm !important; 
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 100vh !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; 
+      }
+      
+      .cv-flex {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important; 
+      }
+      aside { flex: 0 0 200px !important; padding: 12px !important; }
+      .main-content { flex: 1 !important; }
+      
+      header { margin-bottom: 8px !important; padding-bottom: 8px !important; }
+      .header-photo { width: 90px !important; height: 90px !important; border-radius: 8px !important; background: transparent !important; border: none !important; }
+      h1 { font-size: 2em !important; margin-bottom: 2px !important; }
+      .target-role { font-size: 1.1em !important; margin-bottom: 4px !important; }
+      .target-role span { margin-top: 2px !important; }
+      .info { margin-top: 4px !important; font-size: 0.9em !important; }
+      
+      .summary { margin: 8px 0 !important; padding: 12px !important; font-size: 1em !important; }
+      h2 { margin: 12px 0 6px 0 !important; font-size: 1.1em !important; }
+      
+      .skill-block { margin-bottom: 8px !important; }
+      .skill-desc { margin-bottom: 6px !important; font-size: 0.9em !important; }
+      .skills-list li { margin-bottom: 6px !important; }
+      
+      .experience-item { margin-bottom: 10px !important; padding-left: 20px !important; }
+      .experience-item::before { left: -6px !important; top: 4px !important; width: 10px !important; height: 10px !important; }
+      .item-title { font-size: 1.05em !important; margin-bottom: 2px !important; }
+      .experience-item ul { margin: 4px 0 0 0 !important; padding-left: 15px !important; }
+      .experience-item li { margin-bottom: 3px !important; font-size: 0.95em !important; }
+      
+      .top-bar, .language-switcher { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-buttons">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
+        <span id="icon-sun">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </span>
+        <span id="icon-moon" style="display: none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+      </button>
+      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_FR.pdf" download title="Télécharger le PDF">
+        <span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg>
+        </span>
+      </a>
+    </div>
+    <div class="language-switcher">
+      <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
+      <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
+    </div>
+  </div>
+
+  <div class="container">
+    <main>
+      
+      <!-- VERSION FRANCAISE -->
+      <div id="fr" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+              <div class="target-role">
+                EXPERT IA & ARCHITECTE DE SOLUTIONS
+                <span>Sécuriser le passage du POC à la Production : Architecture souveraine, GenAI & Systèmes Multi-Agents</span>
+              </div>
+            <div class="info">
+              La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+
+        <h2>Résumé professionnel</h2>
+        <div class="summary">
+          Architecte technique et ancien Directeur d'infrastructures critiques, je conçois et déploie des solutions d'Intelligence Artificielle robustes et souveraines. Fort de 20 ans d'expérience dans les environnements exigeant une haute disponibilité (zéro-downtime) et d'un diplôme d'Ingénieur en IA, je fais le pont entre les technologies émergentes (GenAI, RAG, Agents) et les exigences de production (Sécurité, Observabilité, FinOps). Auteur du livre blanc <em>"SophIA : Assistant suprême ?"</em>, j'accompagne les équipes de delivery et les clients dans le cadrage technique, l'avant-vente, et le déploiement d'architectures industrialisables (Cloud ou On-premise).
+        </div>
+
+        <div class="cv-flex">
+          <aside>
+            <h2>Compétences clés</h2>
+            <div class="skill-block"><span class="skill-title">GenAI & Architectures Agentiques :</span><div class="skill-desc">RAG, LLM (Open Source / Propriétaires), systèmes multi-agents (CrewAI, LangChain, AutoGen).</div></div>
+            <div class="skill-block"><span class="skill-title">Engineering & Industrialisation :</span><div class="skill-desc">Python, FastAPI, Docker, Kubernetes / OKD (Bare-metal), Vector Stores (Qdrant).</div></div>
+            <div class="skill-block"><span class="skill-title">MLOps / LLMOps :</span><div class="skill-desc">Évaluation de modèles, MLflow, gestion de cycle de vie, Guardrails, sécurité et Data Privacy (HDS, ISO 27001).</div></div>
+            <div class="skill-block"><span class="skill-title">Conseil & Gouvernance :</span><div class="skill-desc">Cadrage technique, support avant-vente, FinOps IA, évangélisation technologique.</div></div>
+            
+            <h2>Langues</h2>
+            <ul class="skills-list">
+              <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : Courant (Technique et B2B)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d'apprentissage</li>
+            </ul>
+
+            <h2>Formation</h2>
+            <div class="skill-block"><span class="skill-title">Diplôme de niveau 7 (Master) en IA Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Projet de fin d'études : Conception architecturale et prototypage MLOps d'un orchestrateur IA.</div></div>
+            <div class="skill-block"><span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span><div class="skill-desc">Technicien Supérieur Gestionnaire de Ressources Informatiques</div></div>
+            <div class="skill-block"><span class="skill-title">BTS Analyste Programmeur, CNFDI, 2001</span></div>
+          </aside>
+
+          <div class="main-content">
+            
+            <h2>Expérience professionnelle</h2>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>Architecte IA & Consultant Technique B2B - KISAI R&D</span> <span class="dates">Full Remote (Andorre / France) - Depuis Juin 2025</span></h3>
+              <ul>
+                <li><strong>Conception d'Architectures IA (Projet "SophIA") :</strong> Prototypage et développement "from scratch" d'un orchestrateur IA agentique souverain. Déploiement sur cluster bare-metal (OKD/OpenShift), intégration de modèles open source, de frameworks multi-agents (CrewAI) et de pipelines RAG.</li>
+                <li><strong>Conseil, Cadrage & Avant-Vente :</strong> Accompagnement technique de clients B2B sur les choix d'architecture (Make/Buy, Cloud vs On-premise, hybride). Évaluation des coûts (FinOps IA) et de la latence pour garantir le passage à l'échelle.</li>
+                <li><strong>Évangélisation Technologique :</strong> Auteur de l'essai <em>"SophIA, L'Assistant Suprême ?"</em>. Vulgarisation de l'architecture LLM pour faciliter l'acculturation technologique des décideurs et des équipes de développement.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Architecte Infrastructure & Directeur Technique - Alphalink</span> <span class="dates">France - Jan 2024 - Mai 2025</span></h3>
+              <ul>
+                <li><strong>Sécurisation du Delivery & Observabilité :</strong> Accompagnement de 18 ingénieurs dans le passage à l'échelle d'infrastructures critiques cloud-natives. Mise en place de pipelines de production garantissant la résilience des services (SLI/SLO) et le respect des normes de sécurité (ISO 27001, HDS).</li>
+                <li><strong>Gouvernance Technique :</strong> Création et pilotage du comité d'architecture (CAB) pour imposer une discipline stricte sur les mises en production.</li>
+                <li><strong>Optimisation des Architectures (FinOps) :</strong> Refonte technique et technico-économique d'un projet de fusion d'infrastructure complexe (passage d'une cotation de 130 M€ à une architecture cible de 2 M€).</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Consultant Architecte d'Infrastructures Critiques</span> <span class="dates">Full Remote (France / International) - 2011 - 2023</span></h3>
+              <ul>
+                <li><strong>Conception & Déploiement :</strong> Architecture et supervision de cœurs de réseau distribués pour le compte d'opérateurs télécoms et ESN. Pilotage technique de projets à distance.</li>
+                <li><strong>Résilience & Sécurité :</strong> Design d'environnements exigeant une disponibilité absolue et le respect strict des contraintes de sécurité des données critiques.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Expériences antérieures (Administration Systèmes & Réseaux)</span> <span class="dates">France - 2005 - 2011</span></h3>
+              <ul>
+                <li>Architecte Réseau, Gestionnaire Système (VmWare), et Administration Systèmes pour divers acteurs B2B et clients grand compte.</li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+      <!-- VERSION ANGLAISE -->
+      <div id="en" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+              <div class="target-role">
+                EXPERT AI CONSULTANT & SOLUTIONS ARCHITECT
+                <span>Securing the POC to Production transition: Sovereign Architecture, GenAI & Multi-Agent Systems</span>
+              </div>
+            <div class="info">
+              La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+        
+        <h2>Professional Summary</h2>
+        <div class="summary">
+          As a Technical Architect and former Director of Critical Infrastructure, I design and deploy robust, sovereign Artificial Intelligence solutions. With 20 years of experience in environments demanding absolute high availability (zero-downtime) and a degree in AI Engineering, I bridge the gap between emerging technologies (GenAI, RAG, Agents) and production requirements (Security, Observability, FinOps). Author of the white paper <em>"SophIA: Supreme Assistant?"</em>, I support delivery teams and clients in technical scoping, pre-sales, and the deployment of industrialized architectures (Cloud or On-premise).
+        </div>
+        
+        <div class="cv-flex">
+          <aside>
+            <h2>Key Skills</h2>
+            <div class="skill-block"><span class="skill-title">GenAI & Agentic Architectures:</span><div class="skill-desc">RAG, LLMs (Open Source / Proprietary), multi-agent systems (CrewAI, LangChain, AutoGen).</div></div>
+            <div class="skill-block"><span class="skill-title">Engineering & Industrialization:</span><div class="skill-desc">Python, FastAPI, Docker, Kubernetes / OKD (Bare-metal), Vector Stores (Qdrant).</div></div>
+            <div class="skill-block"><span class="skill-title">MLOps / LLMOps:</span><div class="skill-desc">Model evaluation, MLflow, lifecycle management, Guardrails, security and Data Privacy (HDS, ISO 27001).</div></div>
+            <div class="skill-block"><span class="skill-title">Consulting & Governance:</span><div class="skill-desc">Technical scoping, pre-sales support, AI FinOps, technological evangelization.</div></div>
+            
+            <h2>Languages</h2>
+            <ul class="skills-list">
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: Native</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: Fluent (Technical and B2B)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: In progress</li>
+            </ul>
+
+            <h2>Education</h2>
+            <div class="skill-block"><span class="skill-title">MSc (Level 7) in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Capstone Project: Architecture design and MLOps prototyping of an AI orchestrator.</div></div>
+            <div class="skill-block"><span class="skill-title">Higher National Diploma - IT Resource Mgmt, 2005-2006</span></div>
+            <div class="skill-block"><span class="skill-title">Higher National Diploma - Analyst Programmer, 2001</span></div>
+          </aside>
+          
+          <div class="main-content">
+            
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+              <h3 class="item-title"><span>AI Architect & B2B Technical Consultant - KISAI R&D</span> <span class="dates">Full Remote (Andorra / France) - Since June 2025</span></h3>
+              <ul>
+                <li><strong>AI Architecture Design (Project "SophIA"):</strong> Prototyping and "from scratch" development of a sovereign agentic AI orchestrator. Deployment on bare-metal cluster (OKD/OpenShift), integration of open source models, multi-agent frameworks (CrewAI), and RAG pipelines.</li>
+                <li><strong>Consulting, Scoping & Pre-Sales:</strong> Technical support for B2B clients regarding architecture choices (Make/Buy, Cloud vs On-premise, hybrid). Evaluation of costs (AI FinOps) and latency to guarantee scalability.</li>
+                <li><strong>Technological Evangelization:</strong> Author of the essay <em>"SophIA, Supreme Assistant?"</em>. Popularizing LLM architecture to facilitate the technological acculturation of decision-makers and development teams.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Infrastructure Architect & Technical Director - Alphalink</span> <span class="dates">France - Jan 2024 - May 2025</span></h3>
+              <ul>
+                <li><strong>Securing Delivery & Observability:</strong> Guided 18 engineers in scaling cloud-native critical infrastructures. Implemented production pipelines ensuring service resilience (SLI/SLO) and compliance with security standards (ISO 27001, HDS).</li>
+                <li><strong>Technical Governance:</strong> Created and managed the Architecture Advisory Board (CAB) to impose strict discipline on production deployments.</li>
+                <li><strong>Architecture Optimization (FinOps):</strong> Technical and economic overhaul of a complex infrastructure merger project (reducing an initial €130M quote to a €2M target architecture).</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Critical Infrastructure Consulting Architect</span> <span class="dates">Full Remote (France / International) - 2011 - 2023</span></h3>
+              <ul>
+                <li><strong>Design & Deployment:</strong> Architected and supervised distributed core networks for telecom operators and IT service companies. Remote technical project management.</li>
+                <li><strong>Resilience & Security:</strong> Designed environments requiring absolute availability and strict adherence to critical data security constraints.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Previous Experience (Systems & Network Engineering)</span> <span class="dates">France - 2005 - 2011</span></h3>
+              <ul>
+                <li>Network Architect, Systems Manager (VmWare), and Systems Administration for various B2B players and major accounts.</li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+  <script>
+    function switchLanguage(lang) {
+      document.getElementById('fr').style.display = lang === 'fr' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.querySelectorAll('.language-flag').forEach(flag => {
+        flag.classList.toggle('active', flag.dataset.lang === lang);
+      });
+      localStorage.setItem('preferredLang', lang);
+
+      var pdfLink = document.getElementById('pdf-link');
+      if (pdfLink) {
+        if (lang === 'fr') {
+          pdfLink.href = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.download = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.title = 'Télécharger le PDF';
+        } else {
+          pdfLink.href = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.download = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.title = 'Download PDF';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      switchLanguage(savedLang);
+      document.querySelectorAll('.language-flag').forEach((flag) => {
+        flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
+      });
+
+      const themeToggle = document.getElementById('theme-toggle');
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+
+      function setTheme(mode) {
+        if (mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          iconSun.style.display = 'none';
+          iconMoon.style.display = 'inline-block';
+        } else {
+          document.body.classList.remove('dark-mode');
+          iconSun.style.display = 'inline-block';
+          iconMoon.style.display = 'none';
+        }
+        localStorage.setItem('theme', mode);
+      }
+
+      themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'));
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
+    });
+  </script>
+</body>
+</html>
