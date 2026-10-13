@@ -8,7 +8,7 @@ import yaml
 
 def calculate_experience(start_date_str):
     start_date = datetime.date.fromisoformat(start_date_str)
-    today = datetime.datetime.now(datetime.timezone.utc).date()
+    today = datetime.datetime.now(datetime.UTC).date()
     years = today.year - start_date.year
     if (today.month, today.day) < (start_date.month, start_date.day):
         years -= 1
@@ -29,7 +29,7 @@ def render_cv(data_file, template_file, output_file, overrides=None, force_lang=
 
     xp_years = calculate_experience("2005-01-01")
     data["xp_years"] = xp_years
-    data["serial_version"] = datetime.datetime.now(datetime.timezone.utc).strftime(
+    data["serial_version"] = datetime.datetime.now(datetime.UTC).strftime(
         "v%Y%m%d-%H%M"
     )
     data["force_lang"] = force_lang
