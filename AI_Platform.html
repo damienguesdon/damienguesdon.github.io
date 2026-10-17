@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Damien GUESDON - Directeur Data & IA</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #f3f4f6;
+      --bg-dark: #0f172a;
+      --text-light: #1f2937;
+      --text-dark: #f8fafc;
+      --container-light: #ffffff;
+      --container-dark: #1e293b;
+      --primary-light: #1e40af;
+      --primary-dark: #60a5fa;
+      --accent-light: #4f46e5;
+      --accent-dark: #a5b4fc;
+      --aside-light: #eef0f4;
+      --aside-dark: #334155;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+      --red-hat-color: #d9230f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    body.dark-mode { background: var(--bg-dark); color: var(--text-dark); }
+    .container {
+      max-width: 1300px;
+      margin: 40px auto;
+      background: var(--container-light);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+      border-radius: 12px;
+      padding: 50px;
+      position: relative;
+    }
+    body.dark-mode .container { background: var(--container-dark); box-shadow: 0 10px 25px -5px rgba(0,0,0,.3); }
+    .top-bar { position: absolute; top: 30px; right: 40px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; z-index: 10; }
+    .top-buttons { display: flex; gap: 10px; align-items: center; }
+    .theme-toggle-btn {
+      background: rgba(0,0,0,.05); border: 1px solid var(--border-light); cursor: pointer; border-radius: 8px;
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; transition: all .2s;
+    }
+    body.dark-mode .theme-toggle-btn { background: rgba(255,255,255,.05); border-color: var(--border-dark); }
+    .theme-toggle-btn svg { width: 20px; height: 20px; color: var(--accent-light); }
+    body.dark-mode .theme-toggle-btn svg { color: var(--accent-dark); }
+    .language-flag { width: 28px; height: 28px; border-radius: 4px; cursor: pointer; opacity: .6; transition: all .2s; border: 2px solid transparent; flex-shrink: 0; }
+    .language-flag.active { opacity: 1; border-color: var(--accent-light); }
+    body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
+    .language-switcher { display: flex; flex-direction: row; gap: 5px; }
+    .lang-icon { width: 18px; height: 12px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+    .lang-section { display: none; }
+
+    .header-flex { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 30px; margin-bottom: 10px; }
+    body.dark-mode .header-flex { border-color: var(--border-dark); }
+    h1 { font-size: 2.8em; font-weight: 800; margin: 0; letter-spacing: -.025em; color: var(--primary-light); }
+    body.dark-mode h1 { color: var(--primary-dark); }
+    .target-role { font-size: 1.3em; font-weight: 700; color: var(--red-hat-color); margin-bottom: 10px; line-height: 1.2; text-transform: uppercase; }
+    .target-role span { display: block; font-size: .65em; font-weight: 400; color: #64748b; text-transform: none; margin-top: 4px; }
+    body.dark-mode .target-role span { color: #94a3b8; }
+    .info { font-size: .95em; color: #64748b; margin-top: 10px; }
+    body.dark-mode .info { color: #94a3b8; }
+    .header-photo { width: 140px; height: 140px; border-radius: 16px; object-fit: cover; background: transparent; border: none; }
+
+    .summary { font-size: 1.05em; margin: 20px 0; background: var(--aside-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-light); text-align: left; }
+    body.dark-mode .summary { background: rgba(255,255,255,.03); color: var(--text-dark); border-left-color: var(--accent-dark); }
+
+    .cv-flex { display: flex; gap: 50px; }
+    aside { flex: 0 0 350px; background-color: var(--aside-light); padding: 20px; border-radius: 8px; }
+    body.dark-mode aside { background-color: var(--aside-dark); }
+    .skill-title { font-weight: 700; display: block; margin-bottom: 2px; font-size: .9em; color: var(--primary-light); }
+    body.dark-mode .skill-title { color: var(--primary-dark); }
+    .skill-desc { margin-bottom: 15px; font-size: .9em; }
+    .main-content { flex: 1; }
+
+    h2 { font-size: 1.3em; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--accent-light); margin: 30px 0 20px 0; display: flex; align-items: center; gap: 10px; }
+    body.dark-mode h2 { color: var(--accent-dark); }
+    h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); }
+    body.dark-mode h2::after { background: var(--border-dark); }
+    .skills-list { list-style: none; padding: 0; margin: 0; }
+    .skills-list li { margin-bottom: 15px; font-size: .9em; }
+
+    .experience-item { position: relative; padding-left: 25px; margin-bottom: 30px; border-left: 2px solid var(--border-light); }
+    body.dark-mode .experience-item { border-left-color: var(--border-dark); }
+    .experience-item::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; background: var(--accent-light); border-radius: 50%; }
+    body.dark-mode .experience-item::before { background: var(--accent-dark); }
+    .item-title { font-size: 1.1em; font-weight: 700; margin: 0 0 5px 0; color: var(--primary-light); display: flex; justify-content: space-between; align-items: baseline; }
+    body.dark-mode .item-title { color: var(--primary-dark); }
+    .dates { font-size: .8em; color: #64748b; font-weight: 500; white-space: nowrap; margin-left: 10px; }
+    .experience-item ul { margin: 10px 0 0 0; padding-left: 18px; }
+    .experience-item li { margin-bottom: 8px; font-size: .95em; text-align: left; }
+
+    @media screen and (max-width: 900px) {
+      .container { margin: 0; border-radius: 0; padding: 30px 20px; }
+      .cv-flex { flex-direction: column; }
+      .header-flex { flex-direction: column; text-align: center; gap: 20px; }
+      .top-bar { position: static; align-items: center; margin-bottom: 20px; }
+      aside { flex: none; width: 100%; }
+      .item-title { flex-direction: column; }
+      .dates { margin-left: 0; margin-top: 5px; }
+    }
+
+    @media print {
+      @page { margin: 0; size: A4 portrait; }
+      html, body { height: 297mm; overflow: hidden; }
+      body {
+        -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;
+        font-size: 11.2px !important; line-height: 1.38 !important;
+        background: var(--bg-light) !important; color: var(--text-light) !important;
+      }
+      body.dark-mode { background: var(--bg-light) !important; color: var(--text-light) !important; }
+      body.dark-mode .container { background: var(--container-light) !important; }
+      body.dark-mode aside { background: var(--aside-light) !important; }
+      body.dark-mode .summary { background: var(--aside-light) !important; color: var(--text-light) !important; border-left-color: var(--accent-light) !important; }
+      body.dark-mode h1, body.dark-mode .item-title, body.dark-mode .skill-title { color: var(--primary-light) !important; }
+      body.dark-mode h2 { color: var(--accent-light) !important; }
+      body.dark-mode .target-role span, body.dark-mode .info, body.dark-mode .dates { color: #64748b !important; }
+      body.dark-mode h2::after { background: var(--border-light) !important; }
+      body.dark-mode .experience-item { border-left-color: var(--border-light) !important; }
+      body.dark-mode .experience-item::before { background: var(--accent-light) !important; }
+
+      .container { margin: 0 !important; padding: 10mm 12mm !important; box-shadow: none !important; border-radius: 0 !important; width: 100% !important; max-width: 100% !important; height: 297mm !important; display: flex !important; flex-direction: column !important; justify-content: flex-start !important; }
+      .cv-flex { display: flex !important; flex-direction: row !important; gap: 16px !important; }
+      aside { flex: 0 0 215px !important; padding: 12px !important; }
+      .main-content { flex: 1 !important; }
+      .header-flex { margin-bottom: 4px !important; padding-bottom: 6px !important; }
+      .header-photo { width: 92px !important; height: 92px !important; border-radius: 8px !important; }
+      h1 { font-size: 2.1em !important; margin-bottom: 2px !important; }
+      .target-role { font-size: 1.05em !important; margin-bottom: 3px !important; }
+      .target-role span { margin-top: 2px !important; }
+      .info { margin-top: 3px !important; font-size: .9em !important; }
+      .summary { margin: 8px 0 !important; padding: 10px 12px !important; font-size: 1em !important; }
+      h2 { margin: 12px 0 7px 0 !important; font-size: 1.05em !important; }
+      .skill-desc { margin-bottom: 8px !important; font-size: .92em !important; }
+      .skills-list li { margin-bottom: 4px !important; }
+      .experience-item { margin-bottom: 11px !important; padding-left: 16px !important; }
+      .experience-item::before { left: -6px !important; top: 3px !important; width: 10px !important; height: 10px !important; }
+      .item-title { font-size: 1.05em !important; margin-bottom: 1px !important; }
+      .experience-item ul { margin: 3px 0 0 0 !important; padding-left: 13px !important; }
+      .experience-item li { margin-bottom: 3px !important; font-size: .98em !important; }
+      .top-bar, .language-switcher { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-buttons">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
+        <span id="icon-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        <span id="icon-moon" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+      </button>
+      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_DataIA_FR.pdf" download title="Télécharger le PDF">
+        <span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg></span>
+      </a>
+    </div>
+    <div class="language-switcher">
+      <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
+      <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
+    </div>
+  </div>
+
+  <div class="container">
+    <main>
+
+      <!-- VERSION FRANCAISE -->
+      <div id="fr" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+            <div class="target-role">
+              DIRECTEUR DATA & IA / AI PLATFORM & MLOps
+              <span>Plateformes IA souveraines, industrialisation, gouvernance &amp; infrastructures critiques</span>
+            </div>
+            <div class="info">
+              La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+
+        <div class="summary">
+          Dirigeant technique et entrepreneur : indépendant depuis 2010, fondateur de <strong>Kisaï DG SLU</strong> (2018), avec plus de 20 ans d'expérience en infrastructures critiques et jusqu'au rôle de CTO (équipe de 18 personnes). Je conçois, industrialise et exploite des plateformes fiables et gouvernées, et je me suis spécialisé dans l'IA : <strong>diplôme d'ingénieur IA</strong> (niveau 7, 2026) et conception de <strong>SophIA</strong>, plateforme souveraine d'IA agentique en production sur OKD. Profil <strong>AI Platform / MLOps</strong>, à l'interface entre équipes Data, ingénierie, run et ROI. Auteur de l'essai <em>« SophIA, L'Assistant Suprême ? »</em>.
+        </div>
+
+        <div class="cv-flex">
+          <aside>
+            <h2>Compétences clés</h2>
+            <div class="skill-block"><span class="skill-title">Plateforme IA &amp; MLOps :</span><div class="skill-desc">LLM locaux (llama.cpp, LiteLLM), agents outillés, OKD/Kubernetes, CI/CD, évaluation de modèles, coûts d'inférence.</div></div>
+            <div class="skill-block"><span class="skill-title">Gouvernance &amp; sécurité :</span><div class="skill-desc">ISO 27001/9001/22301, HDS, VPN, RBAC, NetworkPolicies, agents en moindre privilège avec validation humaine.</div></div>
+            <div class="skill-block"><span class="skill-title">Leadership :</span><div class="skill-desc">Départements jusqu'à 18 personnes, managers, équipes multi-pays, Servant Leadership.</div></div>
+            <div class="skill-block"><span class="skill-title">Business &amp; FinOps :</span><div class="skill-desc">ROI, négociation fournisseurs, M&amp;A (due diligence, intégration).</div></div>
+            <div class="skill-block"><span class="skill-title">Infrastructures &amp; SRE :</span><div class="skill-desc">Linux (30 ans), backbones et MPLS, datacenters, haute disponibilité, observabilité.</div></div>
+
+            <h2>Langues</h2>
+            <ul class="skills-list">
+              <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : maternelle</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : courant + technique</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : en cours</li>
+            </ul>
+
+            <h2>Formation</h2>
+            <div class="skill-block"><span class="skill-title">Diplôme niveau 7 en IA Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Data Science &amp; MLOps (juil. 2025 - août 2026, en parallèle de l'activité Kisaï).</div></div>
+            <div class="skill-block"><span class="skill-title">BTS TSGRI, Créteil, 2006</span></div>
+            <div class="skill-block"><span class="skill-title">BTS Analyste Programmeur, CNFDI, 2001</span></div>
+          </aside>
+
+          <div class="main-content">
+            <h2>Expérience professionnelle</h2>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>SophIA, plateforme souveraine d'IA agentique (projet personnel)</span> <span class="dates">Socle en prod. mai 2026, interface oct. 2026</span></h3>
+              <ul>
+                <li><strong>Conception, déploiement et exploitation</strong> d'une plateforme d'IA gouvernée, 100 % locale par défaut, sur OKD (Single Node OpenShift). Cible : offre B2B on-premise sur cluster multi-nœuds.</li>
+                <li><strong>Inférence et évaluation :</strong> Qwen3.5-9B (Q6_K) via llama.cpp/CUDA sur NVIDIA A2 (15 Go), retenu après un banc comparatif (fiabilité des appels d'outils, rappel en contexte long, débit, mémoire). 4 conversations en parallèle, 245 k tokens, 10 à 16 tokens/s. Routage local/cloud et budgets par utilisateur via LiteLLM.</li>
+                <li><strong>Agents et multimodal :</strong> outils (recherche web), agents de développement confinés (RBAC minimal, validation humaine), supervision en lecture seule ; voix et vision en local ; multi-utilisateur avec personas ; compaction du contexte et rejet des entrées pathologiques après un incident réel analysé.</li>
+                <li><strong>Sécurité :</strong> VPN WireGuard filtré par appareil, TLS automatisé, isolation par namespace, NetworkPolicies, quotas, secrets hors du code, journaux techniques sans contenu des conversations.</li>
+                <li><strong>Industrialisation :</strong> code et manifestes versionnés (Forgejo, miroir GitHub), CI automatisée, images construites dans le cluster, environ 100 tests automatisés, déploiements validés par diff et dry-run avec retour arrière, registre d'incidents.</li>
+                <li><strong>Feuille de route :</strong> mémoire RAG (Qdrant, bge-m3, déployé), bus inter-agents, couche DLP, haute disponibilité.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Kisaï DG SLU, fondateur et dirigeant (fractional CTO)</span> <span class="dates">2018 - auj. (indépendant depuis 2010)</span></h3>
+              <ul>
+                <li><strong>2010-2023 :</strong> direction technique de transition et architecture pour des opérateurs : cœurs de réseau, MPLS, datacenters, haute disponibilité, conformité ISO 27001 et HDS, équipes réparties sur plusieurs pays (France, Portugal, Île Maurice, Luxembourg, Maroc).</li>
+                <li><strong>Activité suspendue en 2024-2025</strong> (poste salarié chez Alphalink), <strong>reprise en juin 2025</strong> : conseil à des dirigeants sur infrastructures critiques, et conception de SophIA en parallèle de la formation d'ingénieur IA.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique (CTO) Infrastructure, Alphalink</span> <span class="dates">Jan 2024 - Mai 2025</span></h3>
+              <ul>
+                <li><strong>Management :</strong> département de 18 personnes sur 4 pôles (VoIP, Réseau, R&amp;D, Datacenter), dont des managers. Poste salarié à la demande d'Alphalink, qui a souhaité m'intégrer.</li>
+                <li><strong>FinOps :</strong> projet de fusion réseau ramené d'une cotation de <strong>130 M€</strong> (Cisco) à <strong>2 M€</strong> par mise en concurrence et optimisation de l'architecture ; <strong>70 K€/an</strong> économisés sur Office 365.</li>
+                <li><strong>Fiabilité et gouvernance :</strong> modernisation cloud-native, observabilité (MTTR en forte baisse), comité de changements (CAB) que j'ai créé et présidé, SOC nouvelle génération, renouvellement de 4 certifications (ISO 27001, 9001, 22301, HDS).</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Expériences antérieures (systèmes et réseaux)</span> <span class="dates">2005 - 2011</span></h3>
+              <ul>
+                <li><strong>Alphalink</strong> (2008-2011) architecte réseau ; <strong>Pygram</strong> (2007-08) gestionnaire système et réseau ; <strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07) administration et support sur parcs d'envergure.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERSION ANGLAISE -->
+      <div id="en" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+            <div class="target-role">
+              DIRECTOR OF DATA &amp; AI / AI PLATFORM &amp; MLOps
+              <span>Sovereign AI platforms, industrialization, governance &amp; critical infrastructure</span>
+            </div>
+            <div class="info">
+              La Plaine-sur-Mer, France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+
+        <div class="summary">
+          Technology executive and entrepreneur: self-employed since 2010, founder of <strong>Kisaï DG SLU</strong> (2018), with 20+ years in critical infrastructure up to CTO level (18-person department). I design, industrialize and run reliable, governed platforms, and have specialized in AI: <strong>AI Engineering degree</strong> (level 7, 2026) and creator of <strong>SophIA</strong>, a sovereign agentic AI platform running in production on OKD. <strong>AI Platform / MLOps</strong> profile, bridging Data teams, engineering, run and ROI. Author of the essay <em>"SophIA, Supreme Assistant?"</em>.
+        </div>
+
+        <div class="cv-flex">
+          <aside>
+            <h2>Key Skills</h2>
+            <div class="skill-block"><span class="skill-title">AI Platform &amp; MLOps:</span><div class="skill-desc">Local LLMs (llama.cpp, LiteLLM), tool-using agents, OKD/Kubernetes, CI/CD, model evaluation, inference cost control.</div></div>
+            <div class="skill-block"><span class="skill-title">Governance &amp; Security:</span><div class="skill-desc">ISO 27001/9001/22301, HDS, VPN, RBAC, NetworkPolicies, least-privilege agents with human validation.</div></div>
+            <div class="skill-block"><span class="skill-title">Leadership:</span><div class="skill-desc">Departments up to 18 people, managers, multi-country teams, Servant Leadership.</div></div>
+            <div class="skill-block"><span class="skill-title">Business &amp; FinOps:</span><div class="skill-desc">ROI, vendor negotiation, M&amp;A (due diligence, integration).</div></div>
+            <div class="skill-block"><span class="skill-title">Infrastructure &amp; SRE:</span><div class="skill-desc">Linux (30 years), backbones and MPLS, datacenters, high availability, observability.</div></div>
+
+            <h2>Languages</h2>
+            <ul class="skills-list">
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: native</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: fluent (incl. technical)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: in progress</li>
+            </ul>
+
+            <h2>Education</h2>
+            <div class="skill-block"><span class="skill-title">Level 7 (MSc-equivalent) in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Data Science &amp; MLOps (Jul 2025 - Aug 2026, alongside Kisaï activity).</div></div>
+            <div class="skill-block"><span class="skill-title">BTS IT Resource Management, Créteil, 2006</span></div>
+            <div class="skill-block"><span class="skill-title">BTS Analyst Programmer, CNFDI, 2001</span></div>
+          </aside>
+
+          <div class="main-content">
+            <h2>Professional Experience</h2>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>SophIA, sovereign agentic AI platform (personal project)</span> <span class="dates">Core in prod. May 2026, UI Oct 2026</span></h3>
+              <ul>
+                <li><strong>Design, deployment and operation</strong> of a governed AI platform, 100% local by default, on OKD (Single Node OpenShift). Target: on-premise B2B offer on a multi-node cluster.</li>
+                <li><strong>Inference and evaluation:</strong> Qwen3.5-9B (Q6_K) served by llama.cpp/CUDA on an NVIDIA A2 (15 GB), selected after a benchmark under VRAM constraint (tool-call reliability, long-context recall, throughput, memory). 4 parallel conversations, 245k tokens, 10 to 16 tokens/s. Local/cloud routing and per-user budgets via LiteLLM.</li>
+                <li><strong>Agents and multimodal:</strong> tools (web search), sandboxed development agents (minimal RBAC, human validation), read-only supervision agent; voice and vision run locally; multi-user with personas; context compaction and rejection of pathological inputs after a real incident analysis.</li>
+                <li><strong>Security:</strong> WireGuard VPN with per-device filtering, automated TLS, namespace isolation, NetworkPolicies, quotas, secrets kept out of code, technical logs without conversation content.</li>
+                <li><strong>Industrialization:</strong> versioned code and manifests (Forgejo, GitHub mirror), automated CI, in-cluster image builds, ~100 automated tests, deployments validated by diff and dry-run with rollback, incident register.</li>
+                <li><strong>Roadmap:</strong> RAG memory (Qdrant, bge-m3, deployed), inter-agent bus, DLP layer, high availability.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Kisaï DG SLU, founder and managing director (fractional CTO)</span> <span class="dates">2018 - present (self-employed since 2010)</span></h3>
+              <ul>
+                <li><strong>2010-2023:</strong> interim technical leadership and architecture for operators: core networks, MPLS, datacenters, high availability, ISO 27001 and HDS compliance, teams across several countries (France, Portugal, Mauritius, Luxembourg, Morocco).</li>
+                <li><strong>Paused in 2024-2025</strong> (salaried role at Alphalink), <strong>resumed in June 2025</strong>: advisory for executives on critical infrastructure, and design of SophIA alongside the AI engineering degree.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Chief Technology Officer, Infrastructure, Alphalink</span> <span class="dates">Jan 2024 - May 2025</span></h3>
+              <ul>
+                <li><strong>Management:</strong> 18-person department across 4 hubs (VoIP, Network, R&amp;D, Datacenter), including managers. Salaried role at Alphalink's request, as they wished to bring me in-house.</li>
+                <li><strong>FinOps:</strong> network merger project brought from a <strong>€130M</strong> quote (Cisco) down to <strong>€2M</strong> through competitive bidding and target-architecture optimization; <strong>€70K/year</strong> saved on Office 365.</li>
+                <li><strong>Reliability and governance:</strong> cloud-native modernization, observability (sharp MTTR reduction), Change Advisory Board I created and chaired, next-gen SOC, renewal of 4 certifications (ISO 27001, 9001, 22301, HDS).</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Earlier experience (systems and networks)</span> <span class="dates">2005 - 2011</span></h3>
+              <ul>
+                <li><strong>Alphalink</strong> (2008-2011) network architect; <strong>Pygram</strong> (2007-08) systems and network manager; <strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07) administration and support on large estates.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  <script>
+    function switchLanguage(lang) {
+      document.getElementById('fr').style.display = lang === 'fr' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.querySelectorAll('.language-flag').forEach(function (flag) {
+        flag.classList.toggle('active', flag.dataset.lang === lang);
+      });
+      try { localStorage.setItem('preferredLang', lang); } catch (e) {}
+      var pdfLink = document.getElementById('pdf-link');
+      if (pdfLink) {
+        if (lang === 'fr') {
+          pdfLink.href = 'CV_Damien_Guesdon_DataIA_FR.pdf';
+          pdfLink.download = 'CV_Damien_Guesdon_DataIA_FR.pdf';
+          pdfLink.title = 'Télécharger le PDF';
+        } else {
+          pdfLink.href = 'Resume_Damien_Guesdon_DataAI_EN.pdf';
+          pdfLink.download = 'Resume_Damien_Guesdon_DataAI_EN.pdf';
+          pdfLink.title = 'Download PDF';
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      var saved = null;
+      try { saved = localStorage.getItem('preferredLang'); } catch (e) {}
+      var params = new URLSearchParams(location.search);
+      var lang = params.get('lang') || saved || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      switchLanguage(lang);
+      document.querySelectorAll('.language-flag').forEach(function (flag) {
+        flag.addEventListener('click', function () { switchLanguage(flag.dataset.lang); });
+      });
+      var themeToggle = document.getElementById('theme-toggle');
+      var iconSun = document.getElementById('icon-sun');
+      var iconMoon = document.getElementById('icon-moon');
+      function setTheme(mode) {
+        if (mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          iconSun.style.display = 'none'; iconMoon.style.display = 'inline-block';
+        } else {
+          document.body.classList.remove('dark-mode');
+          iconSun.style.display = 'inline-block'; iconMoon.style.display = 'none';
+        }
+        try { localStorage.setItem('theme', mode); } catch (e) {}
+      }
+      themeToggle.addEventListener('click', function () { setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'); });
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+      setTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    });
+  </script>
+</body>
+</html>
