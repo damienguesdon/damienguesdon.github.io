@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Damien GUESDON - Directeur des Opérations Techniques</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #f3f4f6;
+      --bg-dark: #0f172a;
+      --text-light: #1f2937;
+      --text-dark: #f8fafc;
+      --container-light: #ffffff;
+      --container-dark: #1e293b;
+      --primary-light: #1e40af;
+      --primary-dark: #60a5fa;
+      --secondary-light: #3730a3;
+      --secondary-dark: #818cf8;
+      --accent-light: #4f46e5;
+      --accent-dark: #a5b4fc;
+      --aside-light: #eef0f4;
+      --aside-dark: #334155;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+      --red-hat-color: #d9230f; 
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    .container {
+      max-width: 1300px;
+      margin: 40px auto;
+      background: var(--container-light);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 50px; 
+      position: relative;
+    }
+    body.dark-mode .container {
+      background: var(--container-dark);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    .top-bar {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      z-index: 10;
+    }
+    .top-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .theme-toggle-btn {
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    body.dark-mode .theme-toggle-btn {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--border-dark);
+    }
+    .theme-toggle-btn svg { width: 20px; height: 20px; color: var(--accent-light); }
+    body.dark-mode .theme-toggle-btn svg { color: var(--accent-dark); }
+    
+    .language-flag {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      flex-shrink: 0;
+    }
+    .language-flag.active { opacity: 1; border-color: var(--accent-light); }
+    body.dark-mode .language-flag.active { border-color: var(--accent-dark); }
+
+    .language-switcher {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
+    .lang-icon {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .lang-section { display: none; }
+    
+    header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 30px;
+    }
+    body.dark-mode header { border-color: var(--border-dark); }
+    
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.025em;
+      color: var(--primary-light);
+    }
+    body.dark-mode h1 { color: var(--primary-dark); }
+    
+    .target-role {
+      font-size: 1.3em; 
+      font-weight: 700; 
+      color: var(--red-hat-color); 
+      margin-bottom: 10px; 
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .target-role span {
+      display: block;
+      font-size: 0.65em;
+      font-weight: 400;
+      color: #64748b;
+      text-transform: none;
+      margin-top: 4px;
+    }
+    body.dark-mode .target-role span { color: #94a3b8; }
+
+    .info {
+      font-size: 0.95em;
+      color: #64748b;
+      margin-top: 10px;
+    }
+    body.dark-mode .info { color: #94a3b8; }
+    
+    .header-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: transparent;
+      border: none;
+    }
+    
+    .summary {
+      font-size: 1.1em;
+      margin: 30px 0;
+      color: var(--text-light);
+      background: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-light);
+      text-align: left; 
+    }
+    body.dark-mode .summary {
+      background: rgba(255,255,255,0.03);
+      color: var(--text-dark);
+      border-left-color: var(--accent-dark);
+    }
+    
+    .cv-flex {
+      display: flex; 
+      gap: 50px;
+    }
+    
+    aside {
+      flex: 0 0 350px;
+      background-color: var(--aside-light);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    body.dark-mode aside {
+      background-color: var(--aside-dark);
+    }
+    .skill-title { 
+      font-weight: 700; 
+      display: block; 
+      margin-bottom: 2px;
+      font-size: 0.9em;
+      color: var(--primary-light);
+    }
+    body.dark-mode .skill-title { color: var(--primary-dark); }
+    .skill-desc {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .main-content { 
+      flex: 1; 
+    }
+
+    h2 {
+      font-size: 1.3em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-light);
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    body.dark-mode h2 { color: var(--accent-dark); }
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
+    body.dark-mode h2::after { background: var(--border-dark); }
+    
+    .skills-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-list li {
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+
+    .experience-item {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 30px;
+      border-left: 2px solid var(--border-light);
+    }
+    body.dark-mode .experience-item { border-left-color: var(--border-dark); }
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-light);
+      border-radius: 50%;
+    }
+    body.dark-mode .experience-item::before { background: var(--accent-dark); }
+    
+    .item-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      margin: 0 0 5px 0;
+      color: var(--primary-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    body.dark-mode .item-title { color: var(--primary-dark); }
+    
+    .dates {
+      font-size: 0.8em;
+      color: #64748b;
+      font-weight: 500;
+      font-style: normal;
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+    
+    .experience-item ul {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+    }
+    .experience-item li { 
+      margin-bottom: 8px; 
+      font-size: 0.95em; 
+      text-align: left; 
+    }
+
+    @media screen and (max-width: 900px) {
+      .container { margin: 0; border-radius: 0; padding: 30px 20px; }
+      .cv-flex { flex-direction: column; }
+      .header-flex { flex-direction: column; text-align: center; gap: 20px; }
+      .header-photo { margin: 0; }
+      .top-bar { position: static; align-items: center; margin-bottom: 20px; }
+      aside { flex: none; width: 100%; }
+      .item-title { flex-direction: column; }
+      .dates { margin-left: 0; margin-top: 5px; }
+    }
+
+    /* CODE D'IMPRESSION CENTRÉ VERTICALEMENT */
+    @media print {
+      @page { margin: 0; size: A4 portrait; }
+      body { 
+        -webkit-print-color-adjust: exact !important; 
+        print-color-adjust: exact !important; 
+        font-size: 9.5px !important; 
+        line-height: 1.35 !important;
+        background: var(--bg-light) !important;
+        color: var(--text-light) !important;
+      }
+      
+      body.dark-mode { background: var(--bg-light) !important; color: var(--text-light) !important; }
+      body.dark-mode .container { background: var(--container-light) !important; }
+      body.dark-mode aside { background: var(--aside-light) !important; }
+      body.dark-mode .summary { background: var(--aside-light) !important; color: var(--text-light) !important; border-left-color: var(--accent-light) !important; }
+      body.dark-mode h1, body.dark-mode .item-title, body.dark-mode .skill-title { color: var(--primary-light) !important; }
+      body.dark-mode h2 { color: var(--accent-light) !important; }
+      body.dark-mode .target-role span, body.dark-mode .info, body.dark-mode .dates { color: #64748b !important; }
+      body.dark-mode h2::after { background: var(--border-light) !important; }
+      body.dark-mode .experience-item { border-left-color: var(--border-light) !important; }
+      body.dark-mode .experience-item::before { background: var(--accent-light) !important; }
+
+      .container { 
+        margin: 0 !important; 
+        padding: 8mm 12mm !important; 
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        
+        /* CENTRAGE VERTICAL */
+        min-height: 100vh !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important; 
+      }
+      
+      .cv-flex {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important; 
+      }
+      aside {
+        flex: 0 0 200px !important; 
+        padding: 12px !important;
+      }
+      .main-content {
+        flex: 1 !important;
+      }
+      
+      header { margin-bottom: 8px !important; padding-bottom: 8px !important; }
+      .header-photo { width: 90px !important; height: 90px !important; border-radius: 8px !important; background: transparent !important; border: none !important; }
+      h1 { font-size: 2em !important; margin-bottom: 2px !important; }
+      .target-role { font-size: 1.1em !important; margin-bottom: 4px !important; }
+      .target-role span { margin-top: 2px !important; }
+      .info { margin-top: 4px !important; font-size: 0.9em !important; }
+      
+      .summary { margin: 8px 0 !important; padding: 12px !important; font-size: 1em !important; }
+      h2 { margin: 12px 0 6px 0 !important; font-size: 1.1em !important; }
+      
+      .skill-block { margin-bottom: 8px !important; }
+      .skill-desc { margin-bottom: 6px !important; font-size: 0.9em !important; }
+      .skills-list li { margin-bottom: 6px !important; }
+      
+      .experience-item { margin-bottom: 10px !important; padding-left: 20px !important; }
+      .experience-item::before { left: -6px !important; top: 4px !important; width: 10px !important; height: 10px !important; }
+      .item-title { font-size: 1.05em !important; margin-bottom: 2px !important; }
+      .experience-item ul { margin: 4px 0 0 0 !important; padding-left: 15px !important; }
+      .experience-item li { margin-bottom: 3px !important; font-size: 0.95em !important; }
+      
+      .top-bar, .language-switcher { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-buttons">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Changer le thème" title="Changer le thème" type="button">
+        <span id="icon-sun">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </span>
+        <span id="icon-moon" style="display: none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+      </button>
+      <a id="pdf-link" class="theme-toggle-btn" href="CV_Damien_Guesdon_FR.pdf" download title="Télécharger le PDF" style="display:none">
+        <span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h13l5 5v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="none"/><polyline points="16 3 21 8" fill="none"/><text x="4" y="19" font-size="8" font-family="Arial, sans-serif" font-weight="bold" fill="currentColor">PDF</text></svg>
+        </span>
+      </a>
+    </div>
+    <div class="language-switcher">
+      <img src="https://flagcdn.com/fr.svg" class="language-flag" data-lang="fr" alt="Français" title="Français" crossorigin="anonymous">
+      <img src="https://flagcdn.com/gb.svg" class="language-flag" data-lang="en" alt="English" title="English" crossorigin="anonymous">
+    </div>
+  </div>
+
+  <div class="container">
+    <main>
+      
+      <!-- VERSION FRANCAISE -->
+      <div id="fr" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+              <div class="target-role">
+                DIRECTEUR TECHNIQUE / DIRECTEUR DES OPÉRATIONS TECHNIQUES
+                <span>Équipes multi-sites, Téléphonie & IT, Intégration d'acquisitions, Process & Qualité de service</span>
+              </div>
+            <div class="info">
+              La Plaine-sur-Mer, France &nbsp;|&nbsp; Déplacements en France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+
+        <h2>Résumé professionnel</h2>
+        <div class="summary">
+          Directeur technique avec plus de 20 ans d'expérience chez des opérateurs télécoms et des hébergeurs, jusqu'au poste de <strong>CTO</strong> (18 personnes, 4 pôles : <strong>VoIP</strong>, réseau, DevOps et R&D, datacenter). Mon métier : <strong>fédérer des équipes techniques réparties sur plusieurs sites</strong> autour de règles communes. Concrètement : <strong>harmoniser les process</strong> (gestion des incidents, comité des changements, certifications <strong>ISO 9001</strong>, 27001, 22301, HDS), améliorer la <strong>qualité de service</strong> rendue aux clients (délais de rétablissement, engagements de service), <strong>intégrer des infrastructures après un rapprochement</strong> (projet de fusion réseau livré pour 2 M€ face à une cotation de 130 M€) et tenir les <strong>achats fournisseurs</strong> (Microsoft, Cisco, Palo Alto). Diplômé ingénieur IA (niveau 7, 2026) : un atout pour bâtir des offres d'IA destinées aux PME.
+        </div>
+
+        <div class="cv-flex">
+          <aside>
+           <h2>Compétences clés</h2>
+            <div class="skill-block"><span class="skill-title">Management multi-sites :</span><div class="skill-desc">Direction de 18 personnes sur 4 pôles, management de managers et d'experts, équipes réparties sur plusieurs sites et plusieurs pays, pilotage à distance et sur le terrain.</div></div>
+            <div class="skill-block"><span class="skill-title">Process & Qualité de service :</span><div class="skill-desc">Gestion des incidents et réduction du temps de rétablissement, comité d'approbation des changements, engagements de service (SLA), renouvellement des certifications ISO 9001, 27001, 22301 et HDS.</div></div>
+            <div class="skill-block"><span class="skill-title">Intégration d'acquisitions :</span><div class="skill-desc">Audit et intégration d'infrastructures, fusion de réseaux, convergence des outils et des pratiques entre entités.</div></div>
+            <div class="skill-block"><span class="skill-title">Téléphonie, réseaux & IT :</span><div class="skill-desc">Téléphonie sur IP d'opérateur, réseaux d'entreprise et d'opérateur, hébergement et datacenters, Microsoft 365, sécurité (Palo Alto).</div></div>
+            <div class="skill-block"><span class="skill-title">Achats & Fournisseurs :</span><div class="skill-desc">Mise en concurrence, négociation de contrats matériel et licences, maîtrise du CAPEX et de l'OPEX (licences Microsoft 365 : 70 k€ d'économie par an).</div></div>
+            <div class="skill-block"><span class="skill-title">IA pour l'entreprise :</span><div class="skill-desc">Plateforme d'IA souveraine sur site (assistant, recherche documentaire), gouvernance des usages de l'IA.</div></div>
+
+            <h2>Langues</h2>
+            <ul class="skills-list">
+              <li><img src="https://flagcdn.com/fr.svg" alt="Français" class="lang-icon">Français : Maternelle</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="Anglais" class="lang-icon">Anglais : niveau C2 (compréhension orale et écrite, expression écrite)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan : En cours d'apprentissage</li>
+            </ul>
+
+            <h2>Formation</h2>
+            <div class="skill-block"><span class="skill-title">Diplôme de niveau 7 en IA Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Cursus d'ingénierie (Data Science & MLOps). Projet de fin d'études sur la gouvernance IT et l'architecture souveraine.</div></div>
+            <div class="skill-block"><span class="skill-title">BTS TSGRI, Créteil (94), 2005-2006</span><div class="skill-desc">Technicien Supérieur Gestionnaire de Ressources Informatiques</div></div>
+            <div class="skill-block"><span class="skill-title">BTS Analyste Programmeur, CNFDI, 2001</span></div>
+          </aside>
+
+          <div class="main-content">
+
+            <h2>Expérience professionnelle</h2>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique (CTO) - Alphalink (opérateur télécom B2B)</span> <span class="dates">France - Jan 2024 - Mai 2025</span></h3>
+              <ul>
+                <li><strong>Management d'un département réparti :</strong> direction de 18 personnes, dont des <strong>managers</strong>, sur 4 pôles (VoIP, réseau, DevOps et R&D, datacenter) et plusieurs sites ; un cadre commun pour des équipes aux métiers et aux habitudes différents.</li>
+                <li><strong>Process & discipline :</strong> création et présidence du comité d'approbation des changements entre services ; règles de gestion des incidents et de supervision qui ont nettement réduit le temps de rétablissement ; pilotage du renouvellement de <strong>4 certifications ISO</strong> (9001, 27001, 22301, HDS).</li>
+                <li><strong>Projet de fusion réseau :</strong> refonte de la stratégie d'achat face à une cotation initiale de <strong>130 M€</strong> (Cisco) ; mise en concurrence et architecture cible revue, projet livré pour <strong>2 M€</strong>.</li>
+                <li><strong>Achats & licences :</strong> audit des licences Microsoft 365 et renégociation des contrats, <strong>70 k€ d'économie par an</strong> ; pilotage des constructeurs et fournisseurs (Cisco, Palo Alto).</li>
+                <li><strong>Infrastructure :</strong> évolution d'une infrastructure souveraine répartie entre datacenters en propre et en colocation ; définition d'une nouvelle infrastructure de sécurité (SOC, Palo Alto).</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique de Transition - KISAI</span> <span class="dates">France / Andorre - Depuis Juin 2025</span></h3>
+              <ul>
+                <li><strong>Direction technique à temps partagé :</strong> poursuite de mon activité de conseil initiée en 2018, auprès de dirigeants, sur des infrastructures critiques et des refontes de réseaux.</li>
+                <li><strong>Montée en compétence :</strong> diplôme de niveau 7 (Master) en ingénierie IA, obtenu en 2026.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Projet personnel : SophIA, plateforme d'IA souveraine</span> <span class="dates">Auto-hébergée - Depuis Mars 2026</span></h3>
+              <ul>
+                <li><strong>Exploitée comme une production :</strong> plateforme d'IA en service continu pour 4 utilisateurs (authentification unique), sur un serveur avec GPU NVIDIA : assistant, recherche dans les documents, automatisation.</li>
+                <li><strong>Mêmes règles qu'en entreprise :</strong> registre des risques, gestion des incidents, changements revus avant application, accès par VPN, cloisonnement réseau.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur de Transition & Architecte Infrastructure (Mandat Externe)</span> <span class="dates">France / International - 2018 - 2023</span></h3>
+              <ul>
+                <li><strong>Équipes réparties sur plusieurs pays :</strong> management d'équipes techniques en France, au Portugal, à l'Île Maurice, au Luxembourg et au Maroc, pour le compte d'opérateurs.</li>
+                <li><strong>Conformité :</strong> infrastructures conçues pour obtenir et renouveler les certifications ISO 27001 et HDS.</li>
+                <li><strong>Haute disponibilité :</strong> cœurs de réseau d'opérateurs et datacenters à disponibilité maximale.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Directeur Technique & Architecte (Mandat Externe)</span> <span class="dates">France - 2011 - 2018</span></h3>
+              <ul>
+                <li>Déploiement et exploitation de cœurs de réseau d'opérateurs, de datacenters et de réseaux MPLS ; intégration de services pour des fournisseurs d'accès.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Expériences antérieures (Systèmes, Réseaux & Support)</span> <span class="dates">France - 2005 - 2011</span></h3>
+              <ul>
+                <li><strong>ALPHALINK</strong> (2008-2011) : Architecte Réseau - conception d'architectures, formation des clients.</li>
+                <li><strong>PYGRAM</strong> (2007-08) : Gestionnaire Système et Réseau (virtualisation VMware, TSE).</li>
+                <li><strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07) : Administration systèmes et support informatique sur des parcs d'envergure.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- VERSION ANGLAISE -->
+      <div id="en" class="lang-section">
+        <div class="header-flex">
+          <div>
+            <h1>Damien GUESDON</h1>
+              <div class="target-role">
+                TECHNICAL DIRECTOR / HEAD OF TECHNICAL OPERATIONS
+                <span>Multi-site teams, Telephony & IT, Post-acquisition integration, Processes & Service quality</span>
+              </div>
+            <div class="info">
+              La Plaine-sur-Mer, France &nbsp;|&nbsp; Travel within France<br>
+              <a href="mailto:guesdondamien@free.fr">guesdondamien@free.fr</a> &nbsp;|&nbsp; +33 6 63 71 17 80
+            </div>
+          </div>
+          <img src="photo.jpg" class="header-photo" alt="Damien GUESDON">
+        </div>
+
+        <h2>Professional Summary</h2>
+        <div class="summary">
+          Technical executive with over 20 years at telecom operators and hosting providers, up to <strong>CTO</strong> (18 people, 4 teams: <strong>VoIP</strong>, network, DevOps and R&D, datacenter). My job: <strong>bringing technical teams spread across several sites</strong> under shared rules. In practice: <strong>harmonising processes</strong> (incident management, change advisory board, <strong>ISO 9001</strong>, 27001, 22301 and HDS certifications), improving the <strong>service quality</strong> delivered to customers (time to restore, service commitments), <strong>integrating infrastructures after a merger</strong> (network merger project delivered for €2M against a €130M quote) and running <strong>vendor procurement</strong> (Microsoft, Cisco, Palo Alto). AI engineering graduate (Master's level, 2026): an asset for building AI offers for SMEs.
+        </div>
+
+        <div class="cv-flex">
+          <aside>
+            <h2>Key Skills</h2>
+            <div class="skill-block"><span class="skill-title">Multi-site management:</span><div class="skill-desc">Led 18 people across 4 teams, managing managers and experts, teams spread over several sites and countries, leading remotely and on the ground.</div></div>
+            <div class="skill-block"><span class="skill-title">Processes & Service quality:</span><div class="skill-desc">Incident management and shorter time to restore, change advisory board, service commitments (SLA), renewal of ISO 9001, 27001, 22301 and HDS certifications.</div></div>
+            <div class="skill-block"><span class="skill-title">Post-acquisition integration:</span><div class="skill-desc">Infrastructure audit and integration, network mergers, converging tools and practices across entities.</div></div>
+            <div class="skill-block"><span class="skill-title">Telephony, networks & IT:</span><div class="skill-desc">Operator-grade VoIP, enterprise and operator networks, hosting and datacenters, Microsoft 365, security (Palo Alto).</div></div>
+            <div class="skill-block"><span class="skill-title">Vendors & Procurement:</span><div class="skill-desc">Competitive bidding, hardware and licence negotiation, CAPEX and OPEX control (Microsoft 365 licences: €70K saved per year).</div></div>
+            <div class="skill-block"><span class="skill-title">AI for business:</span><div class="skill-desc">Sovereign on-premise AI platform (assistant, document search), governance of AI use.</div></div>
+
+            <h2>Languages</h2>
+            <ul class="skills-list">
+              <li><img src="https://flagcdn.com/fr.svg" alt="French" class="lang-icon">French: Native</li>
+              <li><img src="https://flagcdn.com/gb.svg" alt="English" class="lang-icon">English: C2 level (listening, reading, writing)</li>
+              <li><img src="https://flagcdn.com/es.svg" alt="Catalan" class="lang-icon">Catalan: In progress</li>
+            </ul>
+
+            <h2>Education</h2>
+            <div class="skill-block"><span class="skill-title">MSc in AI Engineering, OpenClassrooms, 2026</span><div class="skill-desc">Engineering curriculum (Data Science & MLOps). Final project on IT governance and sovereign architecture.</div></div>
+            <div class="skill-block"><span class="skill-title">Higher Technical Diploma (BTS), IT Resource Mgmt, 2005-2006</span><div class="skill-desc">IT Resource Management Specialist</div></div>
+            <div class="skill-block"><span class="skill-title">Higher National Diploma (BTS), Analyst Programmer, CNFDI, 2001</span></div>
+          </aside>
+
+          <div class="main-content">
+
+            <h2>Professional Experience</h2>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Chief Technology Officer (CTO) - Alphalink (B2B telecom operator)</span> <span class="dates">France - Jan 2024 - May 2025</span></h3>
+              <ul>
+                <li><strong>Leading a distributed department:</strong> 18 people, including <strong>managers</strong>, across 4 teams (VoIP, network, DevOps and R&D, datacenter) and several sites; one common framework for teams with different trades and habits.</li>
+                <li><strong>Processes & discipline:</strong> set up and chaired the cross-department change advisory board; incident and monitoring rules that sharply cut time to restore; led the renewal of <strong>4 ISO certifications</strong> (9001, 27001, 22301, HDS).</li>
+                <li><strong>Network merger project:</strong> overhauled the procurement strategy against an initial <strong>€130M</strong> quote (Cisco); competitive bidding and a revised target architecture, delivered for <strong>€2M</strong>.</li>
+                <li><strong>Procurement & licences:</strong> Microsoft 365 licence audit and contract renegotiation, <strong>€70K saved per year</strong>; vendor management (Cisco, Palo Alto).</li>
+                <li><strong>Infrastructure:</strong> evolution of a sovereign infrastructure spread across owned and colocation datacenters; defined a new security infrastructure (SOC, Palo Alto).</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Interim Technical Director - KISAI</span> <span class="dates">France / Andorra - Since June 2025</span></h3>
+              <ul>
+                <li><strong>Fractional technical leadership:</strong> continuing the consulting practice started in 2018, advising executives on critical infrastructure and network overhauls.</li>
+                <li><strong>Upskilling:</strong> Master's-level degree in AI engineering, obtained in 2026.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Personal project: SophIA, sovereign AI platform</span> <span class="dates">Self-hosted - Since March 2026</span></h3>
+              <ul>
+                <li><strong>Run like production:</strong> AI platform in continuous service for 4 users (single sign-on), on a server with an NVIDIA GPU: assistant, document search, automation.</li>
+                <li><strong>Enterprise rules:</strong> risk register, incident management, changes reviewed before rollout, VPN-only access, network segmentation.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Interim Director & Infrastructure Architect (External Mandate)</span> <span class="dates">France / International - 2018 - 2023</span></h3>
+              <ul>
+                <li><strong>Teams across several countries:</strong> managed technical teams in France, Portugal, Mauritius, Luxembourg and Morocco on behalf of operators.</li>
+                <li><strong>Compliance:</strong> infrastructures designed to obtain and renew ISO 27001 and HDS certifications.</li>
+                <li><strong>High availability:</strong> operator backbones and datacenters with maximum availability.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Technical Director & Architect (External Mandate)</span> <span class="dates">France - 2011 - 2018</span></h3>
+              <ul>
+                <li>Deployed and ran operator backbones, datacenters and MPLS networks; service integration for internet service providers.</li>
+              </ul>
+            </div>
+
+            <div class="experience-item">
+              <h3 class="item-title"><span>Previous Experience (Systems, Networks & Support)</span> <span class="dates">France - 2005 - 2011</span></h3>
+              <ul>
+                <li><strong>ALPHALINK</strong> (2008-2011): Network Architect - architecture design, customer training.</li>
+                <li><strong>PYGRAM</strong> (2007-08): Systems & Network Manager (VMware virtualisation, TSE).</li>
+                <li><strong>Renault / BI-SAM / BNP Paribas</strong> (2005-07): Systems administration and IT support on large estates.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    function switchLanguage(lang) {
+      document.getElementById('fr').style.display = lang === 'fr' ? 'block' : 'none';
+      document.getElementById('en').style.display = lang === 'en' ? 'block' : 'none';
+      document.querySelectorAll('.language-flag').forEach(flag => {
+        flag.classList.toggle('active', flag.dataset.lang === lang);
+      });
+      localStorage.setItem('preferredLang', lang);
+
+      var pdfLink = document.getElementById('pdf-link');
+      if (pdfLink) {
+        if (lang === 'fr') {
+          pdfLink.href = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.download = 'CV_Damien_Guesdon_FR.pdf';
+          pdfLink.title = 'Télécharger le PDF';
+        } else {
+          pdfLink.href = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.download = 'Resume_Damien_Guesdon_EN.pdf';
+          pdfLink.title = 'Download PDF';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      switchLanguage(savedLang);
+      document.querySelectorAll('.language-flag').forEach((flag) => {
+        flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
+      });
+
+      const themeToggle = document.getElementById('theme-toggle');
+      const iconSun = document.getElementById('icon-sun');
+      const iconMoon = document.getElementById('icon-moon');
+
+      function setTheme(mode) {
+        if (mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          iconSun.style.display = 'none';
+          iconMoon.style.display = 'inline-block';
+        } else {
+          document.body.classList.remove('dark-mode');
+          iconSun.style.display = 'inline-block';
+          iconMoon.style.display = 'none';
+        }
+        localStorage.setItem('theme', mode);
+      }
+
+      themeToggle.addEventListener('click', () => setTheme(document.body.classList.contains('dark-mode') ? 'light' : 'dark'));
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTheme(savedTheme);
+    });
+  </script>
+</body>
+</html>
