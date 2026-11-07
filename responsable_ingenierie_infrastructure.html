@@ -645,7 +645,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      const savedLang = localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
+      const hashLang = ['#en', '#fr'].includes(location.hash) ? location.hash.slice(1) : null;
+      const savedLang = hashLang || localStorage.getItem('preferredLang') || (navigator.language.startsWith('en') ? 'en' : 'fr');
       switchLanguage(savedLang);
       document.querySelectorAll('.language-flag').forEach((flag) => {
         flag.addEventListener('click', () => switchLanguage(flag.dataset.lang));
