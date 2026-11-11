@@ -1,65 +1,41 @@
-# 🚀 Damien Guesdon - CV Factory
+# Damien Guesdon - CV
 
-Ce dépôt contient le moteur de génération de mon CV professionnel. Il s'agit d'une solution personnalisée permettant de générer un profil dynamique, bilingue (FR/EN) et responsive à partir de sources de données structurées.
+Site du CV de Damien Guesdon, publié sur GitHub Pages : une page d'accueil et des CV ciblés par poste, bilingues (FR/EN), avec thème clair ou sombre et styles d'impression.
 
-## 🛠️ Stack Technique
+## Où se fait le travail
 
-- **Moteur de Rendu** : Python 3.11
-- **Templating** : [Jinja2](https://palletsprojects.com/p/jinja/)
-- **Source de Données** : YAML (Séparation stricte contenu/forme)
-- **Front-end** : HTML5 & CSS3 (Variables CSS pour le support Dark/Light mode)
-- **Automation CI/CD** : GitHub Actions
-- **Qualité Code** : Ruff (Linting) & Black (Formatage)
-- **Hébergement** : GitHub Pages
+- La source est dans une forge privée. Ce dépôt GitHub en est le **miroir** : il ne se modifie pas directement (une poussée faite ici fait échouer le miroir).
+- Chaque page HTML est **écrite à la main** et autonome : ses styles et son script sont dans le fichier.
 
-## ✨ Fonctionnalités
+## Pages publiées
 
-- **Bilingue (FR/EN)** : Bascule dynamique de la langue via l'interface.
-- **Support Dark/Light Mode** : Détection automatique du thème système et bascule manuelle.
-- **Génération Ciblée** : Support de fichiers d'overrides pour adapter le CV à des opportunités spécifiques (adaptation dynamique du résumé ou des compétences mises en avant).
-- **Calcul Automatique** : Les années d'expérience globale sont recalculées dynamiquement à chaque génération.
-- **Design Print-Ready** : Styles CSS optimisés pour l'impression et l'export PDF.
+| Fichier | Poste visé |
+|---|---|
+| `index.html` | CTO Infrastructure & IA (page d'accueil) |
+| `cto_infra_ia.html` | redirige vers la page d'accueil |
+| `responsable_ingenierie_infrastructure.html` | Responsable de l'ingénierie infrastructure (langue imposée par l'ancre `#fr` ou `#en` du lien) |
+| `directeur_infrastructure_securite.html` | Directeur Infrastructure, Production & Sécurité |
+| `directeur_operations_techniques.html` | Directeur des Opérations Techniques |
+| `directeur_de_site.html` | Directeur de Site |
+| `DSI_banque.html` | DSI / CIO / CTO |
+| `Fractionnal_CTO.html` | DSI / CIO |
+| `IT_manager.html` | Responsable Infrastructure |
+| `Responsable_IA.html` | Directeur Technique & Responsable IA |
+| `AI_Platform.html` | Directeur Data & IA |
+| `AI_architect.html` | Expert IA & Architecte de Solutions |
+| `ia_architect.html` | Architecte & Référent Technique IA |
+| `ai_strategy.html` | Expert Conseil IA, Stratégie et Transformation |
+| `SRE.html` | Senior Site Reliability Engineer & MLOps Architect |
 
-## 📂 Structure du Projet
+`CV_Damien_Guesdon_FR.pdf` et `Resume_Damien_Guesdon_EN.pdf` sont les PDF proposés en téléchargement par la page d'accueil.
 
-```text
-├── data/
-│   ├── cv.yaml           # Données sources (Expériences, Compétences, etc.)
-│   └── cv_custom.yaml    # Overrides pour une version spécifique (optionnel)
-├── scripts/
-│   └── generate_cv.py    # Script Python de génération du fichier HTML
-├── src/
-│   └── templates/
-│       └── cv_template.html # Template Jinja2 maître
-├── index.html            # CV généré (déployé automatiquement)
-└── .github/workflows/    # Workflows d'automatisation (CI/CD)
-```
+## Publication
 
-## 🚀 Utilisation
+Le workflow `.github/workflows/ci.yml` tourne à chaque poussée reçue par le miroir :
 
-### Installation
-Le projet nécessite Python 3.11 et les dépendances Jinja2 et PyYAML.
-```bash
-pip install jinja2 pyyaml
-```
+1. `validate` : Ruff et Black sur le code Python du dépôt.
+2. `deploy` (branche `main` seulement) : publie **tout le dépôt**, tel quel, sur GitHub Pages. Rien n'est généré : ce qui est versionné est ce qui est servi.
 
-### Génération locale
-Pour générer la version standard :
-```bash
-python scripts/generate_cv.py
-```
+## Ancien générateur (ne sert plus)
 
-Pour générer une version spécifique (utilisant un fichier d'override correspondant dans `data/`) :
-```bash
-python scripts/generate_cv.py --target custom
-```
-
-## ⚙️ Automatisation
-
-Le déploiement est entièrement automatisé via GitHub Actions :
-1. Chaque modification de code ou de données est validée par **Ruff** (linting) et **Black** (formatage).
-2. Après validation, le CV est régénéré et déployé sur **GitHub Pages**.
-3. La gestion des versions est assurée par un tag de versioning injecté dynamiquement dans le code source du CV.
-
----
-*Damien Guesdon*
+`scripts/generate_cv.py`, `src/templates/cv_template.html`, `data/cv.yaml` et `pixi.toml` sont l'ancienne chaîne de génération (YAML + Jinja2). Les données datent de février 2026 et les pages sont modifiées à la main depuis : **ne pas lancer le script**, il écraserait `index.html` (sortie par défaut) avec un contenu périmé. Leur retrait reste à décider.
